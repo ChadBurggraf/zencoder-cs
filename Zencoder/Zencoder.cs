@@ -90,9 +90,9 @@ namespace Zencoder
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
-                Newsletter = (newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
+                Newsletter = Convert.ToInt32(newsletter, CultureInfo.InvariantCulture), //(newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
                 Password = password,
-                TermsOfService = (termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
+                TermsOfService = Convert.ToInt32(termsOfService, CultureInfo.InvariantCulture) //(termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
             }.GetResponse();
         }
 
@@ -126,9 +126,9 @@ namespace Zencoder
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
-                Newsletter = (newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
+                Newsletter = Convert.ToInt32(newsletter, CultureInfo.InvariantCulture), //(newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
                 Password = password,
-                TermsOfService = (termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
+                TermsOfService = Convert.ToInt32(termsOfService, CultureInfo.InvariantCulture) //(termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
             }.GetResponseAsync(callback);
         }
 

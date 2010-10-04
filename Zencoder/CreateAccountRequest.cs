@@ -35,6 +35,22 @@ namespace Zencoder
         public string AffiliateCode { get; set; }
 
         /// <summary>
+        /// Gets the API key to use when connecting to the service.
+        /// </summary>
+        [IgnoreDataMember]
+        public override string ApiKey
+        {
+            get
+            {
+                return base.ApiKey;
+            }
+            protected set
+            {
+                base.ApiKey = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the email to create the account with.
         /// </summary>
         [DataMember(Name = "email")]
@@ -45,7 +61,7 @@ namespace Zencoder
         /// User 1 for true, 0 for false.
         /// </summary>
         [DataMember(Name = "newsletter")]
-        public string Newsletter { get; set; }
+        public int Newsletter { get; set; }
 
         /// <summary>
         /// Gets or sets the password to create the account with.
@@ -58,7 +74,7 @@ namespace Zencoder
         /// Use 1 for true, 0 for false.
         /// </summary>
         [DataMember(Name = "terms_of_service")]
-        public string TermsOfService { get; set; }
+        public int TermsOfService { get; set; }
 
         /// <summary>
         /// Gets the concrete URL this request will call.

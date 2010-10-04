@@ -70,14 +70,14 @@ namespace Zencoder.Test
         public void AccountCreateAccountRequestToJson()
         {
             Assert.AreEqual(
-                @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":""1"",""password"":""1234"",""terms_of_service"":""1""}", 
+                @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":1,""password"":""1234"",""terms_of_service"":1}", 
                 new CreateAccountRequest(Zencoder.BaseUrl)
                 {
                     AffiliateCode = "asdf1234",
                     Email = "test@example.com",
-                    Newsletter = "1",
+                    Newsletter = 1,
                     Password = "1234",
-                    TermsOfService = "1"
+                    TermsOfService = 1
                 }.ToJson());
         }
 

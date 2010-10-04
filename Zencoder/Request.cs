@@ -47,14 +47,15 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Gets the API key to use when connecting to the service.
+        /// Gets or sets the API key to use when connecting to the service.
         /// </summary>
-        public string ApiKey { get; private set; }
+        [DataMember(Name = "api_key")]
+        public virtual string ApiKey { get; protected set; }
 
         /// <summary>
-        /// Gets the service base URL.
+        /// Gets or sets the service base URL.
         /// </summary>
-        public Uri BaseUrl { get; private set; }
+        public Uri BaseUrl { get; protected set; }
 
         /// <summary>
         /// Gets the concrete URL this request will call.

@@ -56,14 +56,22 @@
     <Compile Include="AccountDetailsResponse.cs" />
     <Compile Include="AccountIntegrationModeRequest.cs" />
     <Compile Include="AccountIntegrationModeResponse.cs" />
+    <Compile Include="AspectMode.cs" />
+    <Compile Include="AudioCodec.cs" />
     <Compile Include="CreateAccountRequest.cs" />
     <Compile Include="CreateAccountResponse.cs" />
+    <Compile Include="CreateJobRequest.cs" />
+    <Compile Include="CreateJobResponse.cs" />
+    <Compile Include="Deinterlace.cs" />
+    <Compile Include="Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Request`1.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Response`1.cs" />
+    <Compile Include="Rotate.cs" />
     <Compile Include="Uris.cs" />
+    <Compile Include="VideoCodec.cs" />
     <Compile Include="Zencoder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
