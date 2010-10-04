@@ -1,0 +1,6 @@
+*.suo
+*.csproj.user
+App.config
+bin/
+obj/
+TestResults/

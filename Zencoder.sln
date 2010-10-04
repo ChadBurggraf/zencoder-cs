@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder", "Zencoder\Zencoder.csproj", "{6E47D2CE-D094-4077-9039-3B257DED1C6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder.Test", "Zencoder.Test\Zencoder.Test.csproj", "{56CB9652-A906-4B54-8D67-70C1DE36EB3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F3CE0C5-A66D-4468-BEF8-CABB6B8DA6D1}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Zencoder.vsmdi = Zencoder.vsmdi
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Zencoder.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
