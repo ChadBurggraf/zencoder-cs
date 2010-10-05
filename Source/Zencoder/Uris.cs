@@ -109,5 +109,19 @@ namespace Zencoder
 
             return builder.Uri;
         }
+
+        /// <summary>
+        /// Gets the entire query string of the URI to the given pre-encoded query string.
+        /// </summary>
+        /// <param name="uri">The URI to set the query string of.</param>
+        /// <param name="queryString">The query string to set.</param>
+        /// <returns>The result URI.</returns>
+        public static Uri WithQueryString(this Uri uri, string queryString)
+        {
+            UriBuilder builder = new UriBuilder(uri);
+            builder.Query = queryString;
+
+            return builder.Uri;
+        }
     }
 }
