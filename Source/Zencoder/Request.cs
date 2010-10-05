@@ -3,19 +3,14 @@
 namespace Zencoder
 {
     using System;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Base class for API requests.
     /// </summary>
-    [DataContract(Name = Request.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public abstract class Request
     {
-        /// <summary>
-        /// Gets the name of request data contracts.
-        /// </summary>
-        protected const string ContractName = "api-request";
-
         /// <summary>
         /// Initializes a new instance of the Request class.
         /// </summary>
@@ -49,7 +44,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the API key to use when connecting to the service.
         /// </summary>
-        [DataMember(Name = "api_key")]
+        [JsonProperty("api_key")]
         public virtual string ApiKey { get; protected set; }
 
         /// <summary>

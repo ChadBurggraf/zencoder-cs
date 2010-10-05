@@ -69,7 +69,7 @@ namespace Zencoder
         /// <param name="termsOfService">A value indicating whether the terms of service are agreed to.</param>
         /// <param name="newsletter">A value indicating whether to subscribe the email address to the newsletter.</param>
         /// <returns>The call response.</returns>
-        public static CreateAccountResponse CreateAccount(string email, string password, string affiliateCode, bool termsOfService, bool newsletter)
+        public static CreateAccountResponse CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter)
         {
             return CreateAccount(email, password, affiliateCode, termsOfService, newsletter, ServiceUrl);
         }
@@ -84,15 +84,15 @@ namespace Zencoder
         /// <param name="newsletter">A value indicating whether to subscribe the email address to the newsletter.</param>
         /// <param name="baseUrl">The service base URL.</param>
         /// <returns>The call response.</returns>
-        public static CreateAccountResponse CreateAccount(string email, string password, string affiliateCode, bool termsOfService, bool newsletter, Uri baseUrl)
+        public static CreateAccountResponse CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter, Uri baseUrl)
         {
             return new CreateAccountRequest(baseUrl)
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
-                Newsletter = Convert.ToInt32(newsletter, CultureInfo.InvariantCulture), //(newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
+                Newsletter = newsletter,
                 Password = password,
-                TermsOfService = Convert.ToInt32(termsOfService, CultureInfo.InvariantCulture) //(termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
+                TermsOfService = termsOfService
             }.GetResponse();
         }
 
@@ -105,7 +105,7 @@ namespace Zencoder
         /// <param name="termsOfService">A value indicating whether the terms of service are agreed to.</param>
         /// <param name="newsletter">A value indicating whether to subscribe the email address to the newsletter.</param>
         /// <param name="callback">The call response.</param>
-        public static void CreateAccount(string email, string password, string affiliateCode, bool termsOfService, bool newsletter, Action<CreateAccountResponse> callback)
+        public static void CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter, Action<CreateAccountResponse> callback)
         {
             CreateAccount(email, password, affiliateCode, termsOfService, newsletter, ServiceUrl, callback);
         }
@@ -120,15 +120,15 @@ namespace Zencoder
         /// <param name="newsletter">A value indicating whether to subscribe the email address to the newsletter.</param>
         /// <param name="baseUrl">The service base URL.</param>
         /// <param name="callback">The call response.</param>
-        public static void CreateAccount(string email, string password, string affiliateCode, bool termsOfService, bool newsletter, Uri baseUrl, Action<CreateAccountResponse> callback)
+        public static void CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter, Uri baseUrl, Action<CreateAccountResponse> callback)
         {
             new CreateAccountRequest(baseUrl)
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
-                Newsletter = Convert.ToInt32(newsletter, CultureInfo.InvariantCulture), //(newsletter ? 1 : 0).ToString(CultureInfo.InvariantCulture),
+                Newsletter = newsletter,
                 Password = password,
-                TermsOfService = Convert.ToInt32(termsOfService, CultureInfo.InvariantCulture) //(termsOfService ? 1 : 0).ToString(CultureInfo.InvariantCulture)
+                TermsOfService = termsOfService,
             }.GetResponseAsync(callback);
         }
 

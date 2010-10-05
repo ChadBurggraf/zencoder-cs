@@ -2,12 +2,12 @@
 namespace Zencoder
 {
     using System;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the create account request.
     /// </summary>
-    [DataContract(Name = Request.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CreateAccountRequest : Request<CreateAccountRequest, CreateAccountResponse>
     {
         /// <summary>
@@ -31,19 +31,20 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the affiliate code to create the account with, if applicable.
         /// </summary>
-        [DataMember(Name = "affiliate_code")]
+        [JsonProperty("affiliate_code", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string AffiliateCode { get; set; }
 
         /// <summary>
-        /// Gets the API key to use when connecting to the service.
+        /// Gets or sets the API key to use when connecting to the service.
         /// </summary>
-        [IgnoreDataMember]
+        [JsonIgnore]
         public override string ApiKey
         {
             get
             {
                 return base.ApiKey;
             }
+
             protected set
             {
                 base.ApiKey = value;
@@ -53,28 +54,27 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the email to create the account with.
         /// </summary>
-        [DataMember(Name = "email")]
+        [JsonProperty("email")]
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to subscribe the email address to the newsletter.
-        /// User 1 for true, 0 for false.
         /// </summary>
-        [DataMember(Name = "newsletter")]
-        public int Newsletter { get; set; }
+        [JsonProperty("newsletter", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Newsletter { get; set; }
 
         /// <summary>
         /// Gets or sets the password to create the account with.
         /// </summary>
-        [DataMember(Name = "password")]
+        [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the terms of service are agreed to.
         /// Use 1 for true, 0 for false.
         /// </summary>
-        [DataMember(Name = "terms_of_service")]
-        public int TermsOfService { get; set; }
+        [JsonProperty("terms_of_service", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? TermsOfService { get; set; }
 
         /// <summary>
         /// Gets the concrete URL this request will call.

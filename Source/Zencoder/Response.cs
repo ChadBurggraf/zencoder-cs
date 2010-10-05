@@ -4,22 +4,20 @@ namespace Zencoder
 {
     using System;
     using System.Net;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
-    [DataContract(Name = Response.ContractName)]
+    /// <summary>
+    /// Base class for API responses.
+    /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public abstract class Response
     {
         private string[] errors;
 
         /// <summary>
-        /// Gets the name of response data contracts.
-        /// </summary>
-        protected const string ContractName = "api-response";
-
-        /// <summary>
         /// Gets or sets the error collection that was returned in the response.
         /// </summary>
-        [DataMember(Name = "errors")]
+        [JsonProperty("errors")]
         public string[] Errors
         {
             get { return this.errors ?? (this.errors = new string[0]); }

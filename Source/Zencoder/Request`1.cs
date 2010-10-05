@@ -5,16 +5,15 @@ namespace Zencoder
     using System;
     using System.IO;
     using System.Net;
-    using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Base generic implementation of <see cref="Request"/>.
     /// </summary>
     /// <typeparam name="TRequest">The concrete <see cref="Request"/> implementor.</typeparam>
     /// <typeparam name="TResponse">The corresponding <see cref="Response"/> implementor.</typeparam>
-    [DataContract(Name = Request.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public abstract class Request<TRequest, TResponse> : Request 
         where TRequest : Request
         where TResponse : Response, new()
@@ -118,16 +117,7 @@ namespace Zencoder
         /// <returns>A JSON string.</returns>
         public string ToJson()
         {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                this.ToJson(stream);
-                stream.Position = 0;
-
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
+            return JsonConvert.SerializeObject(this);
         }
 
         /// <summary>
@@ -136,8 +126,12 @@ namespace Zencoder
         /// <param name="stream">The stream to write JSON data to.</param>
         public virtual void ToJson(Stream stream)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(GetType());
-            serializer.WriteObject(stream, this);
+            JsonSerializer serializer = new JsonSerializer();
+
+            using (StreamWriter writer = new StreamWriter(stream))
+            {
+                serializer.Serialize(writer, this);
+            }
         }
 
         /// <summary>

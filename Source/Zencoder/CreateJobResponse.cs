@@ -2,13 +2,12 @@
 namespace Zencoder
 {
     using System;
-    using System.Net;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the create encoding job response.
     /// </summary>
-    [DataContract(Name = Response.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CreateJobResponse : Response<CreateJobRequest, CreateJobResponse>
     {
     }

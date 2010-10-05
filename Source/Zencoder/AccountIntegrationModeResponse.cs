@@ -2,13 +2,12 @@
 namespace Zencoder
 {
     using System;
-    using System.Net;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the account integration mode response.
     /// </summary>
-    [DataContract(Name = Response.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class AccountIntegrationModeResponse : Response<AccountDetailsRequest, AccountIntegrationModeResponse>
     {
     }

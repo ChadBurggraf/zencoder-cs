@@ -4,18 +4,14 @@ namespace Zencoder
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the create encoding job request.
     /// </summary>
-    [DataContract(Name = Request.ContractName)]
-    [KnownType(typeof(Output))]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CreateJobRequest : Request<CreateJobRequest, CreateJobResponse>
     {
-        private int? downloadConnections;
-        private Output[] outputs;
-
         /// <summary>
         /// Initializes a new instance of the CreateJobRequest class.
         /// </summary>
@@ -39,59 +35,33 @@ namespace Zencoder
         /// Gets or sets the number of connections to use when downloading the input file.
         /// Defaults to 5. Maximum allowed is 25.
         /// </summary>
-        [DataMember(Name = "download_connections", EmitDefaultValue = false)]
-        public int? DownloadConnections
-        {
-            get
-            {
-                return this.downloadConnections;
-            }
-
-            set
-            {
-                if (value != null && value < 1)
-                {
-                    this.downloadConnections = 1;
-                }
-                else if (value != null && value > 25)
-                {
-                    this.downloadConnections = 25;
-                }
-                else
-                {
-                    this.downloadConnections = value;
-                }
-            }
-        }
+        [JsonProperty("download_connections", NullValueHandling = NullValueHandling.Ignore)]
+        public int? DownloadConnections { get; set; }
 
         /// <summary>
         /// Gets or sets the URL of the audo or video file to process.
         /// </summary>
-        [DataMember(Name = "input")]
+        [JsonProperty("input")]
         public string Input { get; set; }
 
         /// <summary>
         /// Gets or sets the output collection definiing outputs for the job.
         /// </summary>
-        [DataMember(Name = "outputs")]
-        public Output[] Outputs
-        {
-            get { return this.outputs ?? (this.outputs = new Output[0]); }
-            set { this.outputs = value; }
-        }
+        [JsonProperty("outputs", NullValueHandling = NullValueHandling.Ignore)]
+        public Output[] Outputs { get; set; }
 
         /// <summary>
         /// Gets or sets the region to use when processing the job.
         /// Defaults to "us".
         /// </summary>
-        [DataMember(Name = "region", EmitDefaultValue = false)]
+        [JsonProperty("region", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string Region { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether test mode is enabled for the job.
         /// Use 1 for true, 0 for false.
         /// </summary>
-        [DataMember(Name = "test", EmitDefaultValue = false)]
+        [JsonProperty("test", NullValueHandling = NullValueHandling.Ignore)]
         public int? Test { get; set; }
 
         /// <summary>

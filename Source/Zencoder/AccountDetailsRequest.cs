@@ -2,12 +2,12 @@
 namespace Zencoder
 {
     using System;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the account details request.
     /// </summary>
-    [DataContract(Name = Request.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class AccountDetailsRequest : Request<AccountDetailsRequest, AccountDetailsResponse>
     {
         /// <summary>

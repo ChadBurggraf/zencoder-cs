@@ -3,24 +3,24 @@ namespace Zencoder
 {
     using System;
     using System.Net;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the create account response.
     /// </summary>
-    [DataContract(Name = Response.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CreateAccountResponse : Response<CreateAccountRequest, CreateAccountResponse>
     {
         /// <summary>
         /// Gets or sets the account's new API key.
         /// </summary>
-        [DataMember(Name = "api_key")]
+        [JsonProperty("api_key")]
         public string ApiKey { get; set; }
 
         /// <summary>
         /// Gets or sets the account's password.
         /// </summary>
-        [DataMember(Name = "password")]
+        [JsonProperty("password")]
         public string Password { get; set; }
 
         /// <summary>

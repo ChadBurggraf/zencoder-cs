@@ -3,12 +3,12 @@ namespace Zencoder
 {
     using System;
     using System.IO;
-    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the account integration mode request.
     /// </summary>
-    [DataContract(Name = Request.ContractName)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class AccountIntegrationModeRequest : Request<AccountIntegrationModeRequest, AccountIntegrationModeResponse>
     {
         /// <summary>
