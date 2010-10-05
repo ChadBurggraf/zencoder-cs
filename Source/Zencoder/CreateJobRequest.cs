@@ -59,10 +59,9 @@ namespace Zencoder
 
         /// <summary>
         /// Gets or sets a value indicating whether test mode is enabled for the job.
-        /// Use 1 for true, 0 for false.
         /// </summary>
         [JsonProperty("test", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Test { get; set; }
+        public bool? Test { get; set; }
 
         /// <summary>
         /// Gets the concrete URL this request will call.
@@ -115,7 +114,7 @@ namespace Zencoder
         {
             if (outputs != null)
             {
-                this.Outputs = this.Outputs.Concat(outputs).ToArray();
+                this.Outputs = (this.Outputs ?? new Output[0]).Concat(outputs).ToArray();
             }
 
             return this;

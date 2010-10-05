@@ -39,7 +39,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDetailsRequest.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Request.cs" />
     <Compile Include="Request`1.cs" />
     <Compile Include="Response.cs" />
+    <Compile Include="ResponseOutput.cs" />
     <Compile Include="Response`1.cs" />
     <Compile Include="Rotate.cs" />
     <Compile Include="Uris.cs" />

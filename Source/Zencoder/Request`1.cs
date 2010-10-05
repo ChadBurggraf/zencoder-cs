@@ -140,7 +140,8 @@ namespace Zencoder
         /// <returns>The created request.</returns>
         protected virtual HttpWebRequest CreateRequest()
         {
-            WebRequest request = WebRequest.Create(this.Url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
+            request.Accept = "application/json";
             request.ContentType = "application/json";
             request.Method = this.Verb;
 

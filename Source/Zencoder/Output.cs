@@ -138,6 +138,13 @@ namespace Zencoder
         public bool? Onepass { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating a shortcut S3 ACL granding READ permission to the AllUsers group,
+        /// if the output is being placed in S3.
+        /// </summary>
+        [JsonProperty("public", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Public { get; set; }
+
+        /// <summary>
         /// Gets or sets the desired video output quality, from 1 to 5.
         /// 5 is almost lossless, but results in the largest files.
         /// Defaults to 3.

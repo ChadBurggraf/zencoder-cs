@@ -3,6 +3,7 @@
 namespace Zencoder
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     /// <summary>
@@ -86,14 +87,16 @@ namespace Zencoder
         /// <returns>The call response.</returns>
         public static CreateAccountResponse CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter, Uri baseUrl)
         {
-            return new CreateAccountRequest(baseUrl)
+            CreateAccountRequest request = new CreateAccountRequest(baseUrl)
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
                 Newsletter = newsletter,
                 Password = password,
                 TermsOfService = termsOfService
-            }.GetResponse();
+            };
+
+            return request.GetResponse();
         }
 
         /// <summary>
@@ -122,14 +125,16 @@ namespace Zencoder
         /// <param name="callback">The call response.</param>
         public static void CreateAccount(string email, string password, string affiliateCode, bool? termsOfService, bool? newsletter, Uri baseUrl, Action<CreateAccountResponse> callback)
         {
-            new CreateAccountRequest(baseUrl)
+            CreateAccountRequest request = new CreateAccountRequest(baseUrl)
             {
                 AffiliateCode = affiliateCode,
                 Email = email,
                 Newsletter = newsletter,
                 Password = password,
                 TermsOfService = termsOfService,
-            }.GetResponseAsync(callback);
+            };
+
+            request.GetResponseAsync(callback);
         }
 
         /// <summary>
@@ -157,10 +162,12 @@ namespace Zencoder
         /// <returns>The call response.</returns>
         public AccountIntegrationModeResponse AccountIntegrationMode(bool enable)
         {
-            return new AccountIntegrationModeRequest(this)
+            AccountIntegrationModeRequest request = new AccountIntegrationModeRequest(this)
             {
                 Enable = enable
-            }.GetResponse();
+            };
+
+            return request.GetResponse();
         }
 
         /// <summary>
@@ -170,10 +177,78 @@ namespace Zencoder
         /// <param name="callback">The call response.</param>
         public void AccountIntegrationMode(bool enable, Action<AccountIntegrationModeResponse> callback)
         {
-            new AccountIntegrationModeRequest(this)
+            AccountIntegrationModeRequest request = new AccountIntegrationModeRequest(this)
             {
                 Enable = enable
-            }.GetResponseAsync(callback);
+            };
+
+            request.GetResponseAsync(callback);
+        }
+
+        /// <summary>
+        /// A blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <returns>The call response.</returns>
+        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs)
+        {
+            return this.CreateJob(input, outputs, null, null, null);
+        }
+
+        /// <summary>
+        /// A non blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <param name="callback">The call response.</param>
+        public void CreateJob(string input, IEnumerable<Output> outputs, Action<CreateJobResponse> callback)
+        {
+            this.CreateJob(input, outputs, null, null, null, callback);
+        }
+
+        /// <summary>
+        /// A blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
+        /// <param name="region">The region to perform the job in.</param>
+        /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <returns>The call response.</returns>
+        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test)
+        {
+            CreateJobRequest request = new CreateJobRequest(this)
+            {
+                DownloadConnections = downloadConnections,
+                Input = input,
+                Region = region,
+                Test = test
+            };
+
+            return request.WithOutputs(outputs).GetResponse();
+        }
+
+        /// <summary>
+        /// A blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
+        /// <param name="region">The region to perform the job in.</param>
+        /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <returns>The call response.</returns>
+        public void CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, Action<CreateJobResponse> callback)
+        {
+            CreateJobRequest request = new CreateJobRequest(this)
+            {
+                DownloadConnections = downloadConnections,
+                Input = input,
+                Region = region,
+                Test = test
+            };
+
+            request.WithOutputs(outputs).GetResponseAsync(callback);
         }
     }
 }
