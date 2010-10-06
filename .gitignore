@@ -1,7 +1,9 @@
 *.suo
 *.csproj.user
+*.snk
 App.config
 StyleCop.Cache
 bin/
 obj/
 TestResults/
+Build/

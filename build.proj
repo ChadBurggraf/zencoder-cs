@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <BuildDir>$(MSBuildProjectDirectory)\Build</BuildDir>
+    <ILMergePath>$(MSBuildProjectDirectory)\Tools\ILMerge\ILMerge.exe</ILMergePath>
+    <KeyFile>$(MSBuildProjectDirectory)\Source\Zencoder.snk</KeyFile>
+    <LibraryDir>$(MSBuildProjectDirectory)\Source\Zencoder</LibraryDir>
+    <LibDir>$(MSBuildProjectDirectory)\Lib</LibDir>
+    <SolutionInfoPath>$(MSBuildProjectDirectory)\Source\SolutionInfo.cs</SolutionInfoPath>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="Exists('$(KeyFile)')">
+      <PropertyGroup>
+        <KeyFileArgs>/keyfile:"$(KeyFile)"</KeyFileArgs>
+        <SignAssembly>true</SignAssembly>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <SignAssembly>false</SignAssembly>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <Target Name="Build">
+    <RemoveDir Directories="$(BuildDir)"/>
+    <MakeDir Directories="$(BuildDir)"/>
+    
+    <MSBuild Projects="$(LibraryDir)\Zencoder.csproj" Properties="Configuration=$(Configuration);SignAssembly=$(SignAssembly);AssemblyOriginatorKeyFile=$(KeyFile)"/>
+  
+    <Message Text='Merging assemblies into "Zencoder.dll".'/>
+    <Exec Command='"$(ILMergePath)" /ndebug /internalize $(KeyFileArgs) /out:$(BuildDir)\Zencoder.dll "$(LibraryDir)\bin\$(Configuration)\Zencoder.dll" "$(LibDir)\Newtonsoft.Json.dll"'/>
+    <Copy SourceFiles="$(LibraryDir)\bin\$(Configuration)\Zencoder.xml" DestinationFolder="$(BuildDir)"/>
+  </Target>
+</Project>
