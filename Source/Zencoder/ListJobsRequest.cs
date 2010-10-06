@@ -94,7 +94,7 @@ namespace Zencoder
             {
                 if (this.url == null)
                 {
-                    this.url = BaseUrl.WithQueryString(
+                    this.url = BaseUrl.AppendPath("jobs").WithQueryString(
                         String.Concat(
                             HttpUtility.UrlEncode(Zencoder.ApiKeyQueryKey), "=", ApiKey,
                             "&",
@@ -114,6 +114,29 @@ namespace Zencoder
         public override string Verb
         {
             get { return "GET"; }
+        }
+
+        /// <summary>
+        /// Sets this isntance's paging properties.
+        /// </summary>
+        /// <param name="pageNumber">The page number to set, or null to reset to the default.</param>
+        /// <param name="pageSize">The page size to set, or null to reset to the default.</param>
+        /// <returns>This instance./returns>
+        public ListJobsRequest ForPage(int? pageNumber, int? pageSize)
+        {
+            this.pageNumber = this.pageSize = null;
+
+            if (pageNumber != null)
+            {
+                this.PageNumber = pageNumber.Value;
+            }
+
+            if (pageSize != null)
+            {
+                this.PageSize = pageSize.Value;
+            }
+
+            return this;
         }
     }
 }

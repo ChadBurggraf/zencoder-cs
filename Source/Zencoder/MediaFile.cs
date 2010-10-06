@@ -16,7 +16,7 @@ namespace Zencoder
         /// Gets or sets the file's audio bitrate (in Kbps).
         /// </summary>
         [JsonProperty("audio_bitrate_in_kbps")]
-        public int AudioBitrateInKpbs { get; set; }
+        public int? AudioBitrateInKpbs { get; set; }
 
         /// <summary>
         /// Gets or sets the file's audio codec.
@@ -28,13 +28,13 @@ namespace Zencoder
         /// Gets or sets the file's audio sample rate.
         /// </summary>
         [JsonProperty("audio_sample_rate")]
-        public int AudioSampleRate { get; set; }
+        public int? AudioSampleRate { get; set; }
 
         /// <summary>
         /// Gets or sets the number of audio channels in the file.
         /// </summary>
         [JsonProperty("channels")]
-        public int Channels { get; set; }
+        public int? Channels { get; set; }
 
         /// <summary>
         /// Gets or sets the date the file was created.
@@ -47,13 +47,7 @@ namespace Zencoder
         /// Gets or sets the file's duration (in ms).
         /// </summary>
         [JsonProperty("duration_in_ms")]
-        public long DurationInMiliseconds { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file's error class.
-        /// </summary>
-        [JsonProperty("error_class")]
-        public string ErrorClass { get; set; }
+        public long? DurationInMiliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets the file's error message.
@@ -65,7 +59,7 @@ namespace Zencoder
         /// Gets or sets the file's size in bytes.
         /// </summary>
         [JsonProperty("file_size_bytes")]
-        public int FileSizeBytes { get; set; }
+        public int? FileSizeBytes { get; set; }
 
         /// <summary>
         /// Gets or sets the date the file was finished.
@@ -84,13 +78,13 @@ namespace Zencoder
         /// Gets or sets the file's frame rate.
         /// </summary>
         [JsonProperty("frame_rate")]
-        public int FrameRate { get; set; }
+        public int? FrameRate { get; set; }
 
         /// <summary>
         /// Gets or sets the file's height.
         /// </summary>
         [JsonProperty("height")]
-        public int Height { get; set; }
+        public int? Height { get; set; }
 
         /// <summary>
         /// Gets or sets the file's ID.
@@ -127,7 +121,7 @@ namespace Zencoder
         /// Gets or sets the file's video bitrate (in Kbps).
         /// </summary>
         [JsonProperty("video_bitrate_in_kbps")]
-        public int VideoBitrateInKbps { get; set; }
+        public int? VideoBitrateInKbps { get; set; }
 
         /// <summary>
         /// Gets or sets the file's video codec.
@@ -139,6 +133,6 @@ namespace Zencoder
         /// Gets or sets the file's width.
         /// </summary>
         [JsonProperty("width")]
-        public int Width { get; set; }
+        public int? Width { get; set; }
     }
 }

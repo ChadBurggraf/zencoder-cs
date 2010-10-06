@@ -5,6 +5,7 @@ namespace Zencoder
     using System;
     using System.IO;
     using System.Net;
+    using System.Reflection;
     using System.Text;
     using Newtonsoft.Json;
 
@@ -47,17 +48,26 @@ namespace Zencoder
         {
             if (this.response == null)
             {
-                HttpWebRequest request = this.CreateRequest();
+                HttpWebResponse response;
 
-                if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                try
                 {
-                    using (Stream stream = request.GetRequestStream())
-                    {
-                        this.WriteRequestStream(stream);
-                    }
-                }
+                    HttpWebRequest request = this.CreateRequest();
 
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                    {
+                        using (Stream stream = request.GetRequestStream())
+                        {
+                            this.WriteRequestStream(stream);
+                        }
+                    }
+
+                    response = (HttpWebResponse)request.GetResponse();
+                }
+                catch (WebException ex)
+                {
+                    response = (HttpWebResponse)ex.Response;
+                }
 
                 using (Stream stream = response.GetResponseStream())
                 {
@@ -155,7 +165,9 @@ namespace Zencoder
         /// <returns>The created response.</returns>
         protected virtual TResponse ReadResponse(Stream stream)
         {
-            return Response<TRequest, TResponse>.FromJson(stream);
+            // Static polymorphism. Who said it wasn't a good idea?
+            MethodInfo fromJson = typeof(TResponse).GetMethod("FromJson", new Type[] { typeof(Stream) });
+            return (TResponse)fromJson.Invoke(null, new object[] { stream });
         }
 
         /// <summary>

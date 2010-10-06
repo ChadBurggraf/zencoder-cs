@@ -237,7 +237,7 @@ namespace Zencoder
         /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
         /// <param name="region">The region to perform the job in.</param>
         /// <param name="test">A value indicating whether to use test mode.</param>
-        /// <returns>The call response.</returns>
+        /// <param name="callback">The call response.</param>
         public void CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, Action<CreateJobResponse> callback)
         {
             CreateJobRequest request = new CreateJobRequest(this)
@@ -249,6 +249,48 @@ namespace Zencoder
             };
 
             request.WithOutputs(outputs).GetResponseAsync(callback);
+        }
+
+        /// <summary>
+        /// A blocking list jobs request/response cycle.
+        /// </summary>
+        /// <returns>The call response.</returns>
+        public ListJobsResponse ListJobs()
+        {
+            return this.ListJobs(null, null);
+        }
+
+        /// <summary>
+        /// A non blocking list jobs request/response cycle.
+        /// </summary>
+        /// <param name="callback">The call response.</param>
+        public void ListJobs(Action<ListJobsResponse> callback)
+        {
+            this.ListJobs(null, null, callback);
+        }
+
+        /// <summary>
+        /// A blocking list jobs request/response cycle.
+        /// </summary>
+        /// <param name="pageNumber">The page number of jobs to list, if applicable.</param>
+        /// <param name="pageSize">The page size of jobs to list, if applicable.</param>
+        /// <returns>The call response.</returns>
+        public ListJobsResponse ListJobs(int? pageNumber, int? pageSize)
+        {
+            ListJobsRequest request = new ListJobsRequest(this).ForPage(pageNumber, pageSize);
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A non blocking list jobs request/response cycle.
+        /// </summary>
+        /// <param name="pageNumber">The page number of jobs to list, if applicable.</param>
+        /// <param name="pageSize">The page size of jobs to list, if applicable.</param>
+        /// <param name="callback">The call response.</param>
+        public void ListJobs(int? pageNumber, int? pageSize, Action<ListJobsResponse> callback)
+        {
+            ListJobsRequest request = new ListJobsRequest(this).ForPage(pageNumber, pageSize);
+            request.GetResponseAsync(callback);
         }
     }
 }

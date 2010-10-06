@@ -29,7 +29,10 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountAccountDetailsResponseFromJson()
         {
-            AccountDetailsResponse.FromJson(@"{""account_state"":""active"",""plan"":""Growth"",""minutes_used"":12549,""minutes_included"":25000,""billing_state"":""active"",""integration_mode"":true}");
+            AccountDetailsResponse response = AccountDetailsResponse.FromJson(@"{""account_state"":""active"",""plan"":""Growth"",""minutes_used"":12549,""minutes_included"":25000,""billing_state"":""active"",""integration_mode"":true}");
+            Assert.AreEqual("active", response.AccountState);
+            Assert.AreEqual(true, response.IntegrationMode);
+            Assert.AreEqual(12549, response.MinutesUsed);
         }
 
         [TestMethod]
@@ -84,7 +87,9 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountCreateAccountResponseFromJson()
         {
-            CreateAccountResponse.FromJson(@"{""api_key"":""a123afdaf23fa231245fadcbbb"",""password"":""1234""}");
+            CreateAccountResponse response = CreateAccountResponse.FromJson(@"{""api_key"":""a123afdaf23fa231245fadcbbb"",""password"":""1234""}");
+            Assert.AreEqual("a123afdaf23fa231245fadcbbb", response.ApiKey);
+            Assert.AreEqual("1234", response.Password);
         }
     }
 }

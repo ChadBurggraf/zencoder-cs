@@ -77,6 +77,32 @@ namespace Zencoder.Test
         }
 
         [TestMethod]
+        public void JobCreateJobResponseFromJson()
+        {
+            CreateJobResponse response = CreateJobResponse.FromJson(@"{""id"":""1234"",""outputs"":[{""id"":""4321""}]}");
+            Assert.AreEqual("1234", response.Id);
+            Assert.AreEqual(1, response.Outputs.Length);
+            Assert.AreEqual("4321", response.Outputs.First().Id);
+        }
+
+        [TestMethod]
+        public void JobListJobsRequest()
+        {
+            ListJobsResponse response = Zencoder.ListJobs();
+            Assert.IsTrue(response.Success);
+
+            AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
+
+            Zencoder.ListJobs(r =>
+            {
+                Assert.IsTrue(r.Success);
+                handles[0].Set();
+            });
+
+            WaitHandle.WaitAll(handles);
+        }
+
+        [TestMethod]
         public void JobListJobsFromJson()
         {
             ListJobsResponse response = ListJobsResponse.FromJson(ListJobsResponseJson);
