@@ -24,7 +24,7 @@ namespace Zencoder
         /// <returns>A <see cref="Response"/>.</returns>
         public static TResponse FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<TResponse>(json);
+            return Response.FromJson<TRequest, TResponse>(json);
         }
 
         /// <summary>
@@ -34,15 +34,7 @@ namespace Zencoder
         /// <returns>A <see cref="Response"/>.</returns>
         public static TResponse FromJson(Stream stream)
         {
-            JsonSerializer serializer = new JsonSerializer();
-
-            using (StreamReader sr = new StreamReader(stream))
-            {
-                using (JsonReader jr = new JsonTextReader(sr))
-                {
-                    return serializer.Deserialize<TResponse>(jr);
-                }
-            }
+            return Response.FromJson<TRequest, TResponse>(stream);
         }
     }
 }

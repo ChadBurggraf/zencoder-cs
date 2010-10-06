@@ -10,6 +10,8 @@ namespace Zencoder
     /// <summary>
     /// Implements the list jobs response.
     /// </summary>
+    [FromJsonStream(Method = "FromJson", Type = typeof(ListJobsResponse))]
+    [FromJsonString(Method = "FromJson", Type = typeof(ListJobsResponse))]
     public class ListJobsResponse : Response<ListJobsRequest, ListJobsResponse>
     {
         private Job[] jobs;

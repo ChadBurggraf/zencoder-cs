@@ -10,7 +10,6 @@ namespace Zencoder
     /// <summary>
     /// Implements the list jobs request.
     /// </summary>
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ListJobsRequest : Request<ListJobsRequest, ListJobsResponse>
     {
         private int? pageNumber, pageSize;
@@ -94,14 +93,15 @@ namespace Zencoder
             {
                 if (this.url == null)
                 {
-                    this.url = BaseUrl.AppendPath("jobs").WithQueryString(
-                        String.Concat(
-                            HttpUtility.UrlEncode(Zencoder.ApiKeyQueryKey), "=", ApiKey,
-                            "&",
-                            HttpUtility.UrlEncode("page"), "=", HttpUtility.UrlEncode(this.PageNumber.ToString(CultureInfo.InvariantCulture)),
-                            "&",
-                            HttpUtility.UrlEncode("per_page"), "=", HttpUtility.UrlEncode(this.PageSize.ToString(CultureInfo.InvariantCulture))
-                        ));
+                    string query = String.Format(
+                        CultureInfo.InvariantCulture,
+                        "{0}={1}&page={2}&per_page={3}",
+                        HttpUtility.UrlEncode(Zencoder.ApiKeyQueryKey),
+                        ApiKey,
+                        this.PageNumber,
+                        this.PageSize);
+
+                    this.url = BaseUrl.AppendPath("jobs").WithQueryString(query);
                 }
 
                 return this.url;

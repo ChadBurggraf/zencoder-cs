@@ -165,9 +165,21 @@ namespace Zencoder
         /// <returns>The created response.</returns>
         protected virtual TResponse ReadResponse(Stream stream)
         {
-            // Static polymorphism. Who said it wasn't a good idea?
+            TResponse response;
+
+            // Static polymorphism. Kinda. Who said it wasn't a good idea?
             MethodInfo fromJson = typeof(TResponse).GetMethod("FromJson", new Type[] { typeof(Stream) });
-            return (TResponse)fromJson.Invoke(null, new object[] { stream });
+
+            if (fromJson != null)
+            {
+                response = (TResponse)fromJson.Invoke(null, new object[] { stream });
+            }
+            else
+            {
+                response = Response<TRequest, TResponse>.FromJson(stream);
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -188,7 +200,16 @@ namespace Zencoder
         {
             request.BeginGetResponse(new AsyncCallback(delegate(IAsyncResult responseResult)
             {
-                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(responseResult);
+                HttpWebResponse response;
+
+                try
+                {
+                    response = (HttpWebResponse)request.EndGetResponse(responseResult);
+                }
+                catch (WebException ex)
+                {
+                    response = (HttpWebResponse)ex.Response;
+                }
 
                 using (Stream stream = response.GetResponseStream())
                 {

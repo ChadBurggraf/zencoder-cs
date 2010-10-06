@@ -32,7 +32,10 @@ namespace Zencoder.Test
                         Width = 1280,
                         Height = 720
                     }
-                });
+                },
+                null,
+                null,
+                true);
 
             Assert.IsTrue(response.Success);
 
@@ -80,9 +83,29 @@ namespace Zencoder.Test
         public void JobCreateJobResponseFromJson()
         {
             CreateJobResponse response = CreateJobResponse.FromJson(@"{""id"":""1234"",""outputs"":[{""id"":""4321""}]}");
-            Assert.AreEqual("1234", response.Id);
+            Assert.AreEqual(1234, response.Id);
             Assert.AreEqual(1, response.Outputs.Length);
-            Assert.AreEqual("4321", response.Outputs.First().Id);
+            Assert.AreEqual(4321, response.Outputs.First().Id);
+        }
+
+        [TestMethod]
+        public void JobJobDetailsRequest()
+        {
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            Assert.IsTrue(createResponse.Success);
+
+            JobDetailsResponse detailsResponse = Zencoder.JobDetails(createResponse.Id);
+            Assert.IsTrue(detailsResponse.Success);
+
+            AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
+
+            Zencoder.JobDetails(createResponse.Id, r =>
+            {
+                Assert.IsTrue(r.Success);
+                handles[0].Set();
+            });
+
+            WaitHandle.WaitAll(handles);
         }
 
         [TestMethod]

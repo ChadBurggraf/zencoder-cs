@@ -15,7 +15,7 @@ namespace Zencoder
         /// Gets or sets the job ID.
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the response output collection.

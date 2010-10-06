@@ -252,6 +252,36 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// A blocking job details request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to get details for.</param>
+        /// <returns>The call response.</returns>
+        public JobDetailsResponse JobDetails(int jobId)
+        {
+            JobDetailsRequest request = new JobDetailsRequest(this)
+            {
+                JobId = jobId
+            };
+
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A blocking job details request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to get details for.</param>
+        /// <param name="callback">The call response.</param>
+        public void JobDetails(int jobId, Action<JobDetailsResponse> callback)
+        {
+            JobDetailsRequest request = new JobDetailsRequest(this)
+            {
+                JobId = jobId
+            };
+
+            request.GetResponseAsync(callback);
+        }
+
+        /// <summary>
         /// A blocking list jobs request/response cycle.
         /// </summary>
         /// <returns>The call response.</returns>

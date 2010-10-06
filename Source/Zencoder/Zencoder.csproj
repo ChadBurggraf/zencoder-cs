@@ -55,7 +55,12 @@
     <Compile Include="CreateJobRequest.cs" />
     <Compile Include="CreateJobResponse.cs" />
     <Compile Include="Deinterlace.cs" />
+    <Compile Include="FromJsonAttribute.cs" />
+    <Compile Include="FromJsonStreamAttribute.cs" />
+    <Compile Include="FromJsonStringAttribute.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="JobDetailsRequest.cs" />
+    <Compile Include="JobDetailsResponse.cs" />
     <Compile Include="JobWrapper.cs" />
     <Compile Include="ListJobsRequest.cs" />
     <Compile Include="ListJobsResponse.cs" />
