@@ -1,13 +1,19 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="ResubmitJobRequest.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
     using System;
     using System.Web;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the resubmit job request.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ResubmitJobRequest : Request<ResubmitJobRequest, ResubmitJobResponse>
     {
         private int jobId;

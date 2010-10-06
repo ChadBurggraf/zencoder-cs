@@ -1,4 +1,9 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="AccountIntegrationModeRequest.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
+
 namespace Zencoder
 {
     using System;
@@ -57,7 +62,7 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Reads any data from the response stream into a new <see cref="TResponse"/> instance.
+        /// Reads any data from the response stream into a new <see cref="Response"/> instance.
         /// </summary>
         /// <param name="stream">The stream to read from.</param>
         /// <returns>The created response.</returns>

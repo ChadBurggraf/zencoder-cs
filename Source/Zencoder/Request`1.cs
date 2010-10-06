@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="Request`1.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -89,28 +93,34 @@ namespace Zencoder
 
                 if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
                 {
-                    request.BeginGetRequestStream(new AsyncCallback(delegate(IAsyncResult requestResult)
-                    {
-                        using (Stream stream = request.EndGetRequestStream(requestResult))
-                        {
-                            this.WriteRequestStream(stream);
-                        }
+                    request.BeginGetRequestStream(
+                        new AsyncCallback(
+                            delegate(IAsyncResult requestResult)
+                            {
+                                using (Stream stream = request.EndGetRequestStream(requestResult))
+                                {
+                                    this.WriteRequestStream(stream);
+                                }
 
-                        this.GetResponseAsync(r =>
-                        {
-                            this.response = r;
-                            callback(this.response);
-                        }, request);
-                    }), null);
+                                this.GetResponseAsync(
+                                    r =>
+                                    {
+                                        this.response = r;
+                                        callback(this.response);
+                                    }, 
+                                    request);
+                            }), 
+                            null);
                 }
                 else
                 {
-                    this.GetResponseAsync(r => 
-                    { 
-                        this.response = r;
-                        callback(this.response);
-                    }, 
-                    request);
+                    this.GetResponseAsync(
+                        r => 
+                        { 
+                            this.response = r;
+                            callback(this.response);
+                        }, 
+                        request);
                 }
             }
             else
@@ -189,7 +199,7 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Reads any data from the response stream into a new <see cref="TResponse"/> instance.
+        /// Reads any data from the response stream into a new <see cref="Response"/> instance.
         /// </summary>
         /// <param name="stream">The stream to read from.</param>
         /// <returns>The created response.</returns>
@@ -214,23 +224,26 @@ namespace Zencoder
         /// <param name="request">The web request to get the response for.</param>
         private void GetResponseAsync(Action<TResponse> callback, HttpWebRequest request)
         {
-            request.BeginGetResponse(new AsyncCallback(delegate(IAsyncResult responseResult)
-            {
-                HttpWebResponse response;
-                WebException requestException = null;
+            request.BeginGetResponse(
+                new AsyncCallback(
+                    delegate(IAsyncResult responseResult)
+                    {
+                        HttpWebResponse response;
+                        WebException requestException = null;
 
-                try
-                {
-                    response = (HttpWebResponse)request.EndGetResponse(responseResult);
-                }
-                catch (WebException ex)
-                {
-                    requestException = ex;
-                    response = (HttpWebResponse)ex.Response;
-                }
+                        try
+                        {
+                            response = (HttpWebResponse)request.EndGetResponse(responseResult);
+                        }
+                        catch (WebException ex)
+                        {
+                            requestException = ex;
+                            response = (HttpWebResponse)ex.Response;
+                        }
 
-                callback(this.CreateResponse(response, requestException));
-            }), null);
+                        callback(this.CreateResponse(response, requestException));
+                    }), 
+                    null);
         }
     }
 }

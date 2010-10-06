@@ -1,14 +1,20 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="CancelJobRequest.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
     using System;
     using System.Globalization;
     using System.Web;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the cancel job request.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CancelJobRequest : Request<CancelJobRequest, CancelJobResponse>
     {
         private int jobId;

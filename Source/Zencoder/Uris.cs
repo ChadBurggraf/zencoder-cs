@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="Uris.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -101,11 +105,11 @@ namespace Zencoder
         public static Uri WithQuery(this Uri uri, string key, string value)
         {
             UriBuilder builder = new UriBuilder(uri);
+
             builder.Query = String.Concat(
                 HttpUtility.UrlEncode(key),
                 "=",
-                HttpUtility.UrlEncode(value)
-            );
+                HttpUtility.UrlEncode(value));
 
             return builder.Uri;
         }

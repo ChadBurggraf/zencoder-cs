@@ -1,13 +1,19 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="DeleteJobResponse.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
     using System;
     using System.Net;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the delete job response.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class DeleteJobResponse : Response<DeleteJobRequest, DeleteJobResponse>
     {
         /// <summary>

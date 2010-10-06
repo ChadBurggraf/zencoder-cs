@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="ListJobsResponse.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -12,6 +16,7 @@ namespace Zencoder
     /// </summary>
     [FromJsonStream(Method = "FromJson", Type = typeof(ListJobsResponse))]
     [FromJsonString(Method = "FromJson", Type = typeof(ListJobsResponse))]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ListJobsResponse : Response<ListJobsRequest, ListJobsResponse>
     {
         private Job[] jobs;
@@ -30,7 +35,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="json">A string of JSON representing the response.</param>
         /// <returns>A <see cref="Response"/>.</returns>
-        public new static ListJobsResponse FromJson(string json)
+        public static new ListJobsResponse FromJson(string json)
         {
             return new ListJobsResponse() 
             {
@@ -43,7 +48,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="stream">The stream to create the response from.</param>
         /// <returns>A <see cref="Response"/>.</returns>
-        public new static ListJobsResponse FromJson(Stream stream)
+        public static new ListJobsResponse FromJson(Stream stream)
         {
             JsonSerializer serializer = new JsonSerializer();
 

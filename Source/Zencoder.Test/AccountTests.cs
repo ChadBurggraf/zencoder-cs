@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="AccountTests.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder.Test
 {
@@ -6,9 +10,15 @@ namespace Zencoder.Test
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    /// <summary>
+    /// Account tests.
+    /// </summary>
     [TestClass]
     public class AccountTests : TestBase
     {
+        /// <summary>
+        /// Account details request tests.
+        /// </summary>
         [TestMethod]
         public void AccountAccountDetailsRequest()
         {
@@ -26,6 +36,9 @@ namespace Zencoder.Test
             WaitHandle.WaitAll(handles);
         }
 
+        /// <summary>
+        /// Account details response tests.
+        /// </summary>
         [TestMethod]
         public void AccountAccountDetailsResponseFromJson()
         {
@@ -35,6 +48,9 @@ namespace Zencoder.Test
             Assert.AreEqual(12549, response.MinutesUsed);
         }
 
+        /// <summary>
+        /// Account integration mode request tests.
+        /// </summary>
         [TestMethod]
         public void AccountAccountIntegrationModeRequest()
         {
@@ -43,15 +59,20 @@ namespace Zencoder.Test
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.AccountIntegrationMode(true, r =>
-            {
-                Assert.IsTrue(r.Success);
-                handles[0].Set();
-            });
+            Zencoder.AccountIntegrationMode(
+                true, 
+                r =>
+                {
+                    Assert.IsTrue(r.Success);
+                    handles[0].Set();
+                });
 
             WaitHandle.WaitAll(handles);
         }
 
+        /// <summary>
+        /// Create account request tests.
+        /// </summary>
         [TestMethod]
         public void AccountCreateAccountRequest()
         {
@@ -60,30 +81,44 @@ namespace Zencoder.Test
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.CreateAccount("test@example.com", "1234", "asdf1234", true, false, r =>
-            {
-                Assert.IsTrue(r.Success);
-                handles[0].Set();
-            });
+            Zencoder.CreateAccount(
+                "test@example.com", 
+                "1234", 
+                "asdf1234", 
+                true, 
+                false, 
+                r =>
+                {
+                    Assert.IsTrue(r.Success);
+                    handles[0].Set();
+                });
 
             WaitHandle.WaitAll(handles);
         }
 
+        /// <summary>
+        /// Create account request to JSON tests.
+        /// </summary>
         [TestMethod]
         public void AccountCreateAccountRequestToJson()
         {
+            CreateAccountRequest request = new CreateAccountRequest(Zencoder.BaseUrl)
+            {
+                AffiliateCode = "asdf1234",
+                Email = "test@example.com",
+                Newsletter = true,
+                Password = "1234",
+                TermsOfService = true
+            };
+
             Assert.AreEqual(
                 @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":true,""password"":""1234"",""terms_of_service"":true}", 
-                new CreateAccountRequest(Zencoder.BaseUrl)
-                {
-                    AffiliateCode = "asdf1234",
-                    Email = "test@example.com",
-                    Newsletter = true,
-                    Password = "1234",
-                    TermsOfService = true
-                }.ToJson());
+                request.ToJson());
         }
 
+        /// <summary>
+        /// Create account response from JSON tests.
+        /// </summary>
         [TestMethod]
         public void AccountCreateAccountResponseFromJson()
         {

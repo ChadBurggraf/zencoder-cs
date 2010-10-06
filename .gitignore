@@ -1,6 +1,7 @@
 *.suo
 *.csproj.user
 App.config
+StyleCop.Cache
 bin/
 obj/
 TestResults/

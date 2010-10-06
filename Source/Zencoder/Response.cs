@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="Response.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -102,7 +106,7 @@ namespace Zencoder
         /// <summary>
         /// Gets a custom method to use when creating a <see cref="Response"/> from JSON.
         /// </summary>
-        /// <typeparam name="TRequest">The concrete <see cref="Request"/> implementor.</typeparam>
+        /// <typeparam name="TResponse">The concrete <see cref="Response"/> implementor.</typeparam>
         /// <typeparam name="TAttr">The concrete <see cref="FromJsonAttribute"/> to use when searching for a method.</typeparam>
         /// <param name="argumentType">The artument type to use when searching for a method.</param>
         /// <returns>A custom <see cref="Response"/> creation method, or null if none was found.</returns>

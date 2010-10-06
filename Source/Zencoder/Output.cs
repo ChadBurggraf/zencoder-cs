@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="Output.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -23,7 +27,7 @@ namespace Zencoder
         public int? AudioBitrate { get; set; }
 
         /// <summary>
-        /// The number of audio channels to use (1 or 2). Defaults to keep the number of
+        /// Gets or sets the number of audio channels to use (1 or 2). Defaults to keep the number of
         /// input channels, or reduce to 2.
         /// </summary>
         [JsonProperty("audio_channels", NullValueHandling = NullValueHandling.Ignore)]
@@ -66,7 +70,7 @@ namespace Zencoder
         public int? BitrateCap { get; set; }
 
         /// <summary>
-        /// Used in conjuction with <see cref="MaxBitrate"/>, this should be determined by
+        /// Gets or sets the buffer size. Used in conjuction with <see cref="BitrateCap"/>, this should be determined by
         /// your streaming server settings. For example, use 10,000 for iPhone.
         /// </summary>
         [JsonProperty("buffer_size", NullValueHandling = NullValueHandling.Ignore)]
@@ -186,7 +190,7 @@ namespace Zencoder
         public bool? Upscale { get; set; }
 
         /// <summary>
-        /// The destination for the output file. If an S3 bucket,
+        /// Gets or sets the destination for the output file. If an S3 bucket,
         /// the bucket must have write permission enabled for aws@zencoder.com.
         /// Can also be an FTP/SFTP server.
         /// </summary>

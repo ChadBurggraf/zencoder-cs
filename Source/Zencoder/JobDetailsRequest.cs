@@ -1,14 +1,20 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="JobDetailsRequest.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
     using System;
     using System.Globalization;
     using System.Web;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements the job details request.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class JobDetailsRequest : Request<JobDetailsRequest, JobDetailsResponse>
     {
         private Uri url;

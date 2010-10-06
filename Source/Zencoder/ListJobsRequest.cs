@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------------------------------------------------------
+// <copyright file="ListJobsRequest.cs" company="Tasty Codes">
+//     Copyright (c) 2010 Chad Burggraf.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace Zencoder
 {
@@ -11,6 +15,7 @@ namespace Zencoder
     /// <summary>
     /// Implements the list jobs request.
     /// </summary>
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ListJobsRequest : Request<ListJobsRequest, ListJobsResponse>
     {
         private int? pageNumber, pageSize;
@@ -122,7 +127,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="pageNumber">The page number to set, or null to reset to the default.</param>
         /// <param name="pageSize">The page size to set, or null to reset to the default.</param>
-        /// <returns>This instance./returns>
+        /// <returns>This instance.</returns>
         public ListJobsRequest ForPage(int? pageNumber, int? pageSize)
         {
             this.pageNumber = this.pageSize = null;
