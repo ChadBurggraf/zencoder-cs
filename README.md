@@ -10,6 +10,14 @@ removed for 2.0 compatibility if someone asks for it).
 XML comments are used extensively throughout, so it should be pretty discoverable if you're
 using an IDE that supports intellisense.
 
+## Building
+
+Run the build script with MSBuild v3.5 (C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe or similar).
+
+    msbuild build.proj
+    
+You can also build using the solution in Visual Studio 2008.
+
 ## Basic Usage
 
 All of the requests can be accessed through a `Zencoder` object instance. Construct one with
