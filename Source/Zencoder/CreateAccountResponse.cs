@@ -28,7 +28,7 @@ namespace Zencoder
         /// </summary>
         public override bool Success
         {
-            get { return StatusCode == HttpStatusCode.Created; }
+            get { return RequestException == null && StatusCode == HttpStatusCode.Created; }
         }
     }
 }

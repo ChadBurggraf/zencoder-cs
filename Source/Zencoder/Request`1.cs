@@ -49,6 +49,7 @@ namespace Zencoder
             if (this.response == null)
             {
                 HttpWebResponse response;
+                WebException requestException = null;
 
                 try
                 {
@@ -66,14 +67,11 @@ namespace Zencoder
                 }
                 catch (WebException ex)
                 {
+                    requestException = ex;
                     response = (HttpWebResponse)ex.Response;
                 }
 
-                using (Stream stream = response.GetResponseStream())
-                {
-                    this.response = this.ReadResponse(stream);
-                    this.response.StatusCode = response.StatusCode;
-                }
+                this.response = this.CreateResponse(response, requestException);
             }
 
             return this.response;
@@ -159,27 +157,45 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// Creates a <see cref="Response"/> from the given web response and possible exception.
+        /// </summary>
+        /// <param name="response">The response to create the <see cref="Response"/> from.</param>
+        /// <param name="ex">The exception that occurred, if applicable.</param>
+        /// <returns>The created response.</returns>
+        protected virtual TResponse CreateResponse(HttpWebResponse response, WebException ex)
+        {
+            TResponse resultResponse = null;
+
+            if (response != null)
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    resultResponse = this.ReadResponse(stream);
+                }
+            }
+
+            if (resultResponse == null)
+            {
+                resultResponse = new TResponse();
+            }
+
+            if (response != null)
+            {
+                resultResponse.StatusCode = response.StatusCode;
+            }
+
+            resultResponse.RequestException = ex;
+            return resultResponse;
+        }
+
+        /// <summary>
         /// Reads any data from the response stream into a new <see cref="TResponse"/> instance.
         /// </summary>
         /// <param name="stream">The stream to read from.</param>
         /// <returns>The created response.</returns>
         protected virtual TResponse ReadResponse(Stream stream)
         {
-            TResponse response;
-
-            // Static polymorphism. Kinda. Who said it wasn't a good idea?
-            MethodInfo fromJson = typeof(TResponse).GetMethod("FromJson", new Type[] { typeof(Stream) });
-
-            if (fromJson != null)
-            {
-                response = (TResponse)fromJson.Invoke(null, new object[] { stream });
-            }
-            else
-            {
-                response = Response<TRequest, TResponse>.FromJson(stream);
-            }
-
-            return response;
+            return Response.FromJson<TRequest, TResponse>(stream);
         }
 
         /// <summary>
@@ -201,6 +217,7 @@ namespace Zencoder
             request.BeginGetResponse(new AsyncCallback(delegate(IAsyncResult responseResult)
             {
                 HttpWebResponse response;
+                WebException requestException = null;
 
                 try
                 {
@@ -208,16 +225,11 @@ namespace Zencoder
                 }
                 catch (WebException ex)
                 {
+                    requestException = ex;
                     response = (HttpWebResponse)ex.Response;
                 }
 
-                using (Stream stream = response.GetResponseStream())
-                {
-                    TResponse resultResponse = this.ReadResponse(stream);
-                    resultResponse.StatusCode = response.StatusCode;
-
-                    callback(resultResponse);
-                }
+                callback(this.CreateResponse(response, requestException));
             }), null);
         }
     }

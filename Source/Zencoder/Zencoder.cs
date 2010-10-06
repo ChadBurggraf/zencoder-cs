@@ -186,6 +186,36 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// A blocking cancel job request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to cancel.</param>
+        /// <returns>The call response.</returns>
+        public CancelJobResponse CancelJob(int jobId)
+        {
+            CancelJobRequest request = new CancelJobRequest(this)
+            {
+                JobId = jobId
+            };
+
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A blocking cancel request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to resubmit.</param>
+        /// <param name="callback">The call response.</param>
+        public void CancelJob(int jobId, Action<CancelJobResponse> callback)
+        {
+            CancelJobRequest request = new CancelJobRequest(this)
+            {
+                JobId = jobId
+            };
+
+            request.GetResponseAsync(callback);
+        }
+
+        /// <summary>
         /// A blocking create job request/response cycle.
         /// </summary>
         /// <param name="input">The URL of the input file.</param>
@@ -320,6 +350,36 @@ namespace Zencoder
         public void ListJobs(int? pageNumber, int? pageSize, Action<ListJobsResponse> callback)
         {
             ListJobsRequest request = new ListJobsRequest(this).ForPage(pageNumber, pageSize);
+            request.GetResponseAsync(callback);
+        }
+
+        /// <summary>
+        /// A blocking resubmit job request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to resubmit.</param>
+        /// <returns>The call response.</returns>
+        public ResubmitJobResponse ResubmitJob(int jobId)
+        {
+            ResubmitJobRequest request = new ResubmitJobRequest(this)
+            {
+                JobId = jobId
+            };
+
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A blocking resubmit job request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to resubmit.</param>
+        /// <param name="callback">The call response.</param>
+        public void ResubmitJob(int jobId, Action<ResubmitJobResponse> callback)
+        {
+            ResubmitJobRequest request = new ResubmitJobRequest(this)
+            {
+                JobId = jobId
+            };
+
             request.GetResponseAsync(callback);
         }
     }

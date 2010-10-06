@@ -28,6 +28,11 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// Gets the exception that occurred while making the request, if applicable.
+        /// </summary>
+        public WebException RequestException { get; internal set; }
+
+        /// <summary>
         /// Gets the HTTP status code that was returned in the response.
         /// </summary>
         public HttpStatusCode StatusCode { get; internal set; }
@@ -37,7 +42,7 @@ namespace Zencoder
         /// </summary>
         public virtual bool Success
         {
-            get { return this.StatusCode == HttpStatusCode.OK; }
+            get { return this.RequestException == null && this.StatusCode == HttpStatusCode.OK; }
         }
 
         /// <summary>

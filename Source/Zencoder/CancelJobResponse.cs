@@ -1,0 +1,22 @@
+﻿
+
+namespace Zencoder
+{
+    using System;
+    using System.Net;
+
+    /// <summary>
+    /// Implements the cancel job response.
+    /// </summary>
+    public class CancelJobResponse : Response<CancelJobRequest, CancelJobResponse>
+    {
+        /// <summary>
+        /// Gets a value indicating whether the service indicated that the resubmit request
+        /// was invalid because the job was not in the "waiting" or "processing" state.
+        /// </summary>
+        public bool InConflict
+        {
+            get { return StatusCode == HttpStatusCode.Conflict; }
+        }
+    }
+}

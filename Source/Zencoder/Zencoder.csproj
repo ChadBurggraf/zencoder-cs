@@ -50,6 +50,8 @@
     <Compile Include="AccountIntegrationModeResponse.cs" />
     <Compile Include="AspectMode.cs" />
     <Compile Include="AudioCodec.cs" />
+    <Compile Include="CancelJobRequest.cs" />
+    <Compile Include="CancelJobResponse.cs" />
     <Compile Include="CreateAccountRequest.cs" />
     <Compile Include="CreateAccountResponse.cs" />
     <Compile Include="CreateJobRequest.cs" />
@@ -72,6 +74,8 @@
     <Compile Include="Response.cs" />
     <Compile Include="ResponseOutput.cs" />
     <Compile Include="Response`1.cs" />
+    <Compile Include="ResubmitJobRequest.cs" />
+    <Compile Include="ResubmitJobResponse.cs" />
     <Compile Include="Rotate.cs" />
     <Compile Include="Uris.cs" />
     <Compile Include="VideoCodec.cs" />
