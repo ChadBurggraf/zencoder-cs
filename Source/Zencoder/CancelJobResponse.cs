@@ -11,7 +11,7 @@ namespace Zencoder
     public class CancelJobResponse : Response<CancelJobRequest, CancelJobResponse>
     {
         /// <summary>
-        /// Gets a value indicating whether the service indicated that the resubmit request
+        /// Gets a value indicating whether the service indicated that the cancel request
         /// was invalid because the job was not in the "waiting" or "processing" state.
         /// </summary>
         public bool InConflict

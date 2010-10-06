@@ -5,6 +5,7 @@ namespace Zencoder.Test
     using System;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -106,6 +107,26 @@ namespace Zencoder.Test
             Assert.AreEqual(1234, response.Id);
             Assert.AreEqual(1, response.Outputs.Length);
             Assert.AreEqual(4321, response.Outputs.First().Id);
+        }
+
+        [TestMethod]
+        public void JobDeleteJobRequest()
+        {
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            Assert.IsTrue(createResponse.Success);
+
+            DeleteJobResponse deleteResponse = Zencoder.DeleteJob(createResponse.Id);
+            Assert.IsTrue(deleteResponse.Success);
+
+            AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
+
+            Zencoder.DeleteJob(createResponse.Id, r =>
+            {
+                Assert.IsTrue(r.StatusCode == HttpStatusCode.NotFound);
+                handles[0].Set();
+            });
+
+            WaitHandle.WaitAll(handles);
         }
 
         [TestMethod]

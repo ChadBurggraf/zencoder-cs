@@ -115,7 +115,12 @@ namespace Zencoder
 
             if (attr != null && !String.IsNullOrEmpty(attr.Method) && attr.Type != null)
             {
-                method = attr.Type.GetMethod(attr.Method, BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+                method = attr.Type.GetMethod(attr.Method, new Type[] { argumentType });
+
+                if (method != null && !method.IsStatic)
+                {
+                    method = null;
+                }
             }
 
             return method;

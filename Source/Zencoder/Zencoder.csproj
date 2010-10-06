@@ -57,6 +57,8 @@
     <Compile Include="CreateJobRequest.cs" />
     <Compile Include="CreateJobResponse.cs" />
     <Compile Include="Deinterlace.cs" />
+    <Compile Include="DeleteJobRequest.cs" />
+    <Compile Include="DeleteJobResponse.cs" />
     <Compile Include="FromJsonAttribute.cs" />
     <Compile Include="FromJsonStreamAttribute.cs" />
     <Compile Include="FromJsonStringAttribute.cs" />

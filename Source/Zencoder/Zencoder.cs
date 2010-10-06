@@ -203,7 +203,7 @@ namespace Zencoder
         /// <summary>
         /// A blocking cancel request/response cycle.
         /// </summary>
-        /// <param name="jobId">The ID of the job to resubmit.</param>
+        /// <param name="jobId">The ID of the job to cancel.</param>
         /// <param name="callback">The call response.</param>
         public void CancelJob(int jobId, Action<CancelJobResponse> callback)
         {
@@ -279,6 +279,36 @@ namespace Zencoder
             };
 
             request.WithOutputs(outputs).GetResponseAsync(callback);
+        }
+
+        /// <summary>
+        /// A blocking delete job request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to delete.</param>
+        /// <returns>The call response.</returns>
+        public DeleteJobResponse DeleteJob(int jobId)
+        {
+            DeleteJobRequest request = new DeleteJobRequest(this)
+            {
+                JobId = jobId
+            };
+
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A blocking delete request/response cycle.
+        /// </summary>
+        /// <param name="jobId">The ID of the job to delete.</param>
+        /// <param name="callback">The call response.</param>
+        public void DeleteJob(int jobId, Action<DeleteJobResponse> callback)
+        {
+            DeleteJobRequest request = new DeleteJobRequest(this)
+            {
+                JobId = jobId
+            };
+
+            request.GetResponseAsync(callback);
         }
 
         /// <summary>
