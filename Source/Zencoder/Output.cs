@@ -135,6 +135,12 @@ namespace Zencoder
         public int? MaxFrameRate { get; set; }
 
         /// <summary>
+        /// Gets or sets the collection of notifications to define for the output.
+        /// </summary>
+        [JsonProperty("notifications", NullValueHandling = NullValueHandling.Ignore)]
+        public Notification[] Notifications { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to force onepass encoding when
         /// <see cref="VideoBitrate"/> is set.
         /// </summary>
@@ -297,6 +303,36 @@ namespace Zencoder
         public Output WithVideoCodec(VideoCodec codec)
         {
             this.VideoCodec = codec.ToString().ToLowerInvariant();
+            return this;
+        }
+
+        /// <summary>
+        /// Appends a <see cref="Notification"/> to this instance's <see cref="Notification"/> collection.
+        /// </summary>
+        /// <param name="notification">The notification to append.</param>
+        /// <returns>This instance.</returns>
+        public Output WithNotification(Notification notification)
+        {
+            if (notification != null)
+            {
+                return this.WithNotifications(new Notification[] { notification });
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Appends a collection of <see cref="Notification"/>s to this instance's <see cref="Notification"/> collection.
+        /// </summary>
+        /// <param name="notifications">The notifications to append.</param>
+        /// <returns>This instance.</returns>
+        public Output WithNotifications(IEnumerable<Notification> notifications)
+        {
+            if (notifications != null)
+            {
+                this.Notifications = (this.Notifications ?? new Notification[0]).Concat(notifications).ToArray();
+            }
+
             return this;
         }
 

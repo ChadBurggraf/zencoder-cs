@@ -38,11 +38,15 @@
       <HintPath>..\..\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -64,18 +68,27 @@
     <Compile Include="Deinterlace.cs" />
     <Compile Include="DeleteJobRequest.cs" />
     <Compile Include="DeleteJobResponse.cs" />
+    <Compile Include="EmailNotification.cs" />
+    <Compile Include="EmailNotificationJsonConverter.cs" />
     <Compile Include="FromJsonAttribute.cs" />
     <Compile Include="FromJsonStreamAttribute.cs" />
     <Compile Include="FromJsonStringAttribute.cs" />
+    <Compile Include="HttpNotification.cs" />
+    <Compile Include="HttpPostNotification.cs" />
+    <Compile Include="HttpPostNotificationJob.cs" />
+    <Compile Include="HttpPostNotificationOutput.cs" />
+    <Compile Include="INotificationReceiver.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="JobDetailsRequest.cs" />
     <Compile Include="JobDetailsResponse.cs" />
     <Compile Include="JobProgressRequest.cs" />
     <Compile Include="JobProgressResponse.cs" />
+    <Compile Include="JobState.cs" />
     <Compile Include="JobWrapper.cs" />
     <Compile Include="ListJobsRequest.cs" />
     <Compile Include="ListJobsResponse.cs" />
     <Compile Include="MediaFile.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Output.cs" />
     <Compile Include="OutputEvent.cs" />
     <Compile Include="OutputState.cs" />
@@ -92,6 +105,8 @@
     <Compile Include="VideoCodec.cs" />
     <Compile Include="Watermark.cs" />
     <Compile Include="Zencoder.cs" />
+    <Compile Include="NotificationHandler.cs" />
+    <Compile Include="ZencoderSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

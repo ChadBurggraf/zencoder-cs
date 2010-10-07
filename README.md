@@ -42,10 +42,46 @@ There is also full non-blocking (async) support, so the non-blocking version of 
 It's not much harder to work with each API action's requestion & response objects, so feel free to
 rock it that way if you prefer.
 
+## HTTP Notifications
+
+You can define both [email and HTTP](http://zencoder.com/docs/api/#notifications) notifications with
+your job outputs. If you have an ASP.NET application, you can use the built-in `NotificationHandler`
+to process those notifications for you.
+
+Add the handler to your Web.config and configure each receiver that you want called when a
+notification comes in. Receivers implement `INotificationReceiver`, which is a single method:
+`OnReceive(HttpPostNotification)`.
+
+An example Web.config:
+
+    <configuration>
+      <configSections>
+        <section name="zencoder" type="Zencoder.ZencoderSettings, Zencoder"/>
+      </configSections>
+      <system.web>
+        <httpHandlers>
+          <add path="zencoder.ashx" verb="POST" type="Zencoder.NotificationHandler, Zencoder"/>
+        </httpHandlers>
+      </system.web>
+      <system.webServer>
+        <handlers>
+         <add name="zencoder.ashx" path="zencoder.ashx" verb="POST" type="Zencoder.NotificationHandler, Zencoder" preCondition="managedHandler"/>
+        </handlers>
+      </system.webServer>
+      <zencoder>
+        <!-- You could also skip this part of the configuration and add your receivers to
+             Zencoder.NotificationHandler.Receivers programatically. -->
+        <notifications>
+          <!-- Each notification receiver should implement Zencoder.INotificationReceiver -->
+          <add name="MyReceiver" value="MyAssembly.MyReceiver, MyAssembly"/>
+          <add name="MyOtherReceiver" value="MyAssembly.MyOtherReceiver, MyAssembly"/>
+        </notifications>
+      </zencoder>
+    </configuration>
+
 ## Still Missing
 
  - Thumbnail support
- - Notification support
  - Enumerations of all of the possible state/status flags
  - S3 access control lists
  

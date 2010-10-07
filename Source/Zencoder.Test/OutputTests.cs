@@ -10,6 +10,7 @@ namespace Zencoder.Test
     using System.Globalization;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Output tests.
@@ -17,6 +18,31 @@ namespace Zencoder.Test
     [TestClass]
     public class OutputTests : TestBase
     {
+        /// <summary>
+        /// Output notification to JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputNotificationToJson()
+        {
+            Assert.AreEqual(
+                @"{""format"":""json"",""url"":""http://user:password@example.com/zencoder1""}",
+                JsonConvert.SerializeObject(Notification.ForHttp("http://user:password@example.com/zencoder1")));
+
+            Assert.AreEqual(
+                @"""admin@example.com""",
+                JsonConvert.SerializeObject(Notification.ForEmail("admin@example.com")));
+
+            Notification[] notifications = new Notification[]
+            {
+                Notification.ForHttp("http://user:password@example.com/zencoder2"),
+                Notification.ForEmail("admin@example.com")
+            };
+
+            Assert.AreEqual(
+                @"[{""format"":""json"",""url"":""http://user:password@example.com/zencoder2""},""admin@example.com""]",
+                JsonConvert.SerializeObject(notifications));
+        }
+
         /// <summary>
         /// Output to JSON tests.
         /// </summary>
