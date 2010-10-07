@@ -1,6 +1,7 @@
 *.suo
 *.csproj.user
 *.snk
+*.vsmdi
 App.config
 StyleCop.Cache
 bin/
