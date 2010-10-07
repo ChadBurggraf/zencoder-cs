@@ -346,6 +346,36 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// A blocking job progress request/response cycle.
+        /// </summary>
+        /// <param name="outputId">The ID of the output (NOT the job ID) to get progress for.</param>
+        /// <returns>The call response.</returns>
+        public JobProgressResponse JobProgress(int outputId)
+        {
+            JobProgressRequest request = new JobProgressRequest(this)
+            {
+                OutputId = outputId
+            };
+
+            return request.GetResponse();
+        }
+
+        /// <summary>
+        /// A non blocking job progress request/response cycle.
+        /// </summary>
+        /// <param name="outputId">The ID of the output (NOT the job ID) to get progress for.</param>
+        /// <param name="callback">The call response.</param>
+        public void JobProgress(int outputId, Action<JobProgressResponse> callback)
+        {
+            JobProgressRequest request = new JobProgressRequest(this)
+            {
+                OutputId = outputId
+            };
+
+            request.GetResponseAsync(callback);
+        }
+
+        /// <summary>
         /// A blocking list jobs request/response cycle.
         /// </summary>
         /// <returns>The call response.</returns>

@@ -70,11 +70,15 @@
     <Compile Include="Job.cs" />
     <Compile Include="JobDetailsRequest.cs" />
     <Compile Include="JobDetailsResponse.cs" />
+    <Compile Include="JobProgressRequest.cs" />
+    <Compile Include="JobProgressResponse.cs" />
     <Compile Include="JobWrapper.cs" />
     <Compile Include="ListJobsRequest.cs" />
     <Compile Include="ListJobsResponse.cs" />
     <Compile Include="MediaFile.cs" />
     <Compile Include="Output.cs" />
+    <Compile Include="OutputEvent.cs" />
+    <Compile Include="OutputState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Request`1.cs" />

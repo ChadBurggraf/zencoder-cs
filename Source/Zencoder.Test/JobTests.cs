@@ -339,6 +339,51 @@ namespace Zencoder.Test
         }
 
         /// <summary>
+        /// Job progress request tests.
+        /// </summary>
+        [TestMethod]
+        public void JobJobProgressRequest()
+        {
+            Output output = new Output()
+            {
+                Label = "iPhone",
+                Url = "s3://output-bucket/output-file-1-name.mp4",
+                Width = 480,
+                Height = 320
+            };
+
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
+            Assert.IsTrue(createResponse.Success);
+
+            JobProgressResponse progressResponse = Zencoder.JobProgress(createResponse.Outputs.First().Id);
+            Assert.IsTrue(progressResponse.Success);
+
+            AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
+
+            Zencoder.JobProgress(
+                createResponse.Outputs.First().Id,
+                r =>
+                {
+                    Assert.IsTrue(r.Success);
+                    handles[0].Set();
+                });
+
+            WaitHandle.WaitAll(handles);
+        }
+
+        /// <summary>
+        /// Job progress response from JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void JobJobProgressResponseFromJson()
+        {
+            JobProgressResponse response = JobProgressResponse.FromJson(@"{""state"":""processing"",""current_event"":""Transcoding"",""progress"":""32.34567345""}");
+            Assert.AreEqual(OutputState.Processing, response.State);
+            Assert.AreEqual(OutputEvent.Transcoding, response.CurrentEvent);
+            Assert.AreEqual(32.34567345, response.Progress);
+        }
+
+        /// <summary>
         /// List jobs request tests.
         /// </summary>
         [TestMethod]
