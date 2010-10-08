@@ -7,10 +7,12 @@
 namespace Zencoder
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the possible output video codecs.
     /// </summary>
+    [JsonConverter(typeof(EnumLowercaseJsonConverter))]
     public enum VideoCodec
     {
         /// <summary>

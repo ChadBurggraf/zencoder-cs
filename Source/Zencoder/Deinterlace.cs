@@ -7,10 +7,12 @@
 namespace Zencoder
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the possible deinterlacing behaviors.
     /// </summary>
+    [JsonConverter(typeof(EnumLowercaseJsonConverter))]
     public enum Deinterlace
     {
         /// <summary>

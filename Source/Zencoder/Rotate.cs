@@ -7,10 +7,12 @@
 namespace Zencoder
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the possible output video rotations.
     /// </summary>
+    [JsonConverter(typeof(EnumIntJsonConverter))]
     public enum Rotate
     {
         /// <summary>

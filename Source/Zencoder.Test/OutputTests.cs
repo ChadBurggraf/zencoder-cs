@@ -18,6 +18,40 @@ namespace Zencoder.Test
     [TestClass]
     public class OutputTests : TestBase
     {
+        #region Access Control JSON
+
+        /// <summary>
+        /// Test JSON for S3 access control output serialization.
+        /// </summary>
+        private const string AccessControlJson = @"{{""input"":""s3://bucket-name/file-name.avi"",""outputs"":[{{""access_control"":[{{""grantee"":""cdc7931a9574b1055d5b76112021d0e9"",""permissions"":[""READ"",""WRITE""]}},{{""grantee"":""someone@example.com"",""permissions"":[""FULL_CONTROL""]}},{{""grantee"":""http://acs.amazonaws.com/groups/global/AllUsers"",""permissions"":[""READ""]}}],""thumbnails"":{{""number"":1}},""url"":""s3://output-bucket/output-file-1-name.mp4""}}],""api_key"":""{0}""}}";
+
+        #endregion
+
+        /// <summary>
+        /// Output access control to JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputAccessControlToJson()
+        {
+            Output output = new Output()
+                .WithUrl(new Uri("s3://output-bucket/output-file-1-name.mp4"))
+                .WithAccessControls(
+                    new S3Access[]
+                    {
+                        new S3Access() { Grantee = "cdc7931a9574b1055d5b76112021d0e9", Permissions = new[] { S3Permission.Read, S3Permission.Write } },
+                        new S3Access() { Grantee = "someone@example.com", Permissions = new[] { S3Permission.FullControl } },
+                        new S3Access() { Grantee = "http://acs.amazonaws.com/groups/global/AllUsers", Permissions = new[] { S3Permission.Read } }
+                    });
+
+            output.Thumbnails = new Thumbnails().WithNumber(1);
+
+            CreateJobRequest request = new CreateJobRequest(Zencoder)
+                .WithInputUrl(new Uri("s3://bucket-name/file-name.avi"))
+                .WithOutput(output);
+
+            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, AccessControlJson, ApiKey), request.ToJson());
+        }
+
         /// <summary>
         /// Output notification to JSON tests.
         /// </summary>
@@ -73,6 +107,34 @@ namespace Zencoder.Test
             {
                 Input = "s3://bucket-name/file-name.avi",
                 Outputs = outputs
+            };
+
+            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+        }
+
+        /// <summary>
+        /// Output thumbnails to JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputThumbnailsToJson()
+        {
+            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":{{""base_url"":""s3://bucket/directory"",""number"":6,""prefix"":""custom"",""size"":""160x120""}}}}],""api_key"":""{0}""}}";
+
+            Thumbnails thumbs = new Thumbnails()
+            {
+                BaseUrl = "s3://bucket/directory",
+                Prefix = "custom"
+            };
+
+            Output output = new Output()
+            {
+                Thumbnails = thumbs.WithNumber(6).WithSize(160, 120)
+            };
+
+            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            {
+                Input = "http://example.com/file-name.avi",
+                Outputs = new Output[] { output }
             };
 
             Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());

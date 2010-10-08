@@ -79,13 +79,13 @@ An example Web.config:
       </zencoder>
     </configuration>
 
-## Still Missing
+## Enumerations
 
- - Thumbnail support
- - Enumerations of all of the possible state/status flags
- - S3 access control lists
- 
-I'm actively working on these things.
+I've gone ahead and enumerated most things that are enumarble. All the tests are passing, but
+the JSON converters I've written haven't been put through the paces as well as I'd like for it
+to be "production ready". If something fails because I didn't define an enum flag or there is just
+a bug in one of the custom converters, please let me know! I'd love to get some more test coverage
+in there as well.
 
 ## License
 

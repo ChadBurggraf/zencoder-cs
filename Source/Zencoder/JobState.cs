@@ -6,11 +6,25 @@
 
 namespace Zencoder
 {
+    using System;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Defines the possible <see cref="Job"/> states.
     /// </summary>
+    [JsonConverter(typeof(EnumLowercaseUnderscoreJsonConverter))]
     public enum JobState
     {
+        /// <summary>
+        /// Identifies that an unkown job state was received from the service.
+        /// </summary>
+        Unknown = 0,
+
+        /// <summary>
+        /// Identifies that the job is being assigned.
+        /// </summary>
+        Assigning,
+
         /// <summary>
         /// Identifies that the job has been cancelled.
         /// </summary>
@@ -34,6 +48,11 @@ namespace Zencoder
         /// <summary>
         /// Identifies that the job is queued for processing.
         /// </summary>
-        Queued
+        Queued,
+
+        /// <summary>
+        /// Identifies that the job is waiting to be queued.
+        /// </summary>
+        Waiting
     }
 }

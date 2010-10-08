@@ -7,12 +7,19 @@
 namespace Zencoder
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the possible <see cref="Output"/> progress events.
     /// </summary>
+    [JsonConverter(typeof(EnumLowercaseUnderscoreJsonConverter))]
     public enum OutputEvent
     {
+        /// <summary>
+        /// Identifies that an unkown output event was received from the service.
+        /// </summary>
+        Unknown = 0,
+
         /// <summary>
         /// Identifies that the input is being downloaded.
         /// </summary>

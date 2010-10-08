@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailNotificationJsonConverter.cs" company="Tasty Codes">
+// <copyright file="EnumLowercaseJsonConverter.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,18 +10,10 @@ namespace Zencoder
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Provides custom JSON serialization for <see cref="EmailNotification"/>s
+    /// Provides custom JSON serialization for enums to/from lowercase strings.
     /// </summary>
-    public class EmailNotificationJsonConverter : JsonConverter
+    public class EnumLowercaseJsonConverter : JsonConverter
     {
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="JsonConverter"/> can read JSON.
-        /// </summary>
-        public override bool CanRead 
-        { 
-            get { return false; } 
-        }
-
         /// <summary>
         /// Determines whether this instance can convert the specified object type. 
         /// </summary>
@@ -29,7 +21,7 @@ namespace Zencoder
         /// <returns>True if this instance can convert the specified object type, otherwise false.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(EmailNotification);
+            return objectType.IsEnum;
         }
 
         /// <summary>
@@ -42,7 +34,21 @@ namespace Zencoder
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotSupportedException();
+            string str = (reader.Value ?? String.Empty).ToString();
+            object result = existingValue;
+
+            if (!String.IsNullOrEmpty(str))
+            {
+                try
+                {
+                    result = Enum.Parse(objectType, str, true);
+                }
+                catch (ArgumentException)
+                {
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -53,16 +59,8 @@ namespace Zencoder
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            EmailNotification notification = value as EmailNotification;
-
-            if (notification != null && !String.IsNullOrEmpty(notification.Email))
-            {
-                serializer.Serialize(writer, notification.Email);
-            }
-            else
-            {
-                serializer.Serialize(writer, null);
-            }
+            string str = (value ?? String.Empty).ToString();
+            serializer.Serialize(writer, str.ToLowerInvariant());
         }
     }
 }

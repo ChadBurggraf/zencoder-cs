@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailNotificationJsonConverter.cs" company="Tasty Codes">
+// <copyright file="EnumDescriptionConverter.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -7,21 +7,15 @@
 namespace Zencoder
 {
     using System;
+    using System.Globalization;
+    using System.Text.RegularExpressions;
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Provides custom JSON serialization for <see cref="EmailNotification"/>s
+    /// Provides custom JSON serialization for enums by their description value.
     /// </summary>
-    public class EmailNotificationJsonConverter : JsonConverter
+    public class EnumDescriptionConverter : JsonConverter
     {
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="JsonConverter"/> can read JSON.
-        /// </summary>
-        public override bool CanRead 
-        { 
-            get { return false; } 
-        }
-
         /// <summary>
         /// Determines whether this instance can convert the specified object type. 
         /// </summary>
@@ -29,7 +23,7 @@ namespace Zencoder
         /// <returns>True if this instance can convert the specified object type, otherwise false.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(EmailNotification);
+            return objectType.IsEnum;
         }
 
         /// <summary>
@@ -42,7 +36,21 @@ namespace Zencoder
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotSupportedException();
+            string str = (reader.Value ?? String.Empty).ToString();
+            object result = existingValue;
+
+            if (!String.IsNullOrEmpty(str))
+            {
+                try
+                {
+                    result = str.EnumFromDescription(objectType);
+                }
+                catch (ArgumentException)
+                {
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -53,11 +61,9 @@ namespace Zencoder
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            EmailNotification notification = value as EmailNotification;
-
-            if (notification != null && !String.IsNullOrEmpty(notification.Email))
+            if (value != null)
             {
-                serializer.Serialize(writer, notification.Email);
+                serializer.Serialize(writer, ((Enum)value).ToDescription());
             }
             else
             {

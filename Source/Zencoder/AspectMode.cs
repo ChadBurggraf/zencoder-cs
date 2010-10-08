@@ -7,10 +7,12 @@
 namespace Zencoder
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the possible output video aspect modes.
     /// </summary>
+    [JsonConverter(typeof(EnumLowercaseJsonConverter))]
     public enum AspectMode
     {
         /// <summary>

@@ -19,6 +19,20 @@ namespace Zencoder
     public class Output
     {
         /// <summary>
+        /// Gets or sets the collection of custom S3 access grants to apply to the output
+        /// if its destination is S3.
+        /// </summary>
+        [JsonProperty("access_control", NullValueHandling = NullValueHandling.Ignore)]
+        public S3Access[] AccessControl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the aspect mode to use if the input aspect ratio does not
+        /// match the input aspect ratio.
+        /// </summary>
+        [JsonProperty("aspect_mode", NullValueHandling = NullValueHandling.Ignore)]
+        public AspectMode? AspectMode { get; set; }
+
+        /// <summary>
         /// Gets or sets the audio bitrate to use in Kbps. Should be a multiple of 16,
         /// and lower than 160Kbps per channel (i.e., 320Kbps stereo).
         /// Identifies that total bitrate, not per channel.
@@ -37,8 +51,8 @@ namespace Zencoder
         /// Gets or sets the audio codec to use. If encoding video and not set,
         /// the output video codec will determine this value automatically unless specifically set.
         /// </summary>
-        [JsonProperty("audio_codec", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        public string AudioCodec { get; set; }
+        [JsonProperty("audio_codec", NullValueHandling = NullValueHandling.Ignore)]
+        public AudioCodec? AudioCodec { get; set; }
 
         /// <summary>
         /// Gets or sets a target audio quality, from 1 to 5. 5 is the best
@@ -92,8 +106,8 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the deinterlace mode to use.
         /// </summary>
-        [JsonProperty("deinterlace", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        public string Deinterlace { get; set; }
+        [JsonProperty("deinterlace", NullValueHandling = NullValueHandling.Ignore)]
+        public Deinterlace? Deinterlace { get; set; }
 
         /// <summary>
         /// Gets or sets the file name of the finished file. If supplied and <see cref="BaseUrl"/>
@@ -167,7 +181,7 @@ namespace Zencoder
         /// Setting to non-null will prevent auto rotation.
         /// </summary>
         [JsonProperty("rotate", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Rotate { get; set; }
+        public Rotate? Rotate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
@@ -187,6 +201,12 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("start_clip", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string StartClip { get; set; }
+
+        /// <summary>
+        /// Gets or sets the thumbnails settings to use for the output.
+        /// </summary>
+        [JsonProperty("thumbnails", NullValueHandling = NullValueHandling.Ignore)]
+        public Thumbnails Thumbnails { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to scale the input
@@ -212,8 +232,8 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the video codec to use for the output, if applicable.
         /// </summary>
-        [JsonProperty("video_codec", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        public string VideoCodec { get; set; }
+        [JsonProperty("video_codec", NullValueHandling = NullValueHandling.Ignore)]
+        public VideoCodec? VideoCodec { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of watermarks to apply to the output video, if applicable.
@@ -228,13 +248,27 @@ namespace Zencoder
         public int? Width { get; set; }
 
         /// <summary>
-        /// Sets this instance's <see cref="AudioCodec"/> property.
+        /// Appends the given S3 access control to this instance's <see cref="AccessControl"/> collection.
         /// </summary>
-        /// <param name="codec">The audio codec to set.</param>
-        /// <returns>This instance.</returns>
-        public Output WithAudioCodec(AudioCodec codec)
+        /// <param name="accessControl">The access controls to append.</param>
+        /// <returns>The instance.</returns>
+        public Output WithAccessControl(S3Access accessControl)
         {
-            this.AudioCodec = codec.ToString().ToLowerInvariant();
+            return this.WithAccessControls(new S3Access[] { accessControl });
+        }
+
+        /// <summary>
+        /// Appends the given collection S3 access controls to this instance's <see cref="AccessControl"/> collection.
+        /// </summary>
+        /// <param name="accessControls">The access controls to append.</param>
+        /// <returns>The instance.</returns>
+        public Output WithAccessControls(IEnumerable<S3Access> accessControls)
+        {
+            if (accessControls != null)
+            {
+                this.AccessControl = (this.AccessControl ?? new S3Access[0]).Concat(accessControls).ToArray();
+            }
+
             return this;
         }
 
@@ -263,28 +297,6 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Sets this instance's <see cref="Deinterlace"/> property.
-        /// </summary>
-        /// <param name="deinterlace">The deinterlace mode to set.</param>
-        /// <returns>This instance.</returns>
-        public Output WithDeinterlace(Deinterlace deinterlace)
-        {
-            this.Deinterlace = deinterlace.ToString().ToLowerInvariant();
-            return this;
-        }
-
-        /// <summary>
-        /// Sets this instance's <see cref="Rotate"/> property.
-        /// </summary>
-        /// <param name="rotate">The rotation to set.</param>
-        /// <returns>This instance.</returns>
-        public Output WithRotate(Rotate rotate)
-        {
-            this.Rotate = (int)rotate;
-            return this;
-        }
-
-        /// <summary>
         /// Sets the instance's <see cref="Url"/> property.
         /// </summary>
         /// <param name="url">The URL to set.</param>
@@ -292,17 +304,6 @@ namespace Zencoder
         public Output WithUrl(Uri url)
         {
             this.Url = url.ToString();
-            return this;
-        }
-
-        /// <summary>
-        /// Sets this instance's <see cref="VideoCodec"/> property.
-        /// </summary>
-        /// <param name="codec">The video codec to set.</param>
-        /// <returns>This instance.</returns>
-        public Output WithVideoCodec(VideoCodec codec)
-        {
-            this.VideoCodec = codec.ToString().ToLowerInvariant();
             return this;
         }
 

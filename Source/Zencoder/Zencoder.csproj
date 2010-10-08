@@ -70,6 +70,11 @@
     <Compile Include="DeleteJobResponse.cs" />
     <Compile Include="EmailNotification.cs" />
     <Compile Include="EmailNotificationJsonConverter.cs" />
+    <Compile Include="EnumDescriptionConverter.cs" />
+    <Compile Include="EnumIntJsonConverter.cs" />
+    <Compile Include="EnumLowercaseJsonConverter.cs" />
+    <Compile Include="EnumLowercaseUnderscoreJsonConverter.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="FromJsonAttribute.cs" />
     <Compile Include="FromJsonStreamAttribute.cs" />
     <Compile Include="FromJsonStringAttribute.cs" />
@@ -101,6 +106,10 @@
     <Compile Include="ResubmitJobRequest.cs" />
     <Compile Include="ResubmitJobResponse.cs" />
     <Compile Include="Rotate.cs" />
+    <Compile Include="S3Access.cs" />
+    <Compile Include="S3Permission.cs" />
+    <Compile Include="Strings.cs" />
+    <Compile Include="Thumbnails.cs" />
     <Compile Include="Uris.cs" />
     <Compile Include="VideoCodec.cs" />
     <Compile Include="Watermark.cs" />

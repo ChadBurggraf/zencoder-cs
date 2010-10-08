@@ -100,7 +100,7 @@ namespace Zencoder
         /// Gets or sets the file's state with respect to its parent job.
         /// </summary>
         [JsonProperty("state")]
-        public string State { get; set; }
+        public OutputState State { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the file is in test mode.

@@ -65,7 +65,7 @@ namespace Zencoder
         /// Gets or sets the current job state.
         /// </summary>
         [JsonProperty("state")]
-        public string State { get; set; }
+        public JobState State { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the job is in test mode.

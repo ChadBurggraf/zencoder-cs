@@ -304,7 +304,7 @@ namespace Zencoder.Test
             JobDetailsResponse response = JobDetailsResponse.FromJson(JobDetailsResponseJson);
             Assert.AreEqual(new DateTime(2010, 1, 1), response.Job.FinishedAt);
             Assert.AreEqual(1, response.Job.Id);
-            Assert.AreEqual("finished", response.Job.State);
+            Assert.AreEqual(JobState.Finished, response.Job.State);
 
             Assert.AreEqual("mpeg4", response.Job.InputMediaFile.Format);
             Assert.AreEqual(24883, response.Job.InputMediaFile.DurationInMiliseconds);
@@ -416,7 +416,7 @@ namespace Zencoder.Test
             Job first = response.Jobs.First();
             Assert.AreEqual(new DateTime(2010, 1, 1), first.FinishedAt);
             Assert.AreEqual(1, first.Id);
-            Assert.AreEqual("finished", first.State);
+            Assert.AreEqual(JobState.Finished, first.State);
 
             Assert.AreEqual("mpeg4", first.InputMediaFile.Format);
             Assert.AreEqual(24883, first.InputMediaFile.DurationInMiliseconds);
