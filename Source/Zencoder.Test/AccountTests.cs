@@ -76,15 +76,15 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountCreateAccountRequest()
         {
-            CreateAccountResponse response = Zencoder.CreateAccount("test@example.com", "1234", "asdf1234", true, false);
+            CreateAccountResponse response = Zencoder.CreateAccount(Guid.NewGuid().ToString() + "@example.com", Guid.NewGuid().ToString(), null, true, false);
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
             Zencoder.CreateAccount(
-                "test@example.com", 
-                "1234", 
-                "asdf1234", 
+                Guid.NewGuid().ToString() + "@example.com", 
+                Guid.NewGuid().ToString(), 
+                null, 
                 true, 
                 false, 
                 r =>
@@ -112,7 +112,7 @@ namespace Zencoder.Test
             };
 
             Assert.AreEqual(
-                @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":true,""password"":""1234"",""terms_of_service"":true}", 
+                @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":""1"",""password"":""1234"",""terms_of_service"":""1""}", 
                 request.ToJson());
         }
 

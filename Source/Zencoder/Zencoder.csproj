@@ -59,6 +59,7 @@
     <Compile Include="AccountIntegrationModeResponse.cs" />
     <Compile Include="AspectMode.cs" />
     <Compile Include="AudioCodec.cs" />
+    <Compile Include="BooleanConverter.cs" />
     <Compile Include="CancelJobRequest.cs" />
     <Compile Include="CancelJobResponse.cs" />
     <Compile Include="CreateAccountRequest.cs" />

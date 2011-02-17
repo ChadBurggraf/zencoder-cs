@@ -60,6 +60,7 @@ namespace Zencoder
         /// if the thumbnails are being placed in S3.
         /// </summary>
         [JsonProperty("public", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Public { get; set; }
 
         /// <summary>

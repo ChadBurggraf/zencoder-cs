@@ -159,6 +159,7 @@ namespace Zencoder
         /// <see cref="VideoBitrate"/> is set.
         /// </summary>
         [JsonProperty("onepass", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Onepass { get; set; }
 
         /// <summary>
@@ -166,6 +167,7 @@ namespace Zencoder
         /// if the output is being placed in S3.
         /// </summary>
         [JsonProperty("public", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Public { get; set; }
 
         /// <summary>
@@ -187,6 +189,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? SkipAudio { get; set; }
 
         /// <summary>
@@ -213,6 +216,7 @@ namespace Zencoder
         /// up to the output resolution if necessary.
         /// </summary>
         [JsonProperty("upscale", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Upscale { get; set; }
 
         /// <summary>

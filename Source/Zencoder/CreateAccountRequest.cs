@@ -66,6 +66,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether to subscribe the email address to the newsletter.
         /// </summary>
         [JsonProperty("newsletter", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Newsletter { get; set; }
 
         /// <summary>
@@ -79,6 +80,7 @@ namespace Zencoder
         /// Use 1 for true, 0 for false.
         /// </summary>
         [JsonProperty("terms_of_service", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? TermsOfService { get; set; }
 
         /// <summary>

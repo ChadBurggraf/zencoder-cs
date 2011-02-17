@@ -33,6 +33,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether the account is in integration mode.
         /// </summary>
         [JsonProperty("integration_mode")]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool IntegrationMode { get; set; }
 
         /// <summary>

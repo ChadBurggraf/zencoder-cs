@@ -71,6 +71,7 @@ namespace Zencoder
         /// Gets or sets a value indicating whether the job is in test mode.
         /// </summary>
         [JsonProperty("test")]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool Test { get; set; }
 
         /// <summary>
