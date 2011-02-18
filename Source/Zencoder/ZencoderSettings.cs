@@ -25,6 +25,16 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// Gets or sets the default API to use.
+        /// </summary>
+        [ConfigurationProperty("apiKey", IsRequired = false)]
+        public string ApiKey
+        {
+            get { return (string)this["apiKey"]; }
+            set { this["apiKey"] = value; }
+        }
+
+        /// <summary>
         /// Gets a collection of named types that implement <see cref="INotificationReceiver"/> that should be 
         /// notifiied when a notification is received.
         /// </summary>

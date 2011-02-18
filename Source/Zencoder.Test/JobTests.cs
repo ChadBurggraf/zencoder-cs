@@ -214,6 +214,9 @@ namespace Zencoder.Test
 
             CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", outputs, null, null, true);
             Assert.IsTrue(response.Success);
+            Assert.IsTrue(response.Id > 0);
+            Assert.AreEqual(outputs.Count(), response.Outputs.Count());
+            Assert.IsTrue(response.Outputs.First().Id > 0);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
@@ -226,6 +229,9 @@ namespace Zencoder.Test
                 r =>
                 {
                     Assert.IsTrue(r.Success);
+                    Assert.IsTrue(r.Id > 0);
+                    Assert.IsTrue(r.Outputs.Count() > 0);
+                    Assert.IsTrue(r.Outputs.First().Id > 0);
                     handles[0].Set();
                 });
 

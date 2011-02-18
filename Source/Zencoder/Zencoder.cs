@@ -28,6 +28,14 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the Zencoder class.
         /// </summary>
+        public Zencoder()
+            : this(ZencoderSettings.Section.ApiKey, ServiceUrl)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the Zencoder class.
+        /// </summary>
         /// <param name="apiKey">The API key to use when connecting to the service.</param>
         public Zencoder(string apiKey)
             : this(apiKey, ServiceUrl)

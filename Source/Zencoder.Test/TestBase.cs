@@ -19,11 +19,11 @@ namespace Zencoder.Test
         /// <summary>
         /// Gets the currently configured API key.
         /// </summary>
-        public static readonly string ApiKey = ConfigurationManager.AppSettings["ZencoderApiKey"];
+        public static readonly string ApiKey = ZencoderSettings.Section.ApiKey;
 
         /// <summary>
         /// Gets the default test <see cref="Zencoder"/> instance.
         /// </summary>
-        public static readonly Zencoder Zencoder = new Zencoder(ApiKey);
+        public static readonly Zencoder Zencoder = new Zencoder();
     }
 }
