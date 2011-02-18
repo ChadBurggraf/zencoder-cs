@@ -14,7 +14,7 @@ namespace Zencoder
     /// Represents a single input or output media file in a <see cref="Job"/>.
     /// </summary>
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class MediaFile
+    public abstract class MediaFile
     {
         /// <summary>
         /// Gets or sets the file's audio bitrate (in Kbps).
@@ -95,12 +95,6 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file's state with respect to its parent job.
-        /// </summary>
-        [JsonProperty("state")]
-        public OutputState State { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the file is in test mode.

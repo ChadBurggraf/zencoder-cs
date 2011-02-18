@@ -10,7 +10,7 @@ namespace Zencoder
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Defines the possible <see cref="Output"/> states.
+    /// Defines the possible <see cref="OutputMediaFile"/> states.
     /// </summary>
     [JsonConverter(typeof(EnumLowercaseUnderscoreJsonConverter))]
     public enum OutputState

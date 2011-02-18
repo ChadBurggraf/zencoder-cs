@@ -84,6 +84,8 @@
     <Compile Include="HttpPostNotificationJob.cs" />
     <Compile Include="HttpPostNotificationOutput.cs" />
     <Compile Include="INotificationReceiver.cs" />
+    <Compile Include="InputMediaFile.cs" />
+    <Compile Include="InputState.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="JobDetailsRequest.cs" />
     <Compile Include="JobDetailsResponse.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Notification.cs" />
     <Compile Include="Output.cs" />
     <Compile Include="OutputEvent.cs" />
+    <Compile Include="OutputMediaFile.cs" />
     <Compile Include="OutputState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />

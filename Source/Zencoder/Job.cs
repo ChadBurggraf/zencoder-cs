@@ -16,7 +16,7 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class Job
     {
-        private MediaFile[] outputMediaFiles;
+        private OutputMediaFile[] outputMediaFiles;
 
         /// <summary>
         /// Gets or sets the date the job was created.
@@ -42,15 +42,15 @@ namespace Zencoder
         /// Gets or sets the job's input media file.
         /// </summary>
         [JsonProperty("input_media_file")]
-        public MediaFile InputMediaFile { get; set; }
+        public InputMediaFile InputMediaFile { get; set; }
 
         /// <summary>
         /// Gets or sets the job's output media files.
         /// </summary>
         [JsonProperty("output_media_files")]
-        public MediaFile[] OutputMediaFiles
+        public OutputMediaFile[] OutputMediaFiles
         {
-            get { return this.outputMediaFiles ?? (this.outputMediaFiles = new MediaFile[0]); }
+            get { return this.outputMediaFiles ?? (this.outputMediaFiles = new OutputMediaFile[0]); }
             set { this.outputMediaFiles = value; }
         }
 
