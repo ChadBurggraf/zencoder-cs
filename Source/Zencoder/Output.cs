@@ -123,6 +123,24 @@ namespace Zencoder
         public float? FrameRate { get; set; }
 
         /// <summary>
+        /// Gets or sets the level to use when performing H264 encoding.
+        /// </summary>
+        [JsonProperty("h264_level", NullValueHandling = NullValueHandling.Ignore)]
+        public H264Level? H264Level { get; set; }
+
+        /// <summary>
+        /// Gets or sets the profile to use when performing H264 encoding.
+        /// </summary>
+        [JsonProperty("h264_profile", NullValueHandling = NullValueHandling.Ignore)]
+        public H264Profile? H264Profile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of reference frames to use when performing H264 encoding.
+        /// </summary>
+        [JsonProperty("h264_reference_frames", NullValueHandling = NullValueHandling.Ignore)]
+        public int? H264ReferenceFrames { get; set; }
+
+        /// <summary>
         /// Gets or sets the height of the output video, if applicable.
         /// </summary>
         [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
@@ -210,6 +228,12 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("thumbnails", NullValueHandling = NullValueHandling.Ignore)]
         public Thumbnails Thumbnails { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tuning value to use when performing H264 encoding.
+        /// </summary>
+        [JsonProperty("tuning", NullValueHandling = NullValueHandling.Ignore)]
+        public Tuning? Tuning { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to scale the input

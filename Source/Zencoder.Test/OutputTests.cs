@@ -53,6 +53,43 @@ namespace Zencoder.Test
         }
 
         /// <summary>
+        /// Output H264 create job tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputH264CreateJob()
+        {
+            Output output = new Output()
+            {
+                H264Level = H264Level.FourPointOne,
+                H264ReferenceFrames = 5,
+                H264Profile = H264Profile.High,
+                Tuning = Tuning.FastDecode
+            };
+
+            CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
+            Assert.IsTrue(response.Success);
+        }
+
+        /// <summary>
+        /// Output H264 to JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputH264ToJson()
+        {
+            const string Json = @"{""h264_level"":""4.1"",""h264_profile"":""high"",""h264_reference_frames"":5,""tuning"":""fastdecode""}";
+
+            Output output = new Output()
+            {
+                H264Level = H264Level.FourPointOne,
+                H264ReferenceFrames = 5,
+                H264Profile = H264Profile.High,
+                Tuning = Tuning.FastDecode
+            };
+
+            Assert.AreEqual(Json, JsonConvert.SerializeObject(output));
+        }
+
+        /// <summary>
         /// Output notification to JSON tests.
         /// </summary>
         [TestMethod]

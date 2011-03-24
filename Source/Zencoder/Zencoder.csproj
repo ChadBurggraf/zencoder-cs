@@ -79,6 +79,8 @@
     <Compile Include="FromJsonAttribute.cs" />
     <Compile Include="FromJsonStreamAttribute.cs" />
     <Compile Include="FromJsonStringAttribute.cs" />
+    <Compile Include="H264Level.cs" />
+    <Compile Include="H264Profile.cs" />
     <Compile Include="HttpNotification.cs" />
     <Compile Include="HttpPostNotification.cs" />
     <Compile Include="HttpPostNotificationJob.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="S3Permission.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="Thumbnails.cs" />
+    <Compile Include="Tuning.cs" />
     <Compile Include="Uris.cs" />
     <Compile Include="VideoCodec.cs" />
     <Compile Include="Watermark.cs" />
