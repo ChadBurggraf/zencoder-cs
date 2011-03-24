@@ -164,7 +164,14 @@ namespace Zencoder
         /// rather than forcing a specific frame rate.
         /// </summary>
         [JsonProperty("max_frame_rate", NullValueHandling = NullValueHandling.Ignore)]
-        public int? MaxFrameRate { get; set; }
+        public float? MaxFrameRate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum average bitrate to use. Overiddes both <see cref="Quality"/>
+        /// and <see cref="VideoBitrate"/>.
+        /// </summary>
+        [JsonProperty("max_video_bitrate", NullValueHandling = NullValueHandling.Ignore)]
+        public int? MaxVideoBitrate { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of notifications to define for the output.
@@ -222,6 +229,13 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("start_clip", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string StartClip { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to enable "strict" mode. Will cause jobs to fail with invalid encoding settings,
+        /// rather than having the service move bad parameters into valid ranges.
+        /// </summary>
+        [JsonProperty("strict", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Strict { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnails settings to use for the output.
