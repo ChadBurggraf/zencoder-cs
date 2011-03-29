@@ -20,7 +20,7 @@ namespace Zencoder
         /// Gets or sets the file's audio bitrate (in Kbps).
         /// </summary>
         [JsonProperty("audio_bitrate_in_kbps")]
-        public int? AudioBitrateInKpbs { get; set; }
+        public int? AudioBitrateInKbps { get; set; }
 
         /// <summary>
         /// Gets or sets the file's audio codec.
