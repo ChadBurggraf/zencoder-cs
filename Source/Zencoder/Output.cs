@@ -97,6 +97,14 @@ namespace Zencoder
         public string ClipLength { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to use constant bitrate (CBR) encoding.
+        /// Requires setting <see cref="VideoBitrate"/>. Cannot be used in conjuction with <see cref="Quality"/>.
+        /// </summary>
+        [JsonProperty("constant_bitrate", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? ConstantBitrate { get; set; }
+
+        /// <summary>
         /// Gets or sets a value that acts as a divisor for the input frame rate.
         /// Given an input frame rate of 20 and a decimate value of 2, the output frame rate will be 10.
         /// </summary>
@@ -115,6 +123,13 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("filename", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format of the output container to use. Only set this value if not inferring
+        /// the format from the output file name.
+        /// </summary>
+        [JsonProperty("format", NullValueHandling = NullValueHandling.Ignore)]
+        public MediaFileFormat? Format { get; set; }
 
         /// <summary>
         /// Gets or sets the output frame rate to use. Not recommended.
@@ -160,6 +175,13 @@ namespace Zencoder
         public string Label { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating the maximum audio sample rate to use, rather than
+        /// forcing a specific sample rate. Value should be in Hz (e.g., 44100 for CD quality).
+        /// </summary>
+        [JsonProperty("max_audio_sample_rate", NullValueHandling = NullValueHandling.Ignore)]
+        public int? MaxAudioSampleRate { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum frame rate (and therefore bitrate) to use,
         /// rather than forcing a specific frame rate.
         /// </summary>
@@ -186,6 +208,12 @@ namespace Zencoder
         [JsonProperty("onepass", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]
         public bool? Onepass { get; set; }
+
+        /// <summary>
+        /// Gets or sets the output type to use.
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public OutputType? OutputType { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating a shortcut S3 ACL granding READ permission to the AllUsers group,
@@ -235,6 +263,7 @@ namespace Zencoder
         /// rather than having the service move bad parameters into valid ranges.
         /// </summary>
         [JsonProperty("strict", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool? Strict { get; set; }
 
         /// <summary>

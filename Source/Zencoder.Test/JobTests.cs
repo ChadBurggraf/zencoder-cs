@@ -312,7 +312,7 @@ namespace Zencoder.Test
             Assert.AreEqual(1, response.Job.Id);
             Assert.AreEqual(JobState.Finished, response.Job.State);
 
-            Assert.AreEqual("mpeg4", response.Job.InputMediaFile.Format);
+            Assert.AreEqual(MediaFileFormat.MPFour, response.Job.InputMediaFile.Format);
             Assert.AreEqual(24883, response.Job.InputMediaFile.DurationInMiliseconds);
             Assert.AreEqual(2, response.Job.InputMediaFile.Channels);
             Assert.AreEqual(VideoCodec.H264, response.Job.InputMediaFile.VideoCodec);
@@ -424,7 +424,7 @@ namespace Zencoder.Test
             Assert.AreEqual(1, first.Id);
             Assert.AreEqual(JobState.Finished, first.State);
 
-            Assert.AreEqual("mpeg4", first.InputMediaFile.Format);
+            Assert.AreEqual(MediaFileFormat.MPFour, first.InputMediaFile.Format);
             Assert.AreEqual(24883, first.InputMediaFile.DurationInMiliseconds);
             Assert.AreEqual(2, first.InputMediaFile.Channels);
             Assert.AreEqual(VideoCodec.H264, first.InputMediaFile.VideoCodec);

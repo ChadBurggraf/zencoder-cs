@@ -76,7 +76,7 @@ namespace Zencoder
         /// Gets or sets the file's format.
         /// </summary>
         [JsonProperty("format")]
-        public string Format { get; set; }
+        public MediaFileFormat Format { get; set; }
 
         /// <summary>
         /// Gets or sets the file's frame rate.
