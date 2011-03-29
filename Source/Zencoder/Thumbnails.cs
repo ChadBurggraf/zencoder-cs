@@ -26,11 +26,29 @@ namespace Zencoder
         public S3Access[] AccessControl { get; set; }
 
         /// <summary>
+        /// Gets or sets the aspect mode to use when creating thumbnails.
+        /// </summary>
+        [JsonProperty("aspect_mode", NullValueHandling = NullValueHandling.Ignore)]
+        public AspectMode? AspectMode { get; set; }
+
+        /// <summary>
         /// Gets or sets an output destination for thumbnails. If blank, will use the corresponding <see cref="Output"/>'s
         /// destination. If that is blank, they will be placed in the Zencoder S3 bucket.
         /// </summary>
         [JsonProperty("base_url", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string BaseUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format to use for thumbnail images.
+        /// </summary>
+        [JsonProperty("format", NullValueHandling = NullValueHandling.Ignore)]
+        public ThumbnailFormat? Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the height of the thumbnails, if applicable.
+        /// </summary>
+        [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
+        public int? Height { get; set; }
 
         /// <summary>
         /// Gets or sets the number of thumbnails to generate. The thumbnails will
@@ -64,10 +82,21 @@ namespace Zencoder
         public bool? Public { get; set; }
 
         /// <summary>
-        /// Gets or sets the target thumbnail resolution, like "160x120".
+        /// Gets or sets a value indicating whether to pass the necessary headers to S3
+        /// if the destination S3 bucket is using Reduced Redundancy Storage. Only
+        /// application when storing thumbnails on S3.
         /// </summary>
-        [JsonProperty("size", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
-        public string Size { get; set; }
+        [JsonProperty("rrs", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Rrs { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to begin taking thumbnails at the first frame
+        /// when using the <see cref="Number"/> option.
+        /// </summary>
+        [JsonProperty("start_at_first_frame", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? StartAtFirstFrame { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of times, in fractional seconds, to generate
@@ -75,6 +104,12 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("times", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public float[] Times { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the thumbnails, if applicable.
+        /// </summary>
+        [JsonProperty("width", NullValueHandling = NullValueHandling.Ignore)]
+        public int? Width { get; set; }
 
         /// <summary>
         /// Appends the given S3 access control to this instance's <see cref="AccessControl"/> collection.
@@ -140,7 +175,7 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Sets the <see cref="Size"/> property.
+        /// Sets the <see cref="Width"/> and <see cref="Height"/> properties.
         /// </summary>
         /// <param name="width">The width, in pixels.</param>
         /// <param name="height">The height, in pixels.</param>
@@ -157,7 +192,8 @@ namespace Zencoder
                 throw new ArgumentException("height must be a positive number", "height");
             }
 
-            this.Size = String.Format(CultureInfo.InvariantCulture, "{0}x{1}", width, height);
+            this.Width = width;
+            this.Height = height;
             return this;
         }
 

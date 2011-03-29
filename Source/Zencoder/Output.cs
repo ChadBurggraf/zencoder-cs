@@ -239,6 +239,15 @@ namespace Zencoder
         public Rotate? Rotate { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to pass the necessary headers to S3
+        /// if the destination S3 bucket is using Reduced Redundancy Storage. Only
+        /// application when storing outputs on S3.
+        /// </summary>
+        [JsonProperty("rrs", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Rrs { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]

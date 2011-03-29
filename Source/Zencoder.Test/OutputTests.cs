@@ -155,7 +155,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void OutputThumbnailsToJson()
         {
-            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":{{""base_url"":""s3://bucket/directory"",""number"":6,""prefix"":""custom"",""size"":""160x120""}}}}],""api_key"":""{0}""}}";
+            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":{{""base_url"":""s3://bucket/directory"",""height"":120,""number"":6,""prefix"":""custom"",""width"":160}}}}],""api_key"":""{0}""}}";
 
             Thumbnails thumbs = new Thumbnails()
             {
