@@ -150,6 +150,46 @@ namespace Zencoder.Test
         }
 
         /// <summary>
+        /// Output segmented streams to JSON tests.
+        /// </summary>
+        [TestMethod]
+        public void OutputSegmentedStreamsToJson()
+        {
+            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""segment_seconds"":30}},{{""type"":""playlist"",""streams"":[{{""bandwidth"":240,""path"":""low/index.m3u8""}},{{""bandwidth"":640,""path"":""high/index.m3u8""}}]}}],""api_key"":""{0}""}}";
+
+            Output output = new Output()
+            {
+                SegmentSeconds = 30
+            };
+
+            Output playlist = new Output()
+            {
+                OutputType = OutputType.Playlist,
+                Streams = new PlaylistStream[]
+                {
+                    new PlaylistStream()
+                    {
+                        Bandwidth = 240,
+                        Path = "low/index.m3u8"
+                    },
+                    new PlaylistStream()
+                    {
+                        Bandwidth = 640,
+                        Path = "high/index.m3u8"
+                    }
+                }
+            };
+
+            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            {
+                Input = "http://example.com/file-name.avi",
+                Outputs = new Output[] { output, playlist }
+            };
+
+            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+        }
+
+        /// <summary>
         /// Output thumbnails to JSON tests.
         /// </summary>
         [TestMethod]

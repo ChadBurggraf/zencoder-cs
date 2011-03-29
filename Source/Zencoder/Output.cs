@@ -248,6 +248,12 @@ namespace Zencoder
         public bool? Rrs { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum duration to use for each segment in segmented outputs.
+        /// </summary>
+        [JsonProperty("segment_seconds", NullValueHandling = NullValueHandling.Ignore)]
+        public int? SegmentSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]
@@ -266,6 +272,12 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("start_clip", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string StartClip { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of streams to be re-formatted as a playlist.
+        /// </summary>
+        [JsonProperty("streams", NullValueHandling = NullValueHandling.Ignore)]
+        public PlaylistStream[] Streams { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable "strict" mode. Will cause jobs to fail with invalid encoding settings,
