@@ -32,7 +32,7 @@
     <MSBuild Projects="$(LibraryDir)\Zencoder.csproj" Properties="Configuration=$(Configuration);SignAssembly=$(SignAssembly);AssemblyOriginatorKeyFile=$(KeyFile)"/>
   
     <Message Text='Merging assemblies into "Zencoder.dll".'/>
-    <Exec Command='"$(ILMergePath)" /ndebug /internalize $(KeyFileArgs) /out:$(BuildDir)\Zencoder.dll "$(LibraryDir)\bin\$(Configuration)\Zencoder.dll" "$(LibDir)\Newtonsoft.Json.dll"'/>
+    <Exec Command='"$(ILMergePath)" /ndebug /internalize $(KeyFileArgs) /out:"$(BuildDir)\Zencoder.dll" "$(LibraryDir)\bin\$(Configuration)\Zencoder.dll" "$(LibDir)\Newtonsoft.Json.dll"'/>
     <Copy SourceFiles="$(LibraryDir)\bin\$(Configuration)\Zencoder.xml" DestinationFolder="$(BuildDir)"/>
     <Copy SourceFiles="$(SourceDir)\Web.config.template" DestinationFiles="$(BuildDir)\Web.config"/>
     <Copy SourceFiles="$(MSBuildProjectDirectory)\LICENSE.txt;$(MSBuildProjectDirectory)\README.md" DestinationFolder="$(BuildDir)"/>
