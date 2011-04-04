@@ -288,10 +288,10 @@ namespace Zencoder
         public bool? Strict { get; set; }
 
         /// <summary>
-        /// Gets or sets the thumbnails settings to use for the output.
+        /// Gets or sets a collection of thumbnails settings to use for the output.
         /// </summary>
         [JsonProperty("thumbnails", NullValueHandling = NullValueHandling.Ignore)]
-        public Thumbnails Thumbnails { get; set; }
+        public Thumbnails[] Thumbnails { get; set; }
 
         /// <summary>
         /// Gets or sets the tuning value to use when performing H264 encoding.
@@ -385,6 +385,28 @@ namespace Zencoder
                 this.ClipLength = clipLength.Value.TotalSeconds.ToString("N1", CultureInfo.InvariantCulture);
             }
 
+            return this;
+        }
+
+        /// <summary>
+        /// Sets this instance's <see cref="Thumbnails"/> property.
+        /// </summary>
+        /// <param name="thumbnails">The thumbnails to set.</param>
+        /// <returns>This instance.</returns>
+        public Output WithThumbnails(Thumbnails thumbnails)
+        {
+            return this.WithThumbnails(thumbnails != null ? new Thumbnails[1] { thumbnails } : null);
+        }
+
+        /// <summary>
+        /// Sets this instance's <see cref="Thumbnails"/> property.
+        /// </summary>
+        /// <param name="thumbnails">The thumbnails collection to set.</param>
+        /// <returns>This instance.</returns>
+        public Output WithThumbnails(IEnumerable<Thumbnails> thumbnails)
+        {
+            Thumbnails[] t = thumbnails != null ? thumbnails.ToArray() : new Thumbnails[0];
+            this.Thumbnails = t.Length > 0 ? t : null;
             return this;
         }
 
