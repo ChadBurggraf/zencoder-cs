@@ -28,6 +28,11 @@ namespace Zencoder
         /// <summary>
         /// Identifies the Vorbis audio codec.
         /// </summary>
-        Vorbis
+        Vorbis,
+
+        /// <summary>
+        /// Identifies the WMA audio codec.
+        /// </summary>
+        Wma
     }
 }

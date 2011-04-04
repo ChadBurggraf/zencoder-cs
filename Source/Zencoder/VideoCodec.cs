@@ -21,6 +21,11 @@ namespace Zencoder
         H264 = 0,
 
         /// <summary>
+        /// Identifies the MPEG4 codec.
+        /// </summary>
+        Mpeg4,
+
+        /// <summary>
         /// Identifies the Theora codec.
         /// </summary>
         Theora,
@@ -33,6 +38,11 @@ namespace Zencoder
         /// <summary>
         /// Identifies the VP8 codec.
         /// </summary>
-        VP8
+        VP8,
+
+        /// <summary>
+        /// Identifies the WMV codec.
+        /// </summary>
+        Wmv
     }
 }
