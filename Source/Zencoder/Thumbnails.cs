@@ -51,6 +51,12 @@ namespace Zencoder
         public int? Height { get; set; }
 
         /// <summary>
+        /// A name for the thumbnail set. Required when creating multiple thumbnail sets from an output.
+        /// </summary>
+        [JsonProperty("label")]
+        public string Label { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of thumbnails to generate. The thumbnails will
         /// be grabbed evenly across the duration of the file. Should be exclusive of
         /// <see cref="Interval"/> and <see cref="Times"/>.
