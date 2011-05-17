@@ -23,12 +23,6 @@ namespace Zencoder
         public int? AudioBitrateInKbps { get; set; }
 
         /// <summary>
-        /// Gets or sets the file's audio codec.
-        /// </summary>
-        [JsonProperty("audio_codec")]
-        public AudioCodec? AudioCodec { get; set; }
-
-        /// <summary>
         /// Gets or sets the file's audio sample rate.
         /// </summary>
         [JsonProperty("audio_sample_rate")]
@@ -73,16 +67,10 @@ namespace Zencoder
         public DateTime? FinishedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the file's format.
-        /// </summary>
-        [JsonProperty("format")]
-        public MediaFileFormat Format { get; set; }
-
-        /// <summary>
         /// Gets or sets the file's frame rate.
         /// </summary>
         [JsonProperty("frame_rate")]
-        public int? FrameRate { get; set; }
+        public float? FrameRate { get; set; }
 
         /// <summary>
         /// Gets or sets the file's height.
@@ -95,6 +83,12 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file's total bitrate (in Kbps).
+        /// </summary>
+        [JsonProperty("total_bitrate_in_kbps")]
+        public int? TotalBitrateInKbps { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the file is in test mode.
@@ -121,12 +115,6 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("video_bitrate_in_kbps")]
         public int? VideoBitrateInKbps { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file's video codec.
-        /// </summary>
-        [JsonProperty("video_codec")]
-        public VideoCodec? VideoCodec { get; set; }
 
         /// <summary>
         /// Gets or sets the file's width.
