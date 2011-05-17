@@ -432,7 +432,7 @@ namespace Zencoder.Test
             Assert.AreEqual(586, response.Job.OutputMediaFiles[0].TotalBitrateInKbps);
             
             // TODO: implement ability to get thumbnail element of response.
-            //Assert.AreEqual("group-label-value-1", response.Job.
+            // Assert.AreEqual("group-label-value-1", response.Job.
         }
 
         /// <summary>

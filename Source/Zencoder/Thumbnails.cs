@@ -51,7 +51,7 @@ namespace Zencoder
         public int? Height { get; set; }
 
         /// <summary>
-        /// A name for the thumbnail set. Required when creating multiple thumbnail sets from an output.
+        /// Gets or sets the name for the thumbnail set. Required when creating multiple thumbnail sets from an output.
         /// </summary>
         [JsonProperty("label")]
         public string Label { get; set; }
