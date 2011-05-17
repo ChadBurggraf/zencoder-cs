@@ -17,9 +17,27 @@ namespace Zencoder
     public class OutputMediaFile : MediaFile
     {
         /// <summary>
+        /// Gets or sets the file's audio codec.
+        /// </summary>
+        [JsonProperty("audio_codec")]
+        public AudioCodec? AudioCodec { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file's format.
+        /// </summary>
+        [JsonProperty("format")]
+        public MediaFileFormat Format { get; set; }
+
+        /// <summary>
         /// Gets or sets the file's state with respect to its parent job.
         /// </summary>
         [JsonProperty("state")]
         public OutputState State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file's video codec.
+        /// </summary>
+        [JsonProperty("video_codec")]
+        public VideoCodec? VideoCodec { get; set; }
     }
 }
