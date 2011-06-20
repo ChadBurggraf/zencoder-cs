@@ -375,8 +375,11 @@ namespace Zencoder.Test
             CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
             Assert.IsTrue(createResponse.Success);
 
+            // TODO: Investigate whether Zencoder has truly deprecated this API operation.
+            // For now, just test for an InConflict status, because that's what it seems
+            // we should expect.
             DeleteJobResponse deleteResponse = Zencoder.DeleteJob(createResponse.Id);
-            Assert.IsTrue(deleteResponse.Success);
+            Assert.IsTrue(deleteResponse.InConflict);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
@@ -384,7 +387,7 @@ namespace Zencoder.Test
                 createResponse.Id, 
                 r =>
                 {
-                    Assert.IsTrue(r.StatusCode == HttpStatusCode.NotFound);
+                    Assert.IsTrue(r.InConflict);
                     handles[0].Set();
                 });
 
@@ -549,6 +552,55 @@ namespace Zencoder.Test
             OutputMediaFile output = first.OutputMediaFiles.First();
             Assert.AreEqual(AudioCodec.Aac, output.AudioCodec);
             Assert.AreEqual(false, output.Test);
+        }
+
+        /// <summary>
+        /// Nested async job request tests.
+        /// </summary>
+        [TestMethod]
+        public void JobNestedAsyncRequests()
+        {
+            ManualResetEvent[] handles = new ManualResetEvent[] 
+            { 
+                new ManualResetEvent(false),
+                new ManualResetEvent(false)
+            };
+
+            // Nested async calls.
+            Zencoder.CreateJob(
+                "s3://bucket-name/file-name.avi",
+                null,
+                3,
+                "asia",
+                true,
+                r =>
+                {
+                    Assert.IsTrue(r.Success);
+
+                    Zencoder.JobDetails(
+                        r.Id,
+                        dr =>
+                        {
+                            Assert.IsTrue(dr.Success);
+                            handles[0].Set();
+                        });
+                });
+
+            // Async call then a sync call.
+            Zencoder.CreateJob(
+                "s3://bucket-name/file-name.avi",
+                null,
+                3,
+                "asia",
+                true,
+                r =>
+                {
+                    Assert.IsTrue(r.Success);
+                    Assert.IsTrue(Zencoder.JobDetails(r.Id).Success);
+                    handles[1].Set();
+                });
+
+            WaitHandle.WaitAll(handles);
         }
 
         /// <summary>

@@ -23,7 +23,7 @@ namespace Zencoder.Test
         /// <summary>
         /// Test JSON for S3 access control output serialization.
         /// </summary>
-        private const string AccessControlJson = @"{{""input"":""s3://bucket-name/file-name.avi"",""outputs"":[{{""access_control"":[{{""grantee"":""cdc7931a9574b1055d5b76112021d0e9"",""permissions"":[""READ"",""WRITE""]}},{{""grantee"":""someone@example.com"",""permissions"":[""FULL_CONTROL""]}},{{""grantee"":""http://acs.amazonaws.com/groups/global/AllUsers"",""permissions"":[""READ""]}}],""thumbnails"":[{{""number"":1}}],""url"":""s3://output-bucket/output-file-1-name.mp4""}}],""api_key"":""{0}""}}";
+        private const string AccessControlJson = @"{{""input"":""s3://bucket-name/file-name.avi"",""outputs"":[{{""access_control"":[{{""grantee"":""cdc7931a9574b1055d5b76112021d0e9"",""permissions"":[""READ"",""WRITE""]}},{{""grantee"":""someone@example.com"",""permissions"":[""FULL_CONTROL""]}},{{""grantee"":""http://acs.amazonaws.com/groups/global/AllUsers"",""permissions"":[""READ""]}}],""thumbnails"":[{{""label"":null,""number"":1}}],""url"":""s3://output-bucket/output-file-1-name.mp4""}}],""api_key"":""{0}""}}";
 
         #endregion
 
@@ -194,7 +194,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void OutputThumbnailsToJson()
         {
-            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":[{{""base_url"":""s3://bucket/directory"",""height"":120,""number"":6,""prefix"":""custom"",""width"":160}}]}}],""api_key"":""{0}""}}";
+            const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":[{{""base_url"":""s3://bucket/directory"",""height"":120,""label"":null,""number"":6,""prefix"":""custom"",""width"":160}}]}}],""api_key"":""{0}""}}";
 
             Thumbnails thumbs = new Thumbnails()
             {
