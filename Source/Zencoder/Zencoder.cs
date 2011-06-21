@@ -235,7 +235,7 @@ namespace Zencoder
         /// <returns>The call response.</returns>
         public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs)
         {
-            return this.CreateJob(input, outputs, null, null, null);
+            return this.CreateJob(input, outputs, null, null, null, null);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace Zencoder
         /// <param name="callback">The call response.</param>
         public void CreateJob(string input, IEnumerable<Output> outputs, Action<CreateJobResponse> callback)
         {
-            this.CreateJob(input, outputs, null, null, null, callback);
+            this.CreateJob(input, outputs, null, null, null, null, callback);
         }
 
         /// <summary>
@@ -257,13 +257,15 @@ namespace Zencoder
         /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
         /// <param name="region">The region to perform the job in.</param>
         /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <param name="mock">A value indicating whether to mock the response rather than actually creating a job.</param>
         /// <returns>The call response.</returns>
-        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test)
+        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, bool? mock)
         {
             CreateJobRequest request = new CreateJobRequest(this)
             {
                 DownloadConnections = downloadConnections,
                 Input = input,
+                Mock = mock,
                 Region = region,
                 Test = test
             };
@@ -279,13 +281,15 @@ namespace Zencoder
         /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
         /// <param name="region">The region to perform the job in.</param>
         /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <param name="mock">A value indicating whether to mock the response rather than actually creating a job.</param>
         /// <param name="callback">The call response.</param>
-        public void CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, Action<CreateJobResponse> callback)
+        public void CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, bool? mock, Action<CreateJobResponse> callback)
         {
             CreateJobRequest request = new CreateJobRequest(this)
             {
                 DownloadConnections = downloadConnections,
                 Input = input,
+                Mock = mock,
                 Region = region,
                 Test = test
             };

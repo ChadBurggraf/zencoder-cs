@@ -19,6 +19,7 @@ namespace Zencoder
         /// Gets or sets the output ID.
         /// </summary>
         [JsonProperty("id")]
+        [JsonConverter(typeof(DefaultingIntegerConverter))]
         public int Id { get; set; }
     }
 }

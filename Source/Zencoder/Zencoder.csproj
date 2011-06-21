@@ -66,6 +66,7 @@
     <Compile Include="CreateAccountResponse.cs" />
     <Compile Include="CreateJobRequest.cs" />
     <Compile Include="CreateJobResponse.cs" />
+    <Compile Include="DefaultingIntegerConverter.cs" />
     <Compile Include="Deinterlace.cs" />
     <Compile Include="DeleteJobRequest.cs" />
     <Compile Include="DeleteJobResponse.cs" />

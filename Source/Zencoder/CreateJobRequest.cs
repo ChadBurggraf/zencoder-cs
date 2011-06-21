@@ -50,6 +50,14 @@ namespace Zencoder
         public string Input { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to simply mock the response without actually
+        /// creating a job. Set to true when running tests.
+        /// </summary>
+        [JsonProperty("mock", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Mock { get; set; }
+
+        /// <summary>
         /// Gets or sets the output collection definiing outputs for the job.
         /// </summary>
         [JsonProperty("outputs", NullValueHandling = NullValueHandling.Ignore)]

@@ -259,7 +259,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobCancelJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
             Assert.IsTrue(createResponse.Success);
 
             CancelJobResponse cancelResponse = Zencoder.CancelJob(createResponse.Id);
@@ -302,12 +302,10 @@ namespace Zencoder.Test
                 }
             };
 
-            CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", outputs, null, null, true);
+            CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", outputs, null, null, true, true);
             Assert.IsTrue(response.Success);
-            Assert.IsTrue(response.Id > 0);
             Assert.AreEqual(outputs.Count(), response.Outputs.Count());
-            Assert.IsTrue(response.Outputs.First().Id > 0);
-
+            
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
             Zencoder.CreateJob(
@@ -316,12 +314,11 @@ namespace Zencoder.Test
                 3,
                 "asia",
                 true,
+                true,
                 r =>
                 {
                     Assert.IsTrue(r.Success);
-                    Assert.IsTrue(r.Id > 0);
                     Assert.IsTrue(r.Outputs.Count() > 0);
-                    Assert.IsTrue(r.Outputs.First().Id > 0);
                     handles[0].Set();
                 });
 
@@ -372,7 +369,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobDeleteJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
             Assert.IsTrue(createResponse.Success);
 
             // TODO: Investigate whether Zencoder has truly deprecated this API operation.
@@ -444,7 +441,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobJobDetailsRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
             Assert.IsTrue(createResponse.Success);
 
             JobDetailsResponse detailsResponse = Zencoder.JobDetails(createResponse.Id);
@@ -573,6 +570,7 @@ namespace Zencoder.Test
                 3,
                 "asia",
                 true,
+                false,
                 r =>
                 {
                     Assert.IsTrue(r.Success);
@@ -593,6 +591,7 @@ namespace Zencoder.Test
                 3,
                 "asia",
                 true,
+                false,
                 r =>
                 {
                     Assert.IsTrue(r.Success);
@@ -609,7 +608,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobResubmitJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true);
+            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
             Assert.IsTrue(createResponse.Success);
 
             ResubmitJobResponse resubmitResponse = Zencoder.ResubmitJob(createResponse.Id);

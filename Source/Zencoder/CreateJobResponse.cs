@@ -20,6 +20,7 @@ namespace Zencoder
         /// Gets or sets the job ID.
         /// </summary>
         [JsonProperty("id")]
+        [JsonConverter(typeof(DefaultingIntegerConverter))]
         public int Id { get; set; }
 
         /// <summary>
