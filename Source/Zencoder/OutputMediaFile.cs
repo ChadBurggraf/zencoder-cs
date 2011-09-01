@@ -38,6 +38,6 @@ namespace Zencoder
         /// Gets or sets the file's video codec.
         /// </summary>
         [JsonProperty("video_codec")]
-        public VideoCodec? VideoCodec { get; set; }
+        public OutputVideoCodec? VideoCodec { get; set; }
     }
 }
