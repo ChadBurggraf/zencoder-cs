@@ -1,7 +1,7 @@
 # Zencoder .NET
 #### A .NET C# client library for the [zencoder.com](http://zencoder.com/) API
 
-Visit <http://zencoder.com/docs/api> for full API documentation.
+Visit <https://app.zencoder.com/docs> for full API documentation.
 
 This is an attempt at a fully object-oriented implementation of the Zencoder API for .NET. 
 It is compatible with .NET 3.5 and above (although the limited 3.5 features used could be
@@ -42,9 +42,13 @@ There is also full non-blocking (async) support, so the non-blocking version of 
 It's not much harder to work with each API action's requestion & response objects, so feel free to
 rock it that way if you prefer.
 
+**Please note:** the above input file URLs (`s3://bucket-name/file-name.avi`) are only examples. Zencoder
+supports a number of input and output location types (e.g., HTTP, S3, Cloud Files, FTP and SFTP). Please 
+[see the Zencoder documentation](https://app.zencoder.com/docs/api/encoding/job/input) for more information.
+
 ## HTTP Notifications
 
-You can define both [email and HTTP](http://zencoder.com/docs/api/#notifications) notifications with
+You can define both [email and HTTP](https://app.zencoder.com/docs/api/encoding/notifications) notifications with
 your job outputs. If you have an ASP.NET application, you can use the built-in `NotificationHandler`
 to process those notifications for you.
 
