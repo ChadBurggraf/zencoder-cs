@@ -1,10 +1,11 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="VideoCodec.cs" company="Tasty Codes">
+// <copyright file="OutputVideoCodec.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Zencoder {
+namespace Zencoder 
+{
     using System;
     using Newtonsoft.Json;
 
@@ -12,7 +13,8 @@ namespace Zencoder {
     /// Defines the possible output video codecs.
     /// </summary>
     [JsonConverter(typeof(EnumLowercaseJsonConverter))]
-    public enum OutputVideoCodec {
+    public enum OutputVideoCodec 
+    {
         /// <summary>
         /// Identifies the H.264 codec.
         /// </summary>
