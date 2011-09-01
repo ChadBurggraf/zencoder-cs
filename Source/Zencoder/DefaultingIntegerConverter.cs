@@ -52,9 +52,9 @@ namespace Zencoder
         {
             TypeCode typeCode = Type.GetTypeCode(objectType);
             object result = this.GetDefaultValue(typeCode);
-            string str = (reader.Value ?? String.Empty).ToString().Trim();
+            string str = (reader.Value ?? string.Empty).ToString().Trim();
 
-            if (!String.IsNullOrEmpty(str))
+            if (!string.IsNullOrEmpty(str))
             {
                 try
                 {

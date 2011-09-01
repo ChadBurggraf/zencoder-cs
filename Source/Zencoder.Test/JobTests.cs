@@ -339,7 +339,7 @@ namespace Zencoder.Test
                 Input = "s3://bucket-name/file-name.avi"
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
 
             request = new CreateJobRequest(Zencoder)
             {
@@ -348,7 +348,7 @@ namespace Zencoder.Test
                 Region = "asia"
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, Two, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, Two, ApiKey), request.ToJson());
         }
 
         /// <summary>

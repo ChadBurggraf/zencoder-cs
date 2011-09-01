@@ -99,7 +99,7 @@ namespace Zencoder
             {
                 if (this.url == null)
                 {
-                    string query = String.Format(
+                    string query = string.Format(
                         CultureInfo.InvariantCulture,
                         "{0}={1}&page={2}&per_page={3}",
                         HttpUtility.UrlEncode(Zencoder.ApiKeyQueryKey),

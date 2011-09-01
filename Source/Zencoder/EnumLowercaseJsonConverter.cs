@@ -34,10 +34,10 @@ namespace Zencoder
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            string str = (reader.Value ?? String.Empty).ToString();
+            string str = (reader.Value ?? string.Empty).ToString();
             object result = existingValue;
 
-            if (!String.IsNullOrEmpty(str))
+            if (!string.IsNullOrEmpty(str))
             {
                 try
                 {
@@ -59,7 +59,7 @@ namespace Zencoder
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            string str = (value ?? String.Empty).ToString();
+            string str = (value ?? string.Empty).ToString();
             serializer.Serialize(writer, str.ToLowerInvariant());
         }
     }

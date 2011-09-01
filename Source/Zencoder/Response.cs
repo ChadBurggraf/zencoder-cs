@@ -117,7 +117,7 @@ namespace Zencoder
             Type type = typeof(TResponse);
             TAttr attr = type.GetCustomAttributes(typeof(TAttr), true).Cast<TAttr>().FirstOrDefault();
 
-            if (attr != null && !String.IsNullOrEmpty(attr.Method) && attr.Type != null)
+            if (attr != null && !string.IsNullOrEmpty(attr.Method) && attr.Type != null)
             {
                 method = attr.Type.GetMethod(attr.Method, new Type[] { argumentType });
 

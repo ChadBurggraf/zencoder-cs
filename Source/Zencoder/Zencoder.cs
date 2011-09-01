@@ -49,7 +49,7 @@ namespace Zencoder
         /// <param name="baseUrl">The service base URL.</param>
         public Zencoder(string apiKey, Uri baseUrl)
         {
-            if (String.IsNullOrEmpty(apiKey))
+            if (string.IsNullOrEmpty(apiKey))
             {
                 throw new ArgumentNullException("apiKey", "apiKey must contain a value.");
             }

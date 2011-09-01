@@ -55,7 +55,7 @@ namespace Zencoder
         {
             EmailNotification notification = value as EmailNotification;
 
-            if (notification != null && !String.IsNullOrEmpty(notification.Email))
+            if (notification != null && !string.IsNullOrEmpty(notification.Email))
             {
                 serializer.Serialize(writer, notification.Email);
             }

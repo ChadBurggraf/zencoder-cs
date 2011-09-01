@@ -36,8 +36,8 @@ namespace Zencoder
         /// <returns>The combined URL.</returns>
         public static string Combine(string first, string second)
         {
-            first = (first ?? String.Empty).Trim();
-            second = (second ?? String.Empty).Trim();
+            first = (first ?? string.Empty).Trim();
+            second = (second ?? string.Empty).Trim();
 
             if (first.EndsWith("/", StringComparison.Ordinal))
             {
@@ -49,11 +49,11 @@ namespace Zencoder
                 second = second.Substring(1);
             }
 
-            if (!String.IsNullOrEmpty(first) && !String.IsNullOrEmpty(second))
+            if (!string.IsNullOrEmpty(first) && !string.IsNullOrEmpty(second))
             {
-                return String.Concat(first, "/", second);
+                return string.Concat(first, "/", second);
             }
-            else if (!String.IsNullOrEmpty(first))
+            else if (!string.IsNullOrEmpty(first))
             {
                 return first;
             }
@@ -82,7 +82,7 @@ namespace Zencoder
         /// <returns>The result URI.</returns>
         public static Uri WithPath(this Uri uri, string path)
         {
-            path = path ?? String.Empty;
+            path = path ?? string.Empty;
 
             if (path.StartsWith("/", StringComparison.Ordinal))
             {
@@ -106,7 +106,7 @@ namespace Zencoder
         {
             UriBuilder builder = new UriBuilder(uri);
 
-            builder.Query = String.Concat(
+            builder.Query = string.Concat(
                 HttpUtility.UrlEncode(key),
                 "=",
                 HttpUtility.UrlEncode(value));

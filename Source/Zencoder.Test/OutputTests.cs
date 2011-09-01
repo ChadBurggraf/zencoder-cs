@@ -48,7 +48,7 @@ namespace Zencoder.Test
                 .WithInputUrl(new Uri("s3://bucket-name/file-name.avi"))
                 .WithOutput(output);
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, AccessControlJson, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, AccessControlJson, ApiKey), request.ToJson());
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Zencoder.Test
                 Outputs = outputs
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Zencoder.Test
                 Outputs = new Output[] { output, playlist }
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Zencoder.Test
                 Outputs = new Output[] { output }
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Zencoder.Test
                 Outputs = outputs
             };
 
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
         }
     }
 }

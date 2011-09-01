@@ -68,7 +68,7 @@ namespace Zencoder
         /// <returns>This instance.</returns>
         public Watermark WithPositionInPercent(int? x, int? y)
         {
-            this.X = this.Y = String.Empty;
+            this.X = this.Y = string.Empty;
 
             if (x != null)
             {
@@ -91,7 +91,7 @@ namespace Zencoder
         /// <returns>This instance.</returns>
         public Watermark WithPositionInPixels(int? x, int? y)
         {
-            this.X = this.Y = String.Empty;
+            this.X = this.Y = string.Empty;
 
             if (x != null)
             {
@@ -114,7 +114,7 @@ namespace Zencoder
         /// <returns>This instance.</returns>
         public Watermark WithSizeInPercent(int? width, int? height)
         {
-            this.Width = this.Height = String.Empty;
+            this.Width = this.Height = string.Empty;
 
             if (width != null)
             {
@@ -137,7 +137,7 @@ namespace Zencoder
         /// <returns>This instance.</returns>
         public Watermark WithSizeInPixels(int? width, int? height)
         {
-            this.Width = this.Height = String.Empty;
+            this.Width = this.Height = string.Empty;
 
             if (width != null)
             {

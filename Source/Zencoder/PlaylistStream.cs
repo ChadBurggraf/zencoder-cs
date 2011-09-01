@@ -58,7 +58,7 @@ namespace Zencoder
                 throw new ArgumentException("height must be a positive number", "height");
             }
 
-            this.Resolution = String.Format(CultureInfo.InvariantCulture, "{0}x{1}", width, height);
+            this.Resolution = string.Format(CultureInfo.InvariantCulture, "{0}x{1}", width, height);
             return this;
         }
     }

@@ -69,7 +69,7 @@ namespace Zencoder
                         throw new InvalidOperationException("OutputId must be set before generating the request URL.");
                     }
 
-                    string path = String.Format(CultureInfo.InvariantCulture, "outputs/{0}/progress", this.OutputId);
+                    string path = string.Format(CultureInfo.InvariantCulture, "outputs/{0}/progress", this.OutputId);
                     this.url = BaseUrl.AppendPath(path).WithApiKey(ApiKey);
                 }
 

@@ -70,7 +70,7 @@ namespace Zencoder
                         throw new InvalidOperationException("JobId must be set before generating the request URL.");
                     }
 
-                    string path = String.Format(CultureInfo.InvariantCulture, "jobs/{0}/cancel", this.JobId);
+                    string path = string.Format(CultureInfo.InvariantCulture, "jobs/{0}/cancel", this.JobId);
                     this.url = BaseUrl.AppendPath(path).WithApiKey(ApiKey);
                 }
 

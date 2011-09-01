@@ -32,9 +32,9 @@ namespace Zencoder
         /// <returns>The converted string.</returns>
         public static string FromLowercaseUnderscore(this string value, bool camel)
         {
-            value = (value ?? String.Empty).ToLowerInvariant().Trim();
+            value = (value ?? string.Empty).ToLowerInvariant().Trim();
 
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return value;
             }
@@ -45,7 +45,7 @@ namespace Zencoder
 
             while (i < value.Length)
             {
-                if (Char.IsLetterOrDigit(value, i))
+                if (char.IsLetterOrDigit(value, i))
                 {
                     wordLetterNumber++;
                 }
@@ -83,9 +83,9 @@ namespace Zencoder
         /// <returns>The converted string.</returns>
         public static string ToLowercaseUnderscore(this string value)
         {
-            value = (value ?? String.Empty).Trim();
+            value = (value ?? string.Empty).Trim();
 
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return value;
             }
@@ -96,7 +96,7 @@ namespace Zencoder
 
             while (i < value.Length)
             {
-                if (Char.IsLetterOrDigit(value, i))
+                if (char.IsLetterOrDigit(value, i))
                 {
                     wordLetterNumber++;
                 }
@@ -105,14 +105,14 @@ namespace Zencoder
                     wordLetterNumber = 0;
                 }
 
-                if (Char.IsUpper(value, i))
+                if (char.IsUpper(value, i))
                 {
                     if (wordLetterNumber > 1)
                     {
                         sb.Append("_");
                     }
 
-                    sb.Append(Char.ToLowerInvariant(value[i]));
+                    sb.Append(char.ToLowerInvariant(value[i]));
                 }
                 else
                 {

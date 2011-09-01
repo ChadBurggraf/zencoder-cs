@@ -46,13 +46,13 @@ namespace Zencoder
 
                 if (!enumType.IsEnum)
                 {
-                    throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, @"Type ""{0}"" is not a valid enumeration.", enumType), "enumType");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, @"Type ""{0}"" is not a valid enumeration.", enumType), "enumType");
                 }
             }
 
             MemberInfo[] members = enumType.GetMembers();
 
-            if (!String.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value))
             {
                 foreach (MemberInfo member in members)
                 {
@@ -69,7 +69,7 @@ namespace Zencoder
                     }
                 }
 
-                throw new ArgumentException(String.Format(@"Value ""{0}"" could not be found in the members or descriptions of ""{1}"".", value, enumType), "value");
+                throw new ArgumentException(string.Format(@"Value ""{0}"" could not be found in the members or descriptions of ""{1}"".", value, enumType), "value");
             }
 
             if (!isNullable)
@@ -124,7 +124,7 @@ namespace Zencoder
                     }
                 }
 
-                text = String.Join(", ", descriptions.ToArray());
+                text = string.Join(", ", descriptions.ToArray());
             }
             else
             {

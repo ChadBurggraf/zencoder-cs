@@ -106,14 +106,14 @@
     <Compile Include="OutputMediaFile.cs" />
     <Compile Include="OutputState.cs" />
     <Compile Include="OutputType.cs" />
-	<Compile Include="OutputVideoCodec.cs" />
+    <Compile Include="OutputVideoCodec.cs" />
     <Compile Include="PlaylistStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
-    <Compile Include="Request`1.cs" />
+    <Compile Include="Request{TRequest,TResponse}.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="ResponseOutput.cs" />
-    <Compile Include="Response`1.cs" />
+    <Compile Include="Response{TRequest,TResponse}.cs" />
     <Compile Include="ResubmitJobRequest.cs" />
     <Compile Include="ResubmitJobResponse.cs" />
     <Compile Include="Rotate.cs" />

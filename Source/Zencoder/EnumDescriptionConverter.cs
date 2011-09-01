@@ -36,10 +36,10 @@ namespace Zencoder
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            string str = (reader.Value ?? String.Empty).ToString();
+            string str = (reader.Value ?? string.Empty).ToString();
             object result = existingValue;
 
-            if (!String.IsNullOrEmpty(str))
+            if (!string.IsNullOrEmpty(str))
             {
                 try
                 {
