@@ -47,6 +47,14 @@ namespace Zencoder
         [JsonProperty("duration_in_ms")]
         public long? DurationInMiliseconds { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the file's error message.
+        /// </summary>
+        [JsonProperty("error_class")]
+        public string ErrorClass { get; set; }
+
+
         /// <summary>
         /// Gets or sets the file's error message.
         /// </summary>

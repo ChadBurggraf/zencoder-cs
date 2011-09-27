@@ -105,6 +105,13 @@ namespace Zencoder
         public bool? ConstantBitrate { get; set; }
 
         /// <summary>
+        /// Get or sets a value indicating whether to deblock in video processing
+        /// </summary>
+        [JsonProperty("deblock", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? DeBlock { get; set; }
+
+        /// <summary>
         /// Gets or sets a value that acts as a divisor for the input frame rate.
         /// Given an input frame rate of 20 and a decimate value of 2, the output frame rate will be 10.
         /// </summary>

@@ -120,6 +120,7 @@
     <Compile Include="S3Access.cs" />
     <Compile Include="S3Permission.cs" />
     <Compile Include="Strings.cs" />
+    <Compile Include="Thumbnail.cs" />
     <Compile Include="ThumbnailFormat.cs" />
     <Compile Include="Thumbnails.cs" />
     <Compile Include="Tuning.cs" />
