@@ -18,6 +18,9 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class Thumbnails
     {
+        [JsonProperty("headers", NullValueHandling = NullValueHandling.Ignore)]
+        private IDictionary<string, string> headers;
+
         /// <summary>
         /// Gets or sets the collection of custom S3 access grants to apply to the thumbnails
         /// if their destination is S3.
@@ -39,16 +42,50 @@ namespace Zencoder
         public string BaseUrl { get; set; }
 
         /// <summary>
+        /// Gets or sets the interpolated filename to use for thumbnails. The attributes available for interpolation include
+        /// number, padded-number, width, height and size. No file extension is necessary. Each attribute should be surrounded
+        /// by double curly-braces, e.g., {{number}}_{{width}}x{{height}}-thumbnail.
+        /// </summary>
+        [JsonProperty("filename", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string FileName { get; set; }
+
+        /// <summary>
         /// Gets or sets the format to use for thumbnail images.
         /// </summary>
         [JsonProperty("format", NullValueHandling = NullValueHandling.Ignore)]
         public ThumbnailFormat? Format { get; set; }
 
         /// <summary>
+        /// Gets the custom header dictionary to send to Amazon S3, if applicable. Zencoder supports
+        /// the following subset of headers: Cache-Control, Content-Disposition, Content-Encoding,
+        /// Content-Type, Expires, x-amz-acl, x-amz-storage-class and x-amz-meta-*.
+        /// </summary>
+        public IDictionary<string, string> Headers
+        {
+            get { return this.headers ?? (this.headers = new Dictionary<string, string>()); }
+        }
+
+        /// <summary>
         /// Gets or sets the height of the thumbnails, if applicable.
         /// </summary>
         [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
         public int? Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets a thumbnail interval in seconds. A thumbnail will be generated
+        /// for every N seconds of the file. Should be exclusive of <see cref="Number"/>,
+        /// <see cref="Times"/> and <see cref="IntervalInFrames"/>.
+        /// </summary>
+        [JsonProperty("interval", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int? Interval { get; set; }
+
+        /// <summary>
+        /// Gets or sets the thumbnail interval in frames. A thumbnail will be generated for every N
+        /// frames of the file. Should be exclusive of <see cref="Number"/>, <see cref="Times"/>
+        /// and <see cref="Interval"/>.
+        /// </summary>
+        [JsonProperty("interval_in_frames", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int? IntervalInFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the name for the thumbnail set. Required when creating multiple thumbnail sets from an output.
@@ -59,18 +96,10 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the number of thumbnails to generate. The thumbnails will
         /// be grabbed evenly across the duration of the file. Should be exclusive of
-        /// <see cref="Interval"/> and <see cref="Times"/>.
+        /// <see cref="Interval"/>, <see cref="Times"/> and <see cref="IntervalInFrames"/>.
         /// </summary>
         [JsonProperty("number", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int? Number { get; set; }
-
-        /// <summary>
-        /// Gets or sets a thumbnail interval in seconds. A thumbnail will be generated
-        /// for every N seconds of the file. Should be exclusive of <see cref="Number"/>
-        /// and <see cref="Times"/>.
-        /// </summary>
-        [JsonProperty("interval", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public int? Interval { get; set; }
 
         /// <summary>
         /// Gets or sets the output file name prefix. The default is "frame", resulting in thumbnails named
@@ -106,7 +135,8 @@ namespace Zencoder
 
         /// <summary>
         /// Gets or sets a collection of times, in fractional seconds, to generate
-        /// thumbnails for. Should be exclusive of <see cref="Number"/> and <see cref="Interval"/>.
+        /// thumbnails for. Should be exclusive of
+        /// <see cref="Interval"/>, <see cref="Times"/> and <see cref="IntervalInFrames"/>.
         /// </summary>
         [JsonProperty("times", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public float[] Times { get; set; }
@@ -143,26 +173,8 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Sets the <see cref="Number"/> property, reseting <see cref="Interval"/> and <see cref="Times"/>.
-        /// </summary>
-        /// <param name="number">The number of thumbnails to generate.</param>
-        /// <returns>This instance.</returns>
-        public Thumbnails WithNumber(int number)
-        {
-            if (number < 1)
-            {
-                throw new ArgumentException("number should be greater than or equal to 1.", "number");
-            }
-
-            this.Number = number;
-            this.Interval = null;
-            this.Times = null;
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the <see cref="Interval"/> property, resetting <see cref="Number"/> and <see cref="Times"/>.
+        /// Sets the <see cref="Interval"/> property, resetting <see cref="Number"/>, <see cref="Times"/>
+        /// and <see cref="IntervalInFrames"/>.
         /// </summary>
         /// <param name="seconds">The thumbnail interval in seconds.</param>
         /// <returns>This instance.</returns>
@@ -175,6 +187,49 @@ namespace Zencoder
 
             this.Number = null;
             this.Interval = seconds;
+            this.IntervalInFrames = null;
+            this.Times = null;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the <see cref="IntervalInFrames"/> property, resetting <see cref="Number"/>, <see cref="Times"/>
+        /// and <see cref="Interval"/>.
+        /// </summary>
+        /// <param name="frames">The thumbnail interval in frames.</param>
+        /// <returns>This instance.</returns>
+        public Thumbnails WithIntervalInFrames(int frames)
+        {
+            if (frames < 1)
+            {
+                throw new ArgumentException("frames should be greater than or equal to 1.", "frames");
+            }
+
+            this.Interval = null;
+            this.IntervalInFrames = frames;
+            this.Number = null;
+            this.Times = null;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the <see cref="Number"/> property, reseting <see cref="Interval"/>, <see cref="Times"/>
+        /// and <see cref="IntervalInFrames"/>.
+        /// </summary>
+        /// <param name="number">The number of thumbnails to generate.</param>
+        /// <returns>This instance.</returns>
+        public Thumbnails WithNumber(int number)
+        {
+            if (number < 1)
+            {
+                throw new ArgumentException("number should be greater than or equal to 1.", "number");
+            }
+
+            this.Number = number;
+            this.Interval = null;
+            this.IntervalInFrames = null;
             this.Times = null;
 
             return this;
@@ -204,7 +259,8 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Sets the <see cref="Times"/> property, resetting <see cref="Number"/> and <see cref="Interval"/>.
+        /// Sets the <see cref="Times"/> property, resetting <see cref="Number"/>, <see cref="Interval"/>
+        /// and <see cref="IntervalInFrames"/>.
         /// </summary>
         /// <param name="times">A collection of thumbnail times, in fractional seconds.</param>
         /// <returns>This instance.</returns>
@@ -222,6 +278,7 @@ namespace Zencoder
 
             this.Number = null;
             this.Interval = null;
+            this.IntervalInFrames = null;
             this.Times = times.ToArray();
 
             return this;

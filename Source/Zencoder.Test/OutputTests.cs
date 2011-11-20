@@ -195,6 +195,7 @@ namespace Zencoder.Test
         public void OutputThumbnailsToJson()
         {
             const string One = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":[{{""base_url"":""s3://bucket/directory"",""height"":120,""label"":null,""number"":6,""prefix"":""custom"",""width"":160}}]}}],""api_key"":""{0}""}}";
+            const string Two = @"{{""input"":""http://example.com/file-name.avi"",""outputs"":[{{""thumbnails"":[{{""headers"":{{""x-amz-acl"":""public-read-write""}},""base_url"":""s3://bucket/directory"",""filename"":""{{{{number}}}}_{{{{width}}}}x{{{{height}}}}-thumbnail"",""height"":120,""interval_in_frames"":10,""label"":null,""prefix"":""custom"",""width"":160}}]}}],""api_key"":""{0}""}}";
 
             Thumbnails thumbs = new Thumbnails()
             {
@@ -214,6 +215,14 @@ namespace Zencoder.Test
             };
 
             Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
+
+            thumbs = thumbs.WithIntervalInFrames(10);
+            thumbs.FileName = "{{number}}_{{width}}x{{height}}-thumbnail";
+            thumbs.Headers["x-amz-acl"] = "public-read-write";
+
+            output.Thumbnails = new Thumbnails[] { thumbs };
+
+            Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, Two, ApiKey), request.ToJson());
         }
 
         /// <summary>
