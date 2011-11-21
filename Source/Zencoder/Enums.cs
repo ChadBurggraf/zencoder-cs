@@ -81,6 +81,17 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// Gets a value indicating whether the type is a nullable enum.
+        /// </summary>
+        /// <param name="objectType">The object type to check.</param>
+        /// <returns>True if the type is a nullable enum, false otherwise.</returns>
+        public static bool IsNullableEnum(this Type objectType)
+        {
+            Type ut = Nullable.GetUnderlyingType(objectType);
+            return ut != null && ut.IsEnum;
+        }
+
+        /// <summary>
         /// Gets the string representation of the enum value, substituting its
         /// description attribute value if set.
         /// </summary>

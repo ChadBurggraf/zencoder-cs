@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AudioCodec.cs" company="Tasty Codes">
+// <copyright file="DenoiseFilter.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,34 +10,29 @@ namespace Zencoder
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Defines the possible output audio codecs.
+    /// Defins the possible denoise filter values.
     /// </summary>
     [JsonConverter(typeof(EnumLowercaseJsonConverter))]
-    public enum AudioCodec
+    public enum DenoiseFilter
     {
         /// <summary>
-        /// Identifies the AAC audio codec.
+        /// Identifies the weak denoise filter.
         /// </summary>
-        Aac = 0,
+        Weak,
 
         /// <summary>
-        /// Identifies the AMR audio codec.
+        /// Identifies the medium denoise filter.
         /// </summary>
-        Amr,
+        Medium,
 
         /// <summary>
-        /// Identifies that MP3 audio codec.
+        /// Identifies the strong denoise filter.
         /// </summary>
-        Mp3,
+        Strong,
 
         /// <summary>
-        /// Identifies the Vorbis audio codec.
+        /// Identifies the strongest denoise filter.
         /// </summary>
-        Vorbis,
-
-        /// <summary>
-        /// Identifies the WMA audio codec.
-        /// </summary>
-        Wma
+        Strongest
     }
 }
