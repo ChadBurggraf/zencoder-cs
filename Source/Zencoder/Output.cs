@@ -18,6 +18,9 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class Output
     {
+        [JsonProperty("headers", NullValueHandling = NullValueHandling.Ignore)]
+        private IDictionary<string, string> headers;
+
         /// <summary>
         /// Gets or sets the collection of custom S3 access grants to apply to the output
         /// if its destination is S3.
@@ -70,6 +73,13 @@ namespace Zencoder
         public int? AudioSampleRate { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to apply an auto-level filter to the output video.
+        /// </summary>
+        [JsonProperty("auto_level", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? AutoLevel { get; set; }
+
+        /// <summary>
         /// Gets or sets a directory to place the output file in, but not the file name.
         /// If no <see cref="FileName"/> is specified, a random one will be generated with the appropriate extension.
         /// </summary>
@@ -105,11 +115,11 @@ namespace Zencoder
         public bool? ConstantBitrate { get; set; }
 
         /// <summary>
-        /// Get or sets a value indicating whether to deblock in video processing
+        /// Gets or sets a value indicating whether to apply a deblocking filter to the output video.
         /// </summary>
         [JsonProperty("deblock", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool? DeBlock { get; set; }
+        public bool? Deblock { get; set; }
 
         /// <summary>
         /// Gets or sets a value that acts as a divisor for the input frame rate.
@@ -125,11 +135,35 @@ namespace Zencoder
         public Deinterlace? Deinterlace { get; set; }
 
         /// <summary>
+        /// Gets or sets the denoise filter to apply to the output video, if applicable.
+        /// </summary>
+        [JsonProperty("denoise", NullValueHandling = NullValueHandling.Ignore)]
+        public DenoiseFilter? Denoise { get; set; }
+
+        /// <summary>
+        /// Gets or sets a shortcut device profile to use for the output.
+        /// See https://app.zencoder.com/docs/api/encoding/general-output-settings/device-profile
+        /// for more details on device profiles.
+        /// </summary>
+        [JsonProperty("device_profile", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(EnumDescriptionConverter))]
+        public DeviceProfile? DeviceProfile { get; set; }
+
+        /// <summary>
         /// Gets or sets the file name of the finished file. If supplied and <see cref="BaseUrl"/>
         /// is empty, Zencoder will store a file with this name in an S3 bucket for download.
         /// </summary>
         [JsonProperty("filename", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public string FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to enable or disable variability in keyframe
+        /// generation when using <see cref="KeyframeInterval"/>. When not set, defaults to false,
+        /// allowing variability.
+        /// </summary>
+        [JsonProperty("fixed_keyframe_interval", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? FixedKeyframeInterval { get; set; }
 
         /// <summary>
         /// Gets or sets the format of the output container to use. Only set this value if not inferring
@@ -163,6 +197,16 @@ namespace Zencoder
         public int? H264ReferenceFrames { get; set; }
 
         /// <summary>
+        /// Gets the custom header dictionary to send to Amazon S3, if applicable. Zencoder supports
+        /// the following subset of headers: Cache-Control, Content-Disposition, Content-Encoding,
+        /// Content-Type, Expires, x-amz-acl, x-amz-storage-class and x-amz-meta-*.
+        /// </summary>
+        public IDictionary<string, string> Headers
+        {
+            get { return this.headers ?? (this.headers = new Dictionary<string, string>()); }
+        }
+
+        /// <summary>
         /// Gets or sets the height of the output video, if applicable.
         /// </summary>
         [JsonProperty("height", NullValueHandling = NullValueHandling.Ignore)]
@@ -174,6 +218,15 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("keyframe_interval", NullValueHandling = NullValueHandling.Ignore)]
         public int? KeyframeInterval { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of keyframes per second. A value of 0.5 would result
+        /// in one keyframe every two seconds, a value of 3 would result in three keyframes
+        /// per second. Use this instead of <see cref="KeyframeInterval"/> if desired, althouth
+        /// <see cref="KeyframeInterval"/> takes precedence if both are set.
+        /// </summary>
+        [JsonProperty("keyframe_rate", NullValueHandling = NullValueHandling.Ignore)]
+        public float? KeyframeRate { get; set; }
 
         /// <summary>
         /// Gets or sets a nickname to use for the output, if applicable.
@@ -261,11 +314,25 @@ namespace Zencoder
         public int? SegmentSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to apply a sharpen filter to the output video.
+        /// </summary>
+        [JsonProperty("sharpet", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Sharpen { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.
         /// </summary>
         [JsonProperty("skip_audio", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]
         public bool? SkipAudio { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to skip the input video track, if one is present.
+        /// </summary>
+        [JsonProperty("skip_video", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? SkipVideo { get; set; }
 
         /// <summary>
         /// Gets or sets the target transcoding speed, from 1 to 5.

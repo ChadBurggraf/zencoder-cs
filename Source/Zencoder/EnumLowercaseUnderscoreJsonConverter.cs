@@ -21,7 +21,7 @@ namespace Zencoder
         /// <returns>True if this instance can convert the specified object type, otherwise false.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsEnum;
+            return objectType.IsEnum || objectType.IsNullableEnum();
         }
 
         /// <summary>

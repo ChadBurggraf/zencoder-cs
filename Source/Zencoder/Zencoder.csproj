@@ -70,6 +70,8 @@
     <Compile Include="Deinterlace.cs" />
     <Compile Include="DeleteJobRequest.cs" />
     <Compile Include="DeleteJobResponse.cs" />
+    <Compile Include="DenoiseFilter.cs" />
+    <Compile Include="DeviceProfile.cs" />
     <Compile Include="EmailNotification.cs" />
     <Compile Include="EmailNotificationJsonConverter.cs" />
     <Compile Include="EnumDescriptionConverter.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Uris.cs" />
     <Compile Include="VideoCodec.cs" />
     <Compile Include="Watermark.cs" />
+    <Compile Include="WatermarkOrigin.cs" />
     <Compile Include="Zencoder.cs" />
     <Compile Include="NotificationHandler.cs" />
     <Compile Include="ZencoderSettings.cs" />

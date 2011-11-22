@@ -27,11 +27,25 @@ namespace Zencoder
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of simultaneous connections for Zencoder to use when
+        /// downloading in input file. When not specified, defaults to 5. Valid values range
+        /// from 0 to 25.
+        /// </summary>
+        [JsonProperty("download_connections", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int? DownloadConnections { get; set; }
+
+        /// <summary>
         /// Gets or sets the date the job was finished.
         /// </summary>
         [JsonProperty("finished_at")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime? FinishedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets an arbtrary string value to create a grouping for reporting purposes.
+        /// </summary>
+        [JsonProperty("grouping", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string Grouping { get; set; }
 
         /// <summary>
         /// Gets or sets the job ID.
@@ -46,6 +60,14 @@ namespace Zencoder
         public InputMediaFile InputMediaFile { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to mock the job, 
+        /// returning the normal response without actually creating a job.
+        /// </summary>
+        [JsonProperty("mock", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Mock { get; set; }
+
+        /// <summary>
         /// Gets or sets the job's output media files.
         /// </summary>
         [JsonProperty("output_media_files")]
@@ -56,17 +78,30 @@ namespace Zencoder
         }
 
         /// <summary>
-        /// Gets or sets the date the job was submitted.
+        /// Gets or sets an optional arbitrary string value to stor alongside the job.
         /// </summary>
-        [JsonProperty("submitted_at")]
-        [JsonConverter(typeof(IsoDateTimeConverter))]
-        public DateTime SubmittedAt { get; set; }
+        [JsonProperty("pass_through", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string PassThrough { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether privacy mode is enabled for the job.
+        /// </summary>
+        [JsonProperty("private", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? Private { get; set; }
 
         /// <summary>
         /// Gets or sets the current job state.
         /// </summary>
         [JsonProperty("state")]
         public JobState State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the job was submitted.
+        /// </summary>
+        [JsonProperty("submitted_at")]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        public DateTime SubmittedAt { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the job is in test mode.

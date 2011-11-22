@@ -26,6 +26,12 @@ namespace Zencoder
         public string Height { get; set; }
 
         /// <summary>
+        /// Gets or sets the origin type to use for watermark generation.
+        /// </summary>
+        [JsonProperty("origin", NullValueHandling = NullValueHandling.Ignore)]
+        public WatermarkOrigin? Origin { get; set; }
+
+        /// <summary>
         /// Gets or sets the URL of the remote file to use as a watermark.
         /// </summary>
         [JsonProperty("url", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
