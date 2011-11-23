@@ -111,20 +111,21 @@ namespace Zencoder
         public bool Test { get; set; }
 
         /// <summary>
+        /// Gets or sets the job's output media files.
+        /// </summary>
+        [JsonProperty("thumbnails")]
+        public Thumbnail[] Thumbnails
+        {
+            get { return this.thumbnails ?? (this.thumbnails = new Thumbnail[0]); }
+            set { this.thumbnails = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the date the job was last updated.
         /// </summary>
         [JsonProperty("updated_at")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime UpdatedAt { get; set; }
 
-        /// <summary>
-        /// Gets or sets the job's output media files.
-        /// </summary>
-        [JsonProperty("thumbnails")]
-        public Thumbnail[] Thumbnails
-        {
-            get { return this.thumbnails?? (this.thumbnails = new Thumbnail[0]); }
-            set { this.thumbnails = value; }
-        }
     }
 }
