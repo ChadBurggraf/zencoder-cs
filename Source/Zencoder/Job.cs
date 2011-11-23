@@ -111,7 +111,7 @@ namespace Zencoder
         public bool Test { get; set; }
 
         /// <summary>
-        /// Gets or sets the job's output media files.
+        /// Gets or sets the job's thumbnails.
         /// </summary>
         [JsonProperty("thumbnails")]
         public Thumbnail[] Thumbnails
@@ -126,6 +126,5 @@ namespace Zencoder
         [JsonProperty("updated_at")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime UpdatedAt { get; set; }
-
     }
 }
