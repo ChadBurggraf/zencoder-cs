@@ -23,7 +23,7 @@ namespace Zencoder.Test
         /// <summary>
         /// Test JSON for S3 access control output serialization.
         /// </summary>
-        private const string AccessControlJson = @"{{""input"":""s3://bucket-name/file-name.avi"",""outputs"":[{{""access_control"":[{{""grantee"":""cdc7931a9574b1055d5b76112021d0e9"",""permissions"":[""READ"",""WRITE""]}},{{""grantee"":""someone@example.com"",""permissions"":[""FULL_CONTROL""]}},{{""grantee"":""http://acs.amazonaws.com/groups/global/AllUsers"",""permissions"":[""READ""]}}],""thumbnails"":[{{""label"":null,""number"":1}}],""url"":""s3://output-bucket/output-file-1-name.mp4""}}],""api_key"":""{0}""}}";
+        private const string AccessControlJson = @"{{""input"":""s3://bucket-name/file-name.avi"",""outputs"":[{{""access_control"":[{{""grantee"":""cdc7931a9574b1055d5b76112021d0e9"",""permissions"":[""READ"",""WRITE""]}},{{""grantee"":""someone@tastycodes.com"",""permissions"":[""FULL_CONTROL""]}},{{""grantee"":""http://acs.amazonaws.com/groups/global/AllUsers"",""permissions"":[""READ""]}}],""thumbnails"":[{{""label"":null,""number"":1}}],""url"":""s3://output-bucket/output-file-1-name.mp4""}}],""api_key"":""{0}""}}";
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace Zencoder.Test
                     new S3Access[]
                     {
                         new S3Access() { Grantee = "cdc7931a9574b1055d5b76112021d0e9", Permissions = new[] { S3Permission.Read, S3Permission.Write } },
-                        new S3Access() { Grantee = "someone@example.com", Permissions = new[] { S3Permission.FullControl } },
+                        new S3Access() { Grantee = "someone@tastycodes.com", Permissions = new[] { S3Permission.FullControl } },
                         new S3Access() { Grantee = "http://acs.amazonaws.com/groups/global/AllUsers", Permissions = new[] { S3Permission.Read } }
                     })
                 .WithThumbnails(new Thumbnails().WithNumber(1));
@@ -95,21 +95,21 @@ namespace Zencoder.Test
         public void OutputNotificationToJson()
         {
             Assert.AreEqual(
-                @"{""format"":""json"",""url"":""http://user:password@example.com/zencoder1""}",
-                JsonConvert.SerializeObject(Notification.ForHttp("http://user:password@example.com/zencoder1")));
+                @"{""format"":""json"",""url"":""http://user:password@tastycodes.com/zencoder1""}",
+                JsonConvert.SerializeObject(Notification.ForHttp("http://user:password@tastycodes.com/zencoder1")));
 
             Assert.AreEqual(
-                @"""admin@example.com""",
-                JsonConvert.SerializeObject(Notification.ForEmail("admin@example.com")));
+                @"""admin@tastycodes.com""",
+                JsonConvert.SerializeObject(Notification.ForEmail("admin@tastycodes.com")));
 
             Notification[] notifications = new Notification[]
             {
-                Notification.ForHttp("http://user:password@example.com/zencoder2"),
-                Notification.ForEmail("admin@example.com")
+                Notification.ForHttp("http://user:password@tastycodes.com/zencoder2"),
+                Notification.ForEmail("admin@tastycodes.com")
             };
 
             Assert.AreEqual(
-                @"[{""format"":""json"",""url"":""http://user:password@example.com/zencoder2""},""admin@example.com""]",
+                @"[{""format"":""json"",""url"":""http://user:password@tastycodes.com/zencoder2""},""admin@tastycodes.com""]",
                 JsonConvert.SerializeObject(notifications));
         }
 

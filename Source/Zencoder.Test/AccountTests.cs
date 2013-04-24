@@ -76,13 +76,13 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountCreateAccountRequest()
         {
-            CreateAccountResponse response = Zencoder.CreateAccount(Guid.NewGuid().ToString() + "@example.com", Guid.NewGuid().ToString(), null, true, false);
+            CreateAccountResponse response = Zencoder.CreateAccount(Guid.NewGuid().ToString() + "@tastycodes.com", Guid.NewGuid().ToString(), null, true, false);
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
             Zencoder.CreateAccount(
-                Guid.NewGuid().ToString() + "@example.com", 
+                Guid.NewGuid().ToString() + "@tastycodes.com", 
                 Guid.NewGuid().ToString(), 
                 null, 
                 true, 
@@ -105,14 +105,14 @@ namespace Zencoder.Test
             CreateAccountRequest request = new CreateAccountRequest(Zencoder.BaseUrl)
             {
                 AffiliateCode = "asdf1234",
-                Email = "test@example.com",
+                Email = "test@tastycodes.com",
                 Newsletter = true,
                 Password = "1234",
                 TermsOfService = true
             };
 
             Assert.AreEqual(
-                @"{""affiliate_code"":""asdf1234"",""email"":""test@example.com"",""newsletter"":""1"",""password"":""1234"",""terms_of_service"":""1""}", 
+                @"{""affiliate_code"":""asdf1234"",""email"":""test@tastycodes.com"",""newsletter"":""1"",""password"":""1234"",""terms_of_service"":""1""}", 
                 request.ToJson());
         }
 

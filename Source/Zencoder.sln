@@ -1,10 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder", "Zencoder\Zencoder.csproj", "{6E47D2CE-D094-4077-9039-3B257DED1C6E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder.Test", "Zencoder.Test\Zencoder.Test.csproj", "{56CB9652-A906-4B54-8D67-70C1DE36EB3D}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F3CE0C5-A66D-4468-BEF8-CABB6B8DA6D1}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.proj = ..\build.proj
@@ -15,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Web.config.template = Web.config.template
 		Zencoder.vsmdi = Zencoder.vsmdi
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder", "Zencoder\Zencoder.csproj", "{6E47D2CE-D094-4077-9039-3B257DED1C6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder.Test", "Zencoder.Test\Zencoder.Test.csproj", "{56CB9652-A906-4B54-8D67-70C1DE36EB3D}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
