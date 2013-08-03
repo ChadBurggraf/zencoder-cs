@@ -10,6 +10,7 @@ namespace Zencoder
     using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
+    using System.ComponentModel;
 
     /// <summary>
     /// Implements the create encoding job request.
@@ -62,6 +63,13 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("outputs", NullValueHandling = NullValueHandling.Ignore)]
         public Output[] Outputs { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pass_through value for the job.
+        /// </summary>
+        [DefaultValue(string.Empty)]
+        [JsonProperty("pass_through", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string PassThrough { get; set; }
 
         /// <summary>
         /// Gets or sets the region to use when processing the job.
