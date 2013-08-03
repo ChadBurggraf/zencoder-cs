@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="HttpPostNotificationOutput.cs" company="Tasty Codes">
-//     Copyright (c) 2010 Chad Burggraf.
+// <copyright file="HttpPostNotificationIutput.cs" company="Tasty Codes">
+//     Copyright (c) 2013 Chad Burggraf, Adam Rogas
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ namespace Zencoder
     /// Represents a job output in an <see cref="HttpPostNotification"/>.
     /// </summary>
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class HttpPostNotificationOutput
+    public class HttpPostNotificationInput
     {
         /// <summary>
         /// Gets or sets the output's ID.
@@ -28,10 +28,34 @@ namespace Zencoder
         public string Label { get; set; }
 
         /// <summary>
+        /// Gets or sets the input's height, if applicable.
+        /// </summary>
+        [JsonProperty("height")]
+        public int Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets the input's width, if applicable.
+        /// </summary>
+        [JsonProperty("width")]
+        public int Width { get; set; }
+
+        /// <summary>
+        /// Gets or sets the input's file size, if applicable.
+        /// </summary>
+        [JsonProperty("file_size_in_bytes")]
+        public long FileSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the input's duration, if applicable.
+        /// </summary>
+        [JsonProperty("duration_in_ms")]
+        public long Duration { get; set; }
+
+        /// <summary>
         /// Gets or sets the output's state.
         /// </summary>
         [JsonProperty("state")]
-        public OutputState State { get; set; }
+        public InputState State { get; set; }
 
         /// <summary>
         /// Gets or sets the output's URL.
