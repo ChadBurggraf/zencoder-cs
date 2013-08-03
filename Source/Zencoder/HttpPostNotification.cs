@@ -26,5 +26,13 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("output")]
         public HttpPostNotificationOutput Output { get; set; }
+
+        /// <summary>
+        /// Gets or sets the job's output the notification relates to.
+        /// </summary>
+        [JsonProperty("input")]
+        public HttpPostNotificationInput Input { get; set; }
+    
+        
     }
 }
