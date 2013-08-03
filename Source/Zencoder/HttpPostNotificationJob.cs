@@ -22,6 +22,12 @@ namespace Zencoder
         public int Id { get; set; }
 
         /// <summary>
+        /// Gets or sets the job pass through value.
+        /// </summary>
+        [JsonProperty("pass_through")]
+        public string PassThrough { get; set; }
+
+        /// <summary>
         /// Gets or sets the job state.
         /// </summary>
         [JsonProperty("state")]
