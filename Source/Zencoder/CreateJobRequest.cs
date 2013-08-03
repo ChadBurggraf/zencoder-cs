@@ -67,7 +67,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the pass_through value for the job.
         /// </summary>
-        [DefaultValue(string.Empty)]
+        [DefaultValue("")]
         [JsonProperty("pass_through", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string PassThrough { get; set; }
 
