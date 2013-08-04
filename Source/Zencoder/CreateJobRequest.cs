@@ -10,7 +10,6 @@ namespace Zencoder
     using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
-    using System.ComponentModel;
 
     /// <summary>
     /// Implements the create encoding job request.
