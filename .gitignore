@@ -8,5 +8,3 @@ bin/
 obj/
 TestResults/
 Build/
-c5build.proj
-c5build.bat
