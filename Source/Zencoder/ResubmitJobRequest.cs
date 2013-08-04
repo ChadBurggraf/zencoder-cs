@@ -60,7 +60,7 @@ namespace Zencoder
         /// </summary>
         public override Uri Url
         {
-            get 
+            get
             {
                 if (this.url == null)
                 {
@@ -69,7 +69,7 @@ namespace Zencoder
                         throw new InvalidOperationException("JobId must be set before generating the request URL.");
                     }
 
-                    this.url = BaseUrl.AppendPath(string.Concat("jobs/", this.JobId)).WithApiKey(ApiKey);
+                    this.url = BaseUrl.AppendPath(String.Format("jobs/{0}/resubmit", this.JobId)).WithApiKey(ApiKey);
                 }
 
                 return this.url;
@@ -81,7 +81,7 @@ namespace Zencoder
         /// </summary>
         public override string Verb
         {
-            get { return "GET"; }
+            get { return "PUT"; }
         }
     }
 }

@@ -83,7 +83,7 @@ namespace Zencoder
         /// </summary>
         public override string Verb
         {
-            get { return "GET"; }
+            get { return "PUT"; }
         }
     }
 }
