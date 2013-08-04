@@ -23,7 +23,7 @@ namespace Zencoder
         /// <summary>
         /// Gets the default API base URL.
         /// </summary>
-        public static readonly Uri ServiceUrl = new Uri("https://app.zencoder.com/api/v2");
+        public static readonly Uri ServiceUrl = new Uri("https://app.zencoder.com/api");
 
         /// <summary>
         /// Initializes a new instance of the Zencoder class.
