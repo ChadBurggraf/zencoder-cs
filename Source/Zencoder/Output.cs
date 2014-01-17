@@ -58,6 +58,20 @@ namespace Zencoder
         public AudioCodec? AudioCodec { get; set; }
 
         /// <summary>
+        /// Normalize the audio before applying expansion or compression effects.
+        /// </summary>
+        [JsonProperty("audio_pre_normalize", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? AudioPreNormalize { get; set; }
+
+        /// <summary>
+        /// Normalize the audio after applying expansion or compression effects.
+        /// </summary>
+        [JsonProperty("audio_post_normalize", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? AudioPostNormalize { get; set; }
+
+        /// <summary>
         /// Gets or sets a target audio quality, from 1 to 5. 5 is the best
         /// quality, but results in the largest files.
         /// </summary>
