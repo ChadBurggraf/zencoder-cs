@@ -328,7 +328,7 @@ namespace Zencoder
         public int? SegmentSeconds { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum duration to use for each segment in segmented outputs.
+        /// Gets or sets a value indicating whether to segment video output.
         /// </summary>
         [JsonProperty("segment_video_snapshots", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]

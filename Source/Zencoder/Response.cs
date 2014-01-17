@@ -46,15 +46,7 @@ namespace Zencoder
         /// </summary>
         public virtual bool Success
         {
-            get { return this.RequestException == null && (this.StatusCode == HttpStatusCode.OK || this.StatusCode == HttpStatusCode.NoContent); }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the request was successful but returned no content.
-        /// </summary>
-        public virtual bool NoContent
-        {
-            get { return this.RequestException == null && this.StatusCode == HttpStatusCode.NoContent; }
+            get { return this.RequestException == null && (int)this.StatusCode >= 200 && (int)this.StatusCode < 300; }
         }
 
         /// <summary>

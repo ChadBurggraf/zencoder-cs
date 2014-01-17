@@ -69,7 +69,7 @@ namespace Zencoder
                         throw new InvalidOperationException("JobId must be set before generating the request URL.");
                     }
 
-                    this.url = BaseUrl.AppendPath(String.Format("jobs/{0}/resubmit", this.JobId)).WithApiKey(ApiKey);
+                    this.url = BaseUrl.AppendPath(string.Format("jobs/{0}/resubmit", this.JobId)).WithApiKey(ApiKey);
                 }
 
                 return this.url;
