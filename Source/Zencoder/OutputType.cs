@@ -4,6 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Runtime.Serialization;
+using Newtonsoft.Json.Converters;
+
 namespace Zencoder
 {
     using System;
@@ -12,17 +16,19 @@ namespace Zencoder
     /// <summary>
     /// Defines the possible output types.
     /// </summary>
-    [JsonConverter(typeof(EnumLowercaseJsonConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum OutputType
     {
         /// <summary>
         /// Identifies standard output.
         /// </summary>
+        [EnumMember(Value = "standard")]
         Standard = 0,
 
         /// <summary>
         /// Identifies segmented output for Apple HTTP Live Streaming.
         /// </summary>
+        [EnumMember(Value = "segmented")]
         Segmented,
 
         /// <summary>
@@ -30,6 +36,13 @@ namespace Zencoder
         /// for a multi-bitrate output stream. Cannot be the only
         /// output for a job.
         /// </summary>
-        Playlist
+        [EnumMember(Value = "playlist")]
+        Playlist,
+
+        /// <summary>
+        /// Identifies a transfer-only job, v2 API only.
+        /// </summary>
+        [EnumMember(Value = "transfer-only")]
+        TransferOnly
     }
 }
