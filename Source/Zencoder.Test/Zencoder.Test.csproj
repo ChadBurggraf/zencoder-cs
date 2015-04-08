@@ -120,10 +120,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets. -->
   <Target Name="BeforeBuild">
+    <Copy SourceFiles="App.config.template" DestinationFiles="App.config" Retries="10" RetryDelayMilliseconds="100" Condition="!Exists('App.config')" />
   </Target>
   <Target Name="AfterBuild">
   </Target>
-  -->
 </Project>
