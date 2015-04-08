@@ -105,6 +105,7 @@ namespace Zencoder
                 Email = email,
                 Newsletter = newsletter,
                 Password = password,
+                PasswordConfirmation = password,
                 TermsOfService = termsOfService
             };
 
@@ -143,6 +144,7 @@ namespace Zencoder
                 Email = email,
                 Newsletter = newsletter,
                 Password = password,
+                PasswordConfirmation = password,
                 TermsOfService = termsOfService,
             };
 

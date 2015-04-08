@@ -76,6 +76,12 @@ namespace Zencoder
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the password confirmation to create the account with.
+        /// </summary>
+        [JsonProperty("password_confirmation", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string PasswordConfirmation { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the terms of service are agreed to.
         /// Use 1 for true, 0 for false.
         /// </summary>
