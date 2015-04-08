@@ -63,7 +63,7 @@ namespace Zencoder
         /// Gets or sets the file's size in bytes.
         /// </summary>
         [JsonProperty("file_size_bytes")]
-        public int? FileSizeBytes { get; set; }
+        public long? FileSizeBytes { get; set; }
 
         /// <summary>
         /// Gets or sets the date the file was finished.
