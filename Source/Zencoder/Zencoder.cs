@@ -300,6 +300,32 @@ namespace Zencoder
         }
 
         /// <summary>
+        /// A blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
+        /// <param name="region">The region to perform the job in.</param>
+        /// <param name="grouping">The grouping to use with reporting.</param>
+        /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <param name="mock">A value indicating whether to mock the response rather than actually creating a job.</param>
+        /// <param name="callback">The call response.</param>
+        public void CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, string grouping, bool? test, bool? mock, Action<CreateJobResponse> callback)
+        {
+            CreateJobRequest request = new CreateJobRequest(this)
+            {
+                DownloadConnections = downloadConnections,
+                Input = input,
+                Mock = mock,
+                Region = region,
+                Test = test,
+                Grouping = grouping
+            };
+
+            request.WithOutputs(outputs).GetResponseAsync(callback);
+        }
+
+        /// <summary>
         /// A blocking delete job request/response cycle.
         /// </summary>
         /// <param name="jobId">The ID of the job to delete.</param>

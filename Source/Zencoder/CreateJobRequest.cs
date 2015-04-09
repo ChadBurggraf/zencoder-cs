@@ -71,6 +71,13 @@ namespace Zencoder
         public string Region { get; set; }
 
         /// <summary>
+        /// Gets or sets the grouping to use when processing the job.
+        /// Defaults to "us".
+        /// </summary>
+        [JsonProperty("grouping", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string Grouping { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether test mode is enabled for the job.
         /// </summary>
         [JsonProperty("test", NullValueHandling = NullValueHandling.Ignore)]
