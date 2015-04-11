@@ -129,6 +129,20 @@ namespace Zencoder
         public bool? ConstantBitrate { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to copy the input audio track, if one is present.
+        /// </summary>
+        [JsonProperty("copy_audio", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? CopyAudio { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to copy the input audio track, if one is present.
+        /// </summary>
+        [JsonProperty("copy_video", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? CopyVideo { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to apply a deblocking filter to the output video.
         /// </summary>
         [JsonProperty("deblock", NullValueHandling = NullValueHandling.Ignore)]
@@ -328,11 +342,25 @@ namespace Zencoder
         public int? SegmentSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum duration to use for each segment in segmented outputs.
+        /// </summary>
+        [JsonProperty("segment_video_snapshots", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? SegmentVideoSnapshots { get; set; }
+        
+
+        /// <summary>
         /// Gets or sets a value indicating whether to apply a sharpen filter to the output video.
         /// </summary>
         [JsonProperty("sharpet", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(BooleanConverter))]
         public bool? Sharpen { get; set; }
+
+        /// <summary>
+        /// Gets or sets the source of the video by label
+        /// </summary>
+        [JsonProperty("source", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string Source { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to skip the input audio track, if one is present.

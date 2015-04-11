@@ -23,6 +23,12 @@ namespace Zencoder
         MPFour = 0,
 
         /// <summary>
+        /// Identifies the AAC format.
+        /// </summary>
+        [Description("aac")]
+        AAC,
+        
+        /// <summary>
         /// Identifies the 3G2 format.
         /// </summary>
         [Description("3g2")]

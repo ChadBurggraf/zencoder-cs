@@ -59,7 +59,7 @@ namespace Zencoder
                 {
                     HttpWebRequest request = this.CreateRequest();
 
-                    if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                    if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase) || "PUT".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
                     {
                         using (Stream stream = request.GetRequestStream())
                         {
@@ -91,7 +91,7 @@ namespace Zencoder
             {
                 HttpWebRequest request = this.CreateRequest();
 
-                if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
+                if ("POST".Equals(this.Verb, StringComparison.OrdinalIgnoreCase) || "PUT".Equals(this.Verb, StringComparison.OrdinalIgnoreCase))
                 {
                     request.BeginGetRequestStream(
                         new AsyncCallback(

@@ -64,6 +64,12 @@ namespace Zencoder
         public Output[] Outputs { get; set; }
 
         /// <summary>
+        /// Gets or sets the pass_through value for the job.
+        /// </summary>
+        [JsonProperty("pass_through", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        public string PassThrough { get; set; }
+
+        /// <summary>
         /// Gets or sets the region to use when processing the job.
         /// Defaults to "us".
         /// </summary>
