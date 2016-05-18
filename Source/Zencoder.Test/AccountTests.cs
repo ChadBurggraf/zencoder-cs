@@ -22,12 +22,12 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountAccountDetailsRequest()
         {
-            AccountDetailsResponse response = Zencoder.AccountDetails();
+            AccountDetailsResponse response = ZencoderTest.AccountDetails();
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.AccountDetails(r =>
+            ZencoderTest.AccountDetails(r =>
             {
                 Assert.IsTrue(r.Success);
                 handles[0].Set();
@@ -54,12 +54,12 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountAccountIntegrationModeRequest()
         {
-            AccountIntegrationModeResponse response = Zencoder.AccountIntegrationMode(true);
+            AccountIntegrationModeResponse response = ZencoderTest.AccountIntegrationMode(true);
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.AccountIntegrationMode(
+            ZencoderTest.AccountIntegrationMode(
                 true, 
                 r =>
                 {
@@ -76,12 +76,12 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountCreateAccountRequest()
         {
-            CreateAccountResponse response = Zencoder.CreateAccount(Guid.NewGuid().ToString() + "@tastycodes.com", Guid.NewGuid().ToString(), null, true, false);
+            CreateAccountResponse response = ZencoderServices.CreateAccount(Guid.NewGuid().ToString() + "@tastycodes.com", Guid.NewGuid().ToString(), null, true, false);
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.CreateAccount(
+            ZencoderServices.CreateAccount(
                 Guid.NewGuid().ToString() + "@tastycodes.com", 
                 Guid.NewGuid().ToString(), 
                 null, 
@@ -102,7 +102,7 @@ namespace Zencoder.Test
         [TestMethod]
         public void AccountCreateAccountRequestToJson()
         {
-            CreateAccountRequest request = new CreateAccountRequest(Zencoder.BaseUrl)
+            CreateAccountRequest request = new CreateAccountRequest(ZencoderTest.BaseUrl)
             {
                 AffiliateCode = "asdf1234",
                 Email = "test@tastycodes.com",

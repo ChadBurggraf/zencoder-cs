@@ -10,7 +10,7 @@ namespace Zencoder
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Represents a job in an <see cref="HttpPostNotification"/>.
+    /// Represents a job in an <see cref="HttpPostOutputNotification"/>.
     /// </summary>
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class HttpPostNotificationJob
@@ -26,5 +26,23 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("state")]
         public JobState State { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time created.
+        /// </summary>
+        [JsonProperty("created_at")]
+        public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pass through value.
+        /// </summary>
+        [JsonProperty("pass_through")]
+        public string PassThrough { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time updated.
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public DateTime? UpdatedAt { get; set; }
     }
 }

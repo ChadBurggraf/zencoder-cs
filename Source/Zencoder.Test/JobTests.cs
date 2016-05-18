@@ -259,15 +259,15 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobCancelJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
+            CreateJobResponse createResponse = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", null, null, null, "us", true, false);
             Assert.IsTrue(createResponse.Success);
 
-            CancelJobResponse cancelResponse = Zencoder.CancelJob(createResponse.Id);
+            CancelJobResponse cancelResponse = ZencoderTest.CancelJob(createResponse.Id);
             Assert.IsTrue(cancelResponse.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.CancelJob(
+            ZencoderTest.CancelJob(
                 createResponse.Id, 
                 r =>
                 {
@@ -302,13 +302,13 @@ namespace Zencoder.Test
                 }
             };
 
-            CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", outputs, null, null, true, true);
+            CreateJobResponse response = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", outputs, null, null, "us", true, true);
             Assert.IsTrue(response.Success);
             Assert.AreEqual(outputs.Count(), response.Outputs.Count());
             
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.CreateJob(
+            ZencoderTest.CreateJob(
                 "s3://bucket-name/file-name.avi",
                 null,
                 3,
@@ -334,14 +334,14 @@ namespace Zencoder.Test
             const string One = @"{{""input"":""s3://bucket-name/file-name.avi"",""api_key"":""{0}""}}";
             const string Two = @"{{""download_connections"":3,""input"":""s3://bucket-name/file-name.avi"",""region"":""asia"",""api_key"":""{0}""}}";
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
             {
                 Input = "s3://bucket-name/file-name.avi"
             };
 
             Assert.AreEqual(string.Format(CultureInfo.InvariantCulture, One, ApiKey), request.ToJson());
 
-            request = new CreateJobRequest(Zencoder)
+            request = new CreateJobRequest(ZencoderTest)
             {
                 DownloadConnections = 3,
                 Input = "s3://bucket-name/file-name.avi",
@@ -369,18 +369,18 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobDeleteJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
+            CreateJobResponse createResponse = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", null, null, null, "us", true, false);
             Assert.IsTrue(createResponse.Success);
 
             // TODO: Investigate whether Zencoder has truly deprecated this API operation.
             // For now, just test for an InConflict status, because that's what it seems
             // we should expect.
-            DeleteJobResponse deleteResponse = Zencoder.DeleteJob(createResponse.Id);
+            DeleteJobResponse deleteResponse = ZencoderTest.DeleteJob(createResponse.Id);
             Assert.IsTrue(deleteResponse.InConflict);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.DeleteJob(
+            ZencoderTest.DeleteJob(
                 createResponse.Id, 
                 r =>
                 {
@@ -441,15 +441,15 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobJobDetailsRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
+            CreateJobResponse createResponse = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", null, null, null, "us", true, false);
             Assert.IsTrue(createResponse.Success);
 
-            JobDetailsResponse detailsResponse = Zencoder.JobDetails(createResponse.Id);
+            JobDetailsResponse detailsResponse = ZencoderTest.JobDetails(createResponse.Id);
             Assert.IsTrue(detailsResponse.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.JobDetails(
+            ZencoderTest.JobDetails(
                 createResponse.Id, 
                 r =>
                 {
@@ -474,15 +474,15 @@ namespace Zencoder.Test
                 Height = 320
             };
 
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
+            CreateJobResponse createResponse = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
             Assert.IsTrue(createResponse.Success);
 
-            JobProgressResponse progressResponse = Zencoder.JobProgress(createResponse.Outputs.First().Id);
+            JobProgressResponse progressResponse = ZencoderTest.JobProgress(createResponse.Outputs.First().Id);
             Assert.IsTrue(progressResponse.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.JobProgress(
+            ZencoderTest.JobProgress(
                 createResponse.Outputs.First().Id,
                 r =>
                 {
@@ -511,12 +511,12 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobListJobsRequest()
         {
-            ListJobsResponse response = Zencoder.ListJobs();
+            ListJobsResponse response = ZencoderTest.ListJobs();
             Assert.IsTrue(response.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.ListJobs(
+            ZencoderTest.ListJobs(
                 r =>
                 {
                     Assert.IsTrue(r.Success);
@@ -564,7 +564,7 @@ namespace Zencoder.Test
             };
 
             // Nested async calls.
-            Zencoder.CreateJob(
+            ZencoderTest.CreateJob(
                 "s3://bucket-name/file-name.avi",
                 null,
                 3,
@@ -575,7 +575,7 @@ namespace Zencoder.Test
                 {
                     Assert.IsTrue(r.Success);
 
-                    Zencoder.JobDetails(
+                    ZencoderTest.JobDetails(
                         r.Id,
                         dr =>
                         {
@@ -585,7 +585,7 @@ namespace Zencoder.Test
                 });
 
             // Async call then a sync call.
-            Zencoder.CreateJob(
+            ZencoderTest.CreateJob(
                 "s3://bucket-name/file-name.avi",
                 null,
                 3,
@@ -595,7 +595,7 @@ namespace Zencoder.Test
                 r =>
                 {
                     Assert.IsTrue(r.Success);
-                    Assert.IsTrue(Zencoder.JobDetails(r.Id).Success);
+                    Assert.IsTrue(ZencoderTest.JobDetails(r.Id).Success);
                     handles[1].Set();
                 });
 
@@ -608,15 +608,15 @@ namespace Zencoder.Test
         [TestMethod]
         public void JobResubmitJobRequest()
         {
-            CreateJobResponse createResponse = Zencoder.CreateJob("s3://bucket-name/file-name.avi", null, null, null, true, false);
+            CreateJobResponse createResponse = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", null, null, null, "us", true, false);
             Assert.IsTrue(createResponse.Success);
 
-            ResubmitJobResponse resubmitResponse = Zencoder.ResubmitJob(createResponse.Id);
+            ResubmitJobResponse resubmitResponse = ZencoderTest.ResubmitJob(createResponse.Id);
             Assert.IsTrue(resubmitResponse.Success);
 
             AutoResetEvent[] handles = new AutoResetEvent[] { new AutoResetEvent(false) };
 
-            Zencoder.ResubmitJob(
+            ZencoderTest.ResubmitJob(
                 createResponse.Id, 
                 r =>
                 {

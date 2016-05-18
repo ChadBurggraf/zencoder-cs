@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Zencoder.cs" company="Tasty Codes">
+// <copyright file="ZencoderServices.cs" company="Tasty Codes">
 //     Copyright (c) 2010 Chad Burggraf.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Zencoder
     /// <summary>
     /// Provides API-wide Zencoder services.
     /// </summary>
-    public class Zencoder
+    public class ZencoderServices
     {
         /// <summary>
         /// Gets the query string key used to identify the API key.
@@ -23,12 +23,12 @@ namespace Zencoder
         /// <summary>
         /// Gets the default API base URL.
         /// </summary>
-        public static readonly Uri ServiceUrl = new Uri("https://app.zencoder.com/api/v1");
+        public static readonly Uri ServiceUrl = new Uri("https://app.zencoder.com/api/v2");
 
         /// <summary>
         /// Initializes a new instance of the Zencoder class.
         /// </summary>
-        public Zencoder()
+        public ZencoderServices()
             : this(ZencoderSettings.Section.ApiKey, ServiceUrl)
         {
         }
@@ -37,7 +37,7 @@ namespace Zencoder
         /// Initializes a new instance of the Zencoder class.
         /// </summary>
         /// <param name="apiKey">The API key to use when connecting to the service.</param>
-        public Zencoder(string apiKey)
+        public ZencoderServices(string apiKey)
             : this(apiKey, ServiceUrl)
         {
         }
@@ -47,7 +47,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="apiKey">The API key to use when connecting to the service.</param>
         /// <param name="baseUrl">The service base URL.</param>
-        public Zencoder(string apiKey, Uri baseUrl)
+        public ZencoderServices(string apiKey, Uri baseUrl)
         {
             if (string.IsNullOrEmpty(apiKey))
             {
@@ -256,12 +256,28 @@ namespace Zencoder
         /// </summary>
         /// <param name="input">The URL of the input file.</param>
         /// <param name="outputs">The output definition collection.</param>
+        /// <param name="notifications">The job level notifications.</param>
+        /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
+        /// <param name="region">The region to perform the job in.</param>
+        /// <param name="test">A value indicating whether to use test mode.</param>
+        /// <returns>The call response.</returns>
+        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, IEnumerable<HttpNotification> notifications, int? downloadConnections, string region, bool? test)
+        {
+            return this.CreateJob(input, outputs, notifications, downloadConnections, region, test, null);
+        }
+
+        /// <summary>
+        /// A blocking create job request/response cycle.
+        /// </summary>
+        /// <param name="input">The URL of the input file.</param>
+        /// <param name="outputs">The output definition collection.</param>
+        /// <param name="notifications">The output notifications collection.</param>
         /// <param name="downloadConnections">The number of download connections to use when fetching the input file.</param>
         /// <param name="region">The region to perform the job in.</param>
         /// <param name="test">A value indicating whether to use test mode.</param>
         /// <param name="mock">A value indicating whether to mock the response rather than actually creating a job.</param>
         /// <returns>The call response.</returns>
-        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, int? downloadConnections, string region, bool? test, bool? mock)
+        public CreateJobResponse CreateJob(string input, IEnumerable<Output> outputs, IEnumerable<HttpNotification> notifications, int? downloadConnections, string region, bool? test, bool? mock)
         {
             CreateJobRequest request = new CreateJobRequest(this)
             {
@@ -272,7 +288,7 @@ namespace Zencoder
                 Test = test
             };
 
-            return request.WithOutputs(outputs).GetResponse();
+            return request.WithOutputs(outputs).WithNotifications(notifications).GetResponse();
         }
 
         /// <summary>

@@ -24,10 +24,10 @@ namespace Zencoder
 
         /// <summary>
         /// Delegate for calling an <see cref="INotificationReceiver"/>'s 
-        /// <see cref="INotificationReceiver.OnReceive(HttpPostNotification)"/> method.
+        /// <see cref="INotificationReceiver.OnReceive(HttpPostOutputNotification)"/> method.
         /// </summary>
         /// <param name="notification">The notification object to send.</param>
-        private delegate void AsyncNotify(HttpPostNotification notification);
+        private delegate void AsyncNotify(HttpPostOutputNotification notification);
 
         /// <summary>
         /// Gets a list of current notification receivers.
@@ -83,13 +83,13 @@ namespace Zencoder
                 context.Request.InputStream != null &&
                 context.Request.InputStream.Length > 0)
             {
-                HttpPostNotification notification;
+                HttpPostOutputNotification notification;
 
                 using (StreamReader sr = new StreamReader(context.Request.InputStream))
                 {
                     using (JsonReader jr = new JsonTextReader(sr))
                     {
-                        notification = new JsonSerializer().Deserialize<HttpPostNotification>(jr);
+                        notification = new JsonSerializer().Deserialize<HttpPostOutputNotification>(jr);
                     }
                 }
 

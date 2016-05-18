@@ -22,8 +22,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the JobDetailsRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public JobDetailsRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public JobDetailsRequest(ZencoderServices zencoder)
             : base(zencoder)
         {
         }

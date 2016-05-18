@@ -28,8 +28,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the Request class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        protected Request(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        protected Request(ZencoderServices zencoder)
             : base(zencoder)
         {
         }

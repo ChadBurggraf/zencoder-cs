@@ -23,31 +23,31 @@ namespace Zencoder
         /// <summary>
         /// Identifies that the job has been cancelled.
         /// </summary>
-        Cancelled,
+        Cancelled = 1,
 
         /// <summary>
         /// Identifies that the job failed to complete.
         /// </summary>
-        Failed,
+        Failed = 2,
 
         /// <summary>
         /// Identifies that the job is finished.
         /// </summary>
-        Finished,
+        Finished = 3,
 
         /// <summary>
         /// Identifies that the job is pending.
         /// </summary>
-        Pending,
+        Pending = 4,
 
         /// <summary>
         /// Identifies that the job is processing.
         /// </summary>
-        Processing,
+        Processing = 5,
 
         /// <summary>
         /// Identifies that the job is waiting to be queued.
         /// </summary>
-        Waiting
+        Waiting = 6
     }
 }

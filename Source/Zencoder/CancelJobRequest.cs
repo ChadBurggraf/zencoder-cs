@@ -23,8 +23,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the CancelJobRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public CancelJobRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public CancelJobRequest(ZencoderServices zencoder)
             : base(zencoder)
         {
         }

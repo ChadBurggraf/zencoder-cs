@@ -86,7 +86,7 @@ namespace Zencoder.Test
             /// Called when a notification is received.
             /// </summary>
             /// <param name="notification">The notification that was received.</param>
-            public void OnReceive(HttpPostNotification notification)
+            public void OnReceive(HttpPostOutputNotification notification)
             {
                 Assert.IsNotNull(notification);
                 Assert.AreEqual(1234, notification.Job.Id);

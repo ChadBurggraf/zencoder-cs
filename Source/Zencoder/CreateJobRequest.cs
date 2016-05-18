@@ -20,8 +20,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the CreateJobRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public CreateJobRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public CreateJobRequest(ZencoderServices zencoder)
             : base(zencoder)
         {
         }
@@ -78,6 +78,12 @@ namespace Zencoder
         public bool? Test { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether test mode is enabled for the job.
+        /// </summary>
+        [JsonProperty("notifications", NullValueHandling = NullValueHandling.Ignore)]
+        public HttpNotification[] Notifications { get; set; }
+
+        /// <summary>
         /// Gets the concrete URL this request will call.
         /// </summary>
         public override Uri Url
@@ -129,6 +135,21 @@ namespace Zencoder
             if (outputs != null)
             {
                 this.Outputs = (this.Outputs ?? new Output[0]).Concat(outputs).ToArray();
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Appends a collection <see cref="Notification"/>s to this instance's <see cref="Notification"/> collection.
+        /// </summary>
+        /// <param name="notifications">The outputs to append.</param>
+        /// <returns>This instance.</returns>
+        public CreateJobRequest WithNotifications(IEnumerable<HttpNotification> notifications)
+        {
+            if (notifications != null)
+            {
+                this.Notifications = (this.Notifications ?? new HttpNotification[0]).Concat(notifications).ToArray();
             }
 
             return this;

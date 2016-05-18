@@ -44,7 +44,7 @@ namespace Zencoder.Test
                     })
                 .WithThumbnails(new Thumbnails().WithNumber(1));
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
                 .WithInputUrl(new Uri("s3://bucket-name/file-name.avi"))
                 .WithOutput(output);
 
@@ -65,7 +65,7 @@ namespace Zencoder.Test
                 Tuning = Tuning.FastDecode
             };
 
-            CreateJobResponse response = Zencoder.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
+            CreateJobResponse response = ZencoderTest.CreateJob("s3://bucket-name/file-name.avi", new Output[] { output });
             Assert.IsTrue(response.Success);
         }
 
@@ -139,7 +139,7 @@ namespace Zencoder.Test
                 }
             };
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
             {
                 Input = "s3://bucket-name/file-name.avi",
                 Outputs = outputs
@@ -179,7 +179,7 @@ namespace Zencoder.Test
                 }
             };
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
             {
                 Input = "http://example.com/file-name.avi",
                 Outputs = new Output[] { output, playlist }
@@ -208,7 +208,7 @@ namespace Zencoder.Test
                 Thumbnails = new Thumbnails[] { thumbs.WithNumber(6).WithSize(160, 120) }
             };
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
             {
                 Input = "http://example.com/file-name.avi",
                 Outputs = new Output[] { output }
@@ -242,7 +242,7 @@ namespace Zencoder.Test
 
             Output[] outputs = new Output[] { new Output().WithWatermark(watermark.WithSizeInPixels(32, 24)) };
 
-            CreateJobRequest request = new CreateJobRequest(Zencoder)
+            CreateJobRequest request = new CreateJobRequest(ZencoderTest)
             {
                 Input = "http://example.com/file-name.avi",
                 Outputs = outputs

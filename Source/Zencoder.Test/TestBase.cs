@@ -22,8 +22,8 @@ namespace Zencoder.Test
         public static readonly string ApiKey = ZencoderSettings.Section.ApiKey;
 
         /// <summary>
-        /// Gets the default test <see cref="Zencoder"/> instance.
+        /// Gets the default test <see cref="ZencoderTest"/> instance.
         /// </summary>
-        public static readonly Zencoder Zencoder = new Zencoder();
+        public static readonly ZencoderServices ZencoderTest = new ZencoderServices();
     }
 }

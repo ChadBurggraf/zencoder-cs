@@ -428,6 +428,31 @@ namespace Zencoder
         public int? Width { get; set; }
 
         /// <summary>
+        /// Gets or sets the HLS source of the output video, if applicable.
+        /// </summary>
+        [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
+        public string Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SegmentVideoSnapshots of the output video, if applicable.
+        /// </summary>
+        [JsonProperty("segment_video_snapshots", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SegmentVideoSnapshots { get; set; }
+
+        /// <summary>
+        /// Gets or sets the copy_audio of the output video, if applicable.
+        /// </summary>
+        [JsonProperty("copy_audio", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? CopyAudio { get; set; }
+
+        /// <summary>
+        /// Gets or sets the copy_video of the output video, if applicable.
+        /// </summary>
+        [JsonProperty("copy_video", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? CopyVideo { get; set; }
+
+
+        /// <summary>
         /// Appends the given S3 access control to this instance's <see cref="AccessControl"/> collection.
         /// </summary>
         /// <param name="accessControl">The access controls to append.</param>

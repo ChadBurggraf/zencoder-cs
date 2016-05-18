@@ -24,8 +24,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the ListJobsRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public ListJobsRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public ListJobsRequest(ZencoderServices zencoder)
             : base(zencoder)
         {
         }
@@ -102,7 +102,7 @@ namespace Zencoder
                     string query = string.Format(
                         CultureInfo.InvariantCulture,
                         "{0}={1}&page={2}&per_page={3}",
-                        HttpUtility.UrlEncode(Zencoder.ApiKeyQueryKey),
+                        HttpUtility.UrlEncode(ZencoderServices.ApiKeyQueryKey),
                         ApiKey,
                         this.PageNumber,
                         this.PageSize);

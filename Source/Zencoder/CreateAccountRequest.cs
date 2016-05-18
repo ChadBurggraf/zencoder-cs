@@ -18,8 +18,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the CreateAccountRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public CreateAccountRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public CreateAccountRequest(ZencoderServices zencoder)
             : base(Guid.NewGuid().ToString(), zencoder.BaseUrl)
         {
         }

@@ -71,7 +71,7 @@ namespace Zencoder
         /// <returns>The result URI.</returns>
         public static Uri WithApiKey(this Uri uri, string apiKey)
         {
-            return uri.WithQuery(Zencoder.ApiKeyQueryKey, apiKey);
+            return uri.WithQuery(ZencoderServices.ApiKeyQueryKey, apiKey);
         }
 
         /// <summary>

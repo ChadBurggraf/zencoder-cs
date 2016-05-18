@@ -19,8 +19,8 @@ namespace Zencoder
         /// <summary>
         /// Initializes a new instance of the AccountIntegrationModeRequest class.
         /// </summary>
-        /// <param name="zencoder">The <see cref="Zencoder"/> service to create the request with.</param>
-        public AccountIntegrationModeRequest(Zencoder zencoder)
+        /// <param name="zencoder">The <see cref="ZencoderServices"/> service to create the request with.</param>
+        public AccountIntegrationModeRequest(ZencoderServices zencoder)
             : base(zencoder)
         {
         }

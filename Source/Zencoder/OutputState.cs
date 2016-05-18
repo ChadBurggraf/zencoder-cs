@@ -23,41 +23,41 @@ namespace Zencoder
         /// <summary>
         /// Identifies that the output is being assigned.
         /// </summary>
-        Assigning,
+        Assigning = 1,
 
         /// <summary>
         /// Identifies that the job the output belongs to has been cancelled.
         /// </summary>
-        Cancelled,
+        Cancelled = 2,
 
         /// <summary>
         /// Identifies that the output failed to complete.
         /// </summary>
-        Failed,
+        Failed = 3,
 
         /// <summary>
         /// Identifies that the output is finished.
         /// </summary>
-        Finished,
+        Finished = 4,
 
         /// <summary>
         /// Identifies that the output did not define an input.
         /// </summary>
-        NoInput,
+        NoInput = 5,
 
         /// <summary>
         /// Identifies that the output is processing.
         /// </summary>
-        Processing,
+        Processing = 6,
 
         /// <summary>
         /// Identifies that the output is queued for processing.
         /// </summary>
-        Queued,
+        Queued = 7,
 
         /// <summary>
         /// Identifies that the output is waiting to be queued.
         /// </summary>
-        Waiting
+        Waiting = 8
     }
 }
