@@ -128,5 +128,11 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("thumbnails")]
         public HttpPostNotificationThumbnail[] Thumbnails { get; set; }
+
+        /// <summary>
+        /// Gets or sets the output's type
+        /// </summary>
+        [JsonProperty("type")]
+        public OutputType OutputType { get; set; }
     }
 }
