@@ -133,6 +133,6 @@ namespace Zencoder
         /// Gets or sets the output's type
         /// </summary>
         [JsonProperty("type")]
-        public OutputType? OutputType { get; set; }
+        public OutputType OutputType { get; set; }
     }
 }
