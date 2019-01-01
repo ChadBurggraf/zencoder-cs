@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F3CE0C5-A66D-4468-BEF8-CABB6B8DA6D1}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.proj = ..\build.proj
 		..\LICENSE.txt = ..\LICENSE.txt
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Package.nuspec = Package.nuspec
 		..\README.md = ..\README.md
 		SolutionInfo.cs = SolutionInfo.cs
 		Web.config.template = Web.config.template
@@ -14,12 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder", "Zencoder\Zencoder.csproj", "{6E47D2CE-D094-4077-9039-3B257DED1C6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zencoder.Test", "Zencoder.Test\Zencoder.Test.csproj", "{56CB9652-A906-4B54-8D67-70C1DE36EB3D}"
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Zencoder.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -29,12 +27,14 @@ Global
 		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E47D2CE-D094-4077-9039-3B257DED1C6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56CB9652-A906-4B54-8D67-70C1DE36EB3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB1BC2D1-5E33-4FBF-95B2-6836B947604B}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Zencoder.vsmdi
 	EndGlobalSection
 EndGlobal
