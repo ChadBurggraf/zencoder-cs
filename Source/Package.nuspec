@@ -22,6 +22,6 @@
     <tags>zencoder</tags>
   </metadata>
   <files>
-    <file src="Source\Zencoder\bin\Debug\Zencoder.*" target="lib\net40" />
+    <file src="Zencoder\bin\Debug\Zencoder.*" target="lib\net40" />
   </files>
 </package>
