@@ -88,7 +88,7 @@ namespace Zencoder
         /// Gets or sets the file's ID.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Gets or sets the file's total bitrate (in Kbps).
