@@ -16,7 +16,7 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ResubmitJobRequest : Request<ResubmitJobRequest, ResubmitJobResponse>
     {
-        private int jobId;
+        private long jobId;
         private Uri url;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the ID of the job to resubmit.
         /// </summary>
-        public int JobId
+        public long JobId
         {
             get
             {

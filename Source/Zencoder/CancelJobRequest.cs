@@ -17,7 +17,7 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class CancelJobRequest : Request<CancelJobRequest, CancelJobResponse>
     {
-        private int jobId;
+        private long jobId;
         private Uri url;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the ID of the job to cancel.
         /// </summary>
-        public int JobId
+        public long JobId
         {
             get 
             { 

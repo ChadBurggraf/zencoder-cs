@@ -16,7 +16,7 @@ namespace Zencoder
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class JobProgressRequest : Request<JobProgressRequest, JobProgressResponse>
     {
-        private int outputId;
+        private long outputId;
         private Uri url;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the ID of the <see cref="Output"/> to get progress for.
         /// </summary>
-        public int OutputId
+        public long OutputId
         {
             get
             {
