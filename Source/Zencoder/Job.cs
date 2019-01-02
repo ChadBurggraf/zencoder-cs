@@ -51,7 +51,7 @@ namespace Zencoder
         /// Gets or sets the job ID.
         /// </summary>
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Gets or sets the job's input media file.

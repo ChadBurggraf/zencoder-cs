@@ -41,7 +41,7 @@ namespace Zencoder
         /// <summary>
         /// Gets or sets the ID of the job to get details for.
         /// </summary>
-        public int JobId { get; set; }
+        public long JobId { get; set; }
 
         /// <summary>
         /// Gets the concrete URL this request will call.
