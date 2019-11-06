@@ -134,5 +134,23 @@ namespace Zencoder
         /// </summary>
         [JsonProperty("type")]
         public OutputType OutputType { get; set; }
+
+        /// <summary>
+        /// error type, eg "DownloadAccessDeniedError"
+        /// </summary>
+        [JsonProperty("error_class")]
+        public string ErrorClass { get; set; }
+
+        /// <summary>
+        /// Long description of error for human consumption
+        /// </summary>
+        [JsonProperty("error_message")]
+        public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// url for help page with more information about the error
+        /// </summary>
+        [JsonProperty("error_link")]
+        public string ErrorLink { get; set; }
     }
 }
