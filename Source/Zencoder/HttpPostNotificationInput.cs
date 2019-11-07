@@ -72,7 +72,7 @@ namespace Zencoder
         /// Gets or sets the input file size.
         /// </summary>
         [JsonProperty("file_size_in_bytes")]
-        public long FileSizeInBytes { get; set; }
+        public long? FileSizeInBytes { get; set; }
 
         /// <summary>
         /// Gets or sets the input width.
