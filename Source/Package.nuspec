@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>NS.Zencoder</id>
+    <version>$version$</version>
+    <title>Zencoder</title>
+    <authors>Akash Kava</authors>
+    <owners>Akash Kava</owners>
+    <licenseUrl>https://github.com/ackava/zencoder-cs/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/ackava/zencoder-cs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Zencoder
+    </description>
+    <summary>
+      Zencoder
+    </summary>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>NeuroSpeech Technologies Pvt Ltd 2016</copyright>
+    <language>en-US</language>
+    <tags>zencoder</tags>
+  </metadata>
+  <files>
+    <file src="Zencoder\bin\Debug\Zencoder.*" target="lib\net40" />
+  </files>
+</package>

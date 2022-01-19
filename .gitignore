@@ -8,3 +8,4 @@ bin/
 obj/
 TestResults/
 Build/
+/Source/.vs/Zencoder/v15/Server/sqlite3
