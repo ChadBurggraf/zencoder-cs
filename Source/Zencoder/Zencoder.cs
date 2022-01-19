@@ -334,7 +334,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="jobId">The ID of the job to get details for.</param>
         /// <returns>The call response.</returns>
-        public JobDetailsResponse JobDetails(int jobId)
+        public JobDetailsResponse JobDetails(long jobId)
         {
             JobDetailsRequest request = new JobDetailsRequest(this)
             {
