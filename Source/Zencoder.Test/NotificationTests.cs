@@ -10,7 +10,6 @@ namespace Zencoder.Test
     using System.IO;
     using System.Text;
     using System.Threading;
-    using System.Web;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Newtonsoft.Json;

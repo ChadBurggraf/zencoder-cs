@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E47D2CE-D094-4077-9039-3B257DED1C6E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zencoder</RootNamespace>
+    <AssemblyName>Zencoder</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Zencoder.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Zencoder.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDetailsRequest.cs" />
+    <Compile Include="AccountDetailsResponse.cs" />
+    <Compile Include="AccountIntegrationModeRequest.cs" />
+    <Compile Include="AccountIntegrationModeResponse.cs" />
+    <Compile Include="AspectMode.cs" />
+    <Compile Include="AudioCodec.cs" />
+    <Compile Include="BooleanConverter.cs" />
+    <Compile Include="CancelJobRequest.cs" />
+    <Compile Include="CancelJobResponse.cs" />
+    <Compile Include="CreateAccountRequest.cs" />
+    <Compile Include="CreateAccountResponse.cs" />
+    <Compile Include="CreateJobRequest.cs" />
+    <Compile Include="CreateJobResponse.cs" />
+    <Compile Include="DefaultingIntegerConverter.cs" />
+    <Compile Include="Deinterlace.cs" />
+    <Compile Include="DeleteJobRequest.cs" />
+    <Compile Include="DeleteJobResponse.cs" />
+    <Compile Include="DenoiseFilter.cs" />
+    <Compile Include="DeviceProfile.cs" />
+    <Compile Include="EmailNotification.cs" />
+    <Compile Include="EmailNotificationJsonConverter.cs" />
+    <Compile Include="EnumDescriptionConverter.cs" />
+    <Compile Include="EnumIntJsonConverter.cs" />
+    <Compile Include="EnumLowercaseJsonConverter.cs" />
+    <Compile Include="EnumLowercaseUnderscoreJsonConverter.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FromJsonAttribute.cs" />
+    <Compile Include="FromJsonStreamAttribute.cs" />
+    <Compile Include="FromJsonStringAttribute.cs" />
+    <Compile Include="H264Level.cs" />
+    <Compile Include="H264Profile.cs" />
+    <Compile Include="HttpNotification.cs" />
+    <Compile Include="HttpPostJobNotification.cs" />
+    <Compile Include="HttpPostNotification.cs" />
+    <Compile Include="HttpPostOutputNotification.cs" />
+    <Compile Include="HttpPostNotificationImage.cs" />
+    <Compile Include="HttpPostNotificationInput.cs" />
+    <Compile Include="HttpPostNotificationJob.cs" />
+    <Compile Include="HttpPostNotificationOutput.cs" />
+    <Compile Include="HttpPostNotificationThumbnail.cs" />
+    <Compile Include="INotificationReceiver.cs" />
+    <Compile Include="InputMediaFile.cs" />
+    <Compile Include="InputState.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="JobDetailsRequest.cs" />
+    <Compile Include="JobDetailsResponse.cs" />
+    <Compile Include="JobProgressRequest.cs" />
+    <Compile Include="JobProgressResponse.cs" />
+    <Compile Include="JobState.cs" />
+    <Compile Include="JobWrapper.cs" />
+    <Compile Include="ListJobsRequest.cs" />
+    <Compile Include="ListJobsResponse.cs" />
+    <Compile Include="MediaFile.cs" />
+    <Compile Include="MediaFileFormat.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="Output.cs" />
+    <Compile Include="OutputEvent.cs" />
+    <Compile Include="OutputMediaFile.cs" />
+    <Compile Include="OutputState.cs" />
+    <Compile Include="OutputType.cs" />
+    <Compile Include="OutputVideoCodec.cs" />
+    <Compile Include="PlaylistStream.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="Request{TRequest,TResponse}.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="ResponseOutput.cs" />
+    <Compile Include="Response{TRequest,TResponse}.cs" />
+    <Compile Include="ResubmitJobRequest.cs" />
+    <Compile Include="ResubmitJobResponse.cs" />
+    <Compile Include="Rotate.cs" />
+    <Compile Include="S3Access.cs" />
+    <Compile Include="S3Permission.cs" />
+    <Compile Include="Strings.cs" />
+    <Compile Include="Thumbnail.cs" />
+    <Compile Include="ThumbnailFormat.cs" />
+    <Compile Include="Thumbnails.cs" />
+    <Compile Include="Tuning.cs" />
+    <Compile Include="Uris.cs" />
+    <Compile Include="VideoCodec.cs" />
+    <Compile Include="Watermark.cs" />
+    <Compile Include="WatermarkOrigin.cs" />
+    <Compile Include="ZencoderServices.cs" />
+    <Compile Include="NotificationHandler.cs" />
+    <Compile Include="ZencoderSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

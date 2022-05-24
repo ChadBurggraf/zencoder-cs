@@ -7,7 +7,6 @@
 namespace Zencoder
 {
     using System;
-    using System.Web;
     using Newtonsoft.Json;
 
     /// <summary>

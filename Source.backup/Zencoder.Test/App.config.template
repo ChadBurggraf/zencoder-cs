@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="zencoder" type="Zencoder.ZencoderSettings, Zencoder"/>
+  </configSections>
+  <!-- Get your API key from http://zencoder.com/ -->
+  <zencoder apiKey=""/>
+</configuration>

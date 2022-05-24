@@ -10,8 +10,6 @@ namespace Zencoder
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
-    using System.Web;
-    using System.Web.SessionState;
     using Newtonsoft.Json;
 
     /// <summary>
