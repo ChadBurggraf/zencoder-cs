@@ -52,6 +52,11 @@ You can define both [email and HTTP](https://app.zencoder.com/docs/api/encoding/
 your job outputs. If you have an ASP.NET application, you can use the built-in `NotificationHandler`
 to process those notifications for you.
 
+In .NET6 we need to follow the instructions as detailed here 
+https://docs.microsoft.com/en-us/aspnet/core/migration/http-modules?view=aspnetcore-6.0#migrating-handler-insertion-into-the-request-pipeline
+
+*** Obsolete
+
 Add the handler to your Web.config and configure each receiver that you want called when a
 notification comes in. Receivers implement `INotificationReceiver`, which is a single method:
 `OnReceive(HttpPostNotification)`.
@@ -82,6 +87,8 @@ An example Web.config:
         </notifications>
       </zencoder>
     </configuration>
+
+***
 
 ## Enumerations
 

@@ -12,7 +12,7 @@ namespace Zencoder
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseMyHandler(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseNotificationHandler(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<NotificationHandlerMiddleware>();
         }

@@ -9,6 +9,7 @@ namespace Zencoder
     using System;
     using System.Globalization;
     using System.IO;
+    using System.Web;
     using Newtonsoft.Json;
 
     /// <summary>

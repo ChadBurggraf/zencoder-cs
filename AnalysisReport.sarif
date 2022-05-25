@@ -10,26 +10,10 @@
           "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview",
           "rules": [
             {
-              "id": "UA103",
-              "name": "ReferenceToBeDeleted",
+              "id": "UA101",
+              "name": "Dependency Analysis",
               "fullDescription": {
-                "text": "References that need to be deleted in order to upgrade the project to chosen TFM"
-              },
-              "helpUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
-            },
-            {
-              "id": "UA106",
-              "name": "PackageToBeAdded",
-              "fullDescription": {
-                "text": "Packages that need to be added in order to upgrade the project to chosen TFM"
-              },
-              "helpUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
-            },
-            {
-              "id": "UA108",
-              "name": "FrameworkReferenceToBeAdded",
-              "fullDescription": {
-                "text": "Framework Reference that need to be added in order to upgrade the project to chosen TFM"
+                "text": "Dependency Analysis"
               },
               "helpUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
             }
@@ -38,9 +22,9 @@
       },
       "results": [
         {
-          "ruleId": "UA103",
+          "ruleId": "UA101",
           "message": {
-            "text": "Reference to System.configuration needs to be deleted."
+            "text": "No package updates needed."
           },
           "locations": [
             {
@@ -54,169 +38,9 @@
           ]
         },
         {
-          "ruleId": "UA103",
+          "ruleId": "UA101",
           "message": {
-            "text": "Reference to System.Web needs to be deleted."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/Zencoder.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA103",
-          "message": {
-            "text": "Reference to System.Web.Abstractions needs to be deleted."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/Zencoder.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA106",
-          "message": {
-            "text": "Package System.Configuration.ConfigurationManager, Version=5.0.0 needs to be added."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/Zencoder.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA106",
-          "message": {
-            "text": "Package Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.3.326103 needs to be added."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/Zencoder.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA108",
-          "message": {
-            "text": "Framework Reference to Microsoft.AspNetCore.App needs to be added."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/Zencoder.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA103",
-          "message": {
-            "text": "Reference to System.configuration needs to be deleted."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder.Test/Zencoder.Test.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA103",
-          "message": {
-            "text": "Reference to System.Web needs to be deleted."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder.Test/Zencoder.Test.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA103",
-          "message": {
-            "text": "Reference to System.Web.Abstractions needs to be deleted."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder.Test/Zencoder.Test.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA106",
-          "message": {
-            "text": "Package System.Configuration.ConfigurationManager, Version=5.0.0 needs to be added."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder.Test/Zencoder.Test.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA106",
-          "message": {
-            "text": "Package Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.3.326103 needs to be added."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder.Test/Zencoder.Test.csproj"
-                },
-                "region": {}
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA108",
-          "message": {
-            "text": "Framework Reference to Microsoft.AspNetCore.App needs to be added."
+            "text": "No package updates needed."
           },
           "locations": [
             {
@@ -237,74 +61,10 @@
         "driver": {
           "name": "API Upgradability",
           "semanticVersion": "0.3.326103",
-          "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview",
-          "rules": [
-            {
-              "id": "UA0013_A",
-              "fullDescription": {
-                "text": "Replace usage of System.Web.IHttpModule, System.Web.IHttpHandler"
-              },
-              "helpUri": "about:blank"
-            }
-          ]
+          "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
         }
       },
-      "results": [
-        {
-          "ruleId": "UA0013_A",
-          "message": {
-            "text": "HTTP modules and HTTP handlers should be rewritten as middleware in ASP.NET Core. https://docs.microsoft.com/aspnet/core/migration/http-modulesIHttpModule"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/NotificationHandler.cs"
-                },
-                "region": {
-                  "startLine": 18
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA0013_A",
-          "message": {
-            "text": "HTTP modules and HTTP handlers should be rewritten as middleware in ASP.NET Core. https://docs.microsoft.com/aspnet/core/migration/http-modulesIHttpModule"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/NotificationHandler.cs"
-                },
-                "region": {
-                  "startLine": 58
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "UA0013_A",
-          "message": {
-            "text": "HTTP modules and HTTP handlers should be rewritten as middleware in ASP.NET Core. https://docs.microsoft.com/aspnet/core/migration/http-modulesIHttpModule"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/source/repos/hudl/zencoder-cs/Source/Zencoder/NotificationHandler.cs"
-                },
-                "region": {
-                  "startLine": 20
-                }
-              }
-            }
-          ]
-        }
-      ],
+      "results": [],
       "columnKind": "utf16CodeUnits"
     }
   ]

@@ -10,6 +10,7 @@ namespace Zencoder.Test
     using System.IO;
     using System.Text;
     using System.Threading;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Newtonsoft.Json;
@@ -30,7 +31,7 @@ namespace Zencoder.Test
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            NotificationHandler.Receivers.Add(new TestNotificationReceiver());
+            NotificationHandlerMiddleware.Receivers.Add(new TestNotificationReceiver());
         }
 
         /// <summary>
@@ -41,23 +42,23 @@ namespace Zencoder.Test
         {
             using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(NotificationJson)))
             {
-                var mockContext = new Mock<HttpContextBase>()
+                var mockContext = new Mock<HttpContext>()
                 {
                     DefaultValue = DefaultValue.Mock
                 };
 
-                var mockRequest = new Mock<HttpRequestBase>()
+                var mockRequest = new Mock<HttpRequest>()
                 {
                     DefaultValue = DefaultValue.Mock
                 };
 
                 mockRequest.Setup(r => r.ContentType).Returns("application/json");
-                mockRequest.Setup(r => r.HttpMethod).Returns("POST");
-                mockRequest.Setup(r => r.InputStream).Returns(stream);
+                mockRequest.Setup(r => r.Method).Returns("POST");
+                mockRequest.Setup(r => r.Body).Returns(stream);
 
                 mockContext.Setup(c => c.Request).Returns(mockRequest.Object);
 
-                NotificationHandler.ProcessRequest(mockContext.Object);
+                NotificationHandlerMiddleware.Invoke(mockContext.Object);
 
                 WaitHandle.WaitAll(new WaitHandle[] { receiverHandle });
             }

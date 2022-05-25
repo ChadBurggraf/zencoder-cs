@@ -7,6 +7,7 @@
 namespace Zencoder
 {
     using System;
+    using System.Web;
 
     /// <summary>
     /// Provides exteions to <see cref="Uri"/> objects.
