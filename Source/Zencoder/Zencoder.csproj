@@ -3,7 +3,8 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>TRACE;CODE_ANALYSIS;DEBUG;NET;NET6_0;NETCOREAPP</DefineConstants>
+    <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Zencoder.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
