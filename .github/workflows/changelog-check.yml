@@ -1,0 +1,16 @@
+name: Version automation
+
+on:
+  push:
+    branches:
+      - "**" # matches every branch
+      - "!master" # excludes master
+
+jobs:
+  build:
+    name: Verify if CHANGELOG was updated
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hudl/platform-actions/require-changelog@latest
+        with:
+          changelog-path: docs/CHANGELOG.md

@@ -1,0 +1,16 @@
+name: Version automation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Autocreate tag and release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hudl/platform-actions/autorelease@latest
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
