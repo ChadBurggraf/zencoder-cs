@@ -1,0 +1,48 @@
+name: ci-zencoder-project
+
+on:
+  push:
+    paths: ["Source/Zencoder/**"]
+
+jobs:
+  publish:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')" >> $GITHUB_ENV
+      - name: Generate Version Suffix
+        id: generate_version_suffix
+        run: |
+          if [[ $BRANCH_NAME == master ]] || [[ $BRANCH_NAME == main ]]; then
+            PUBLISH_ARGS=""
+          else
+            PUBLISH_BRANCH=${BRANCH_NAME,,}
+            RUN_NUMBER_SUFFIX="-${GITHUB_RUN_NUMBER}"
+            RUN_NUMBER_SUFFIX_LENGTH=${#RUN_NUMBER_SUFFIX}
+            let MAX_BRANCH_LENGTH=20-${RUN_NUMBER_SUFFIX_LENGTH}
+            TRUNCATED_BRANCH=`echo ${PUBLISH_BRANCH} | cut -c 1-${MAX_BRANCH_LENGTH}`
+            PUBLISH_ARGS="--version-suffix ${TRUNCATED_BRANCH}-${GITHUB_RUN_NUMBER}"
+          fi
+
+          echo ${PUBLISH_ARGS}
+          echo ::set-output name=publish_args::${PUBLISH_ARGS}
+      - name: Build and publish
+        id: docker_build
+        uses: docker/build-push-action@v2
+        env:
+          NUGET_PKG: Hudl.Zencoder.[0-9]*.nupkg
+        with:
+          context: .
+          file: ./.github/workflows/Dockerfile
+          push: false
+          load: true
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+            NUGET_API_KEY=${{ secrets.INTERNAL_NUGET_API_KEY }}
+            PUBLISH_ARGS=${{ steps.generate_version_suffix.outputs.publish_args }}
+            NUGET_PKG=${{ env.NUGET_PKG }}
